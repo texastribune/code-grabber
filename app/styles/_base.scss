@@ -1,0 +1,18 @@
+$sans-serif: "Helvetica Neue", Helvetica, Arial, sans-serif;
+$serif: Georgia, "Times New Roman", Times, serif;
+
+body {
+  color: $bodytext-black;
+  font-family: $serif;
+  line-height: 1.4;
+}
+
+a {
+  color: $href-teal;
+  text-decoration: none;
+
+  &:hover {
+    text-decoration: underline;
+  }
+}
+

@@ -1,0 +1,113 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <title>Bordering on Insecurity Component Templates | The Texas Tribune</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <base target='_parent'>
+  <link href='https://fonts.googleapis.com/css?family=Cabin:400,700' rel='stylesheet' type='text/css'>
+  <!-- build:css styles/main.min.css -->
+  <link rel="stylesheet" href="styles/main.css">
+  <!-- endbuild -->
+</head>
+<body>
+<!--     <header>
+      <h1>Story Add-ons!</h1>
+    </header>
+
+  <div class="resize-buttons">
+    <button id="desktop" class="ghost-button">640px</button>
+    <button id="mobile" class="ghost-button">320px</button>
+    <button id="full" class="ghost-button">100%</button>
+  </div> -->
+
+  <main class="main" role="main">
+    <section class="section--block instructions">
+      <header>
+        <h1 class="title">Tribune Code Grabber</h1>
+        <p class="title_sub">The easy way to add special components to your story</p>
+      </header>
+      <div class="instructions--row">
+        <div class="instructions--box">
+          <div class="instructions--number_circle">
+            <div class="instructions--number">1</div>
+          </div>
+          <header class="instructions--header">
+            <h1>Build a story component</h1>
+          </header>
+        </div>
+        <div class="instructions--box">
+          <div class="instructions--number_circle">
+            <div class="instructions--number">2</div>
+          </div>
+          <header class="instructions--header">
+            <h1>Click copy</h1>
+          </header>
+        </div>
+        <div class="instructions--box">
+          <div class="instructions--number_circle">
+            <div class="instructions--number">3</div>
+          </div>
+          <header class="instructions--header">
+            <h1>Paste in your story HTML</h1>
+          </header>
+        </div>
+      </div>
+      <header class="instructions--header">
+        <h2 class="instructions--header_tips">Helpful tips</h2>
+      </header>
+      <ul class="section--list">
+        <li>Click the "HTML" button in the left corner of the CMS text editor to open the HTML version of your story. Then paste your embed code in the right place and hit the "Update" button.</li>
+        <li>Find the right spot for your embed <strong>before you open the HTML editor</strong> and mark it by adding a couple extra empty paragraph returns. When you open the HTML editor, look for a group of empty paragraph tags: <span class="instructions--highlight">&lt;p>&amp;nbsp;&lt;/p></span>. Highlight those empty paragraphs and paste your code in their place.</li>
+        <li>Always save and preview your elements on the page to make sure it worked correctly.</li>
+        <li>If you need to make a change, it may be easier to delete the entire component from your HTML editor and paste a new embed code in its place.</li>
+      </ul>
+    </section>
+
+    <section class="section--block">
+      <header>
+        <h2>Choose a component</h2>
+      </header>
+      <ul class="section--list">
+        <li><a href="#pull_quotes">Pull Quotes</a></li>
+        <li><a href="#read_more">Read More</a></li>
+        <li><a href="#photo_embed">Photo Embed</a></li>
+        <li><a href="#video_embed">Video Embed</a></li>
+        <li><a href="#bsp_header">Bordering on Insecurity series header</a></li>
+        <li><a href="#bsp_embed">Bordering on Insecurity series embed</a></li>
+      </ul>
+    </section>
+
+    {% include 'templates/pull_quotes.html' %}
+
+    {% include 'templates/read_more.html' %}
+
+    {% include 'templates/photo_embed.html' %}
+
+    {% include 'templates/video_embed.html' %}
+
+    {% include 'templates/bsp_header.html' %}
+    
+    {% include 'templates/bsp_embed.html' %}
+
+  </main>
+
+
+
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.2.0/jquery.min.js"></script>
+  <!-- build:js scripts/main.min.js -->
+  <script src="/node_modules/clipboard/dist/clipboard.min.js"></script>
+  <script src="/node_modules/pym.js/dist/pym.js"></script>
+  <script src="scripts/main.js"></script>
+  <!-- endbuild -->
+  <script async src='https://www.google-analytics.com/analytics.js'></script>
+  <script>
+    window.ga=window.ga||function(){(ga.q=ga.q||[]).push(arguments)};ga.l=+new Date;
+    ga('create', 'UA-9827490-1', 'auto');
+    ga('set', 'location', window.location.protocol + '//' + window.location.hostname + window.location.pathname);
+    ga('set', 'page', window.location.pathname);
+    ga('send', 'pageview');
+  </script>
+</body>
+</html>

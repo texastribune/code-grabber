@@ -1,0 +1,150 @@
+@import 'node_modules/newsapps-styles/init-helpers';
+@import 'node_modules/newsapps-styles/theme/graphic';
+
+@import 'base';
+@import 'bsp';
+// Add your SCSS here!
+$sans-serif: 'Cabin', sans-serif;
+
+pre {
+  background-color: $background-gray;
+  display: block;
+  max-width: 65em;
+}
+
+code {
+  color: $green;
+  max-width: 500px;
+  word-wrap: normal;
+}
+
+.main {
+  margin: 1em auto;
+  padding: 0 1.5em;
+  max-width: 65em;
+
+  h1 { @include font-size($xl, .8); }
+  h2 { @include font-size($l, .8); }
+}
+
+.section {
+  &--block {
+    header, p, ul, label, input, .radio-label { font-family: $sans-serif; }
+    h2 { margin: 0 0 1em; }
+    margin: 0 0 5em;
+
+    a {
+      color: $orange;
+
+      &:hover,
+      &:active {
+        color: $orange;
+      }
+    }
+
+    .title {
+      @include font-size(72, .8);
+      // background-color: $green;
+      // border-radius: 5px;
+      // padding-top: 1em;
+      margin: 0;
+
+      &_sub {
+        @include font-size($l, .8);
+        margin: 0 0 2em;
+      }
+    }
+  }
+
+  &--list {
+    text-align: left;
+    list-style-type: circle;
+
+    li {
+      margin: 0 0 1em 1em;
+    }
+  }
+}
+
+.copy-button {
+  @include btn($orange, ghost);
+  width: 100%;
+}
+
+.resize-buttons {
+  border-bottom: 2px solid $green;
+  padding: 0 1.5em;
+  margin: 0 0 2em;
+  width: 100%;
+}
+
+.template-frame {
+  header, p, ul { font-family: $base-serif; }
+  border: 5px dashed $line-gray;
+  margin: 0 0 1.5em;
+  padding: 1em;
+  width: 100%;
+  max-width: 25em;
+
+  a {
+    color: $tribune-teal;
+
+    &:hover,
+    &:active {
+      color: $tribune-teal;
+    }
+  }
+}
+
+.instructions {
+  font-family: $sans-serif;
+  text-align: center;
+
+  p { font-family: $sans-serif; }
+
+  &--row {
+    @include clearfix;
+  }
+
+  &--box {
+    @include clearfix;
+
+    @include media($default-desktop) {
+      float: left;
+      margin: 0 0 2em;
+      width: 33%;     
+    }
+  }
+
+  &--highlight {
+    background-color: $green;
+    padding: .2em;
+    border-radius: 3px;
+  }
+
+  &--header {
+    padding: 1em 0 0;
+
+    &_tips {
+      text-align: left;
+    }
+  }
+
+  &--number {
+    @include font-size($xl);
+    padding-top: .85em;
+  }
+
+  &--number_circle {
+    background-color: $green;
+    border-radius: 100px;
+    float: left;
+    height: 6em;
+    margin: 0 auto 1em;
+    width: 6em;
+
+    @include media($default-desktop) {
+      float: none;   
+    }
+  }
+}

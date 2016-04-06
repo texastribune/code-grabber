@@ -1,0 +1,35 @@
+  <!--   Pull Quote      -->
+    <section id="pull_quotes" class="section--block">
+      <header>
+        <h2>Pull Quotes</h2>
+      </header>
+      <div class="template-frame">
+        <div>
+          <p class="story_quote--pull" style="border-bottom: 2px; border-left: 0; border-right: 0; border-top: 2px; border-color: rgb(255, 194, 0); border-style: solid; color: #444; font-family: Georgia,Times,serif; font-size: 1.2em; font-style: italic; font-weight: 600; line-height: 1.3; padding-top: 1em; padding-bottom: 1em; margin-bottom: 0"><span>&ldquo;</span><span class="pullquote_quoteHTML"></span><span>&rdquo;</span><span style="display: block; font-family: Helvetica, Arial, sans-serif; font-size: .85em; font-style: normal; font-weight: 400; margin: .5em 0 0;">&mdash; <span class="pullquote_speakerHTML"></span></span></p>
+        </div>
+      </div>
+      <form id="pullquote_form" class="copy-form">
+        <label>Quote</label>
+        <input id="pullquote_quote" type="text" value="Paste your quote here.">
+        <label>Speaker, Title</label>
+        <input id="pullquote_speaker" type="text" value="Speaker Name, Title">
+        <label>Position</label>
+        <input type="radio" name="position" value="full" checked><span class="radio-label">Full Width</span>  
+        <input type="radio" name="position" value="right"><span class="radio-label">Float Right</span>
+        <input type="radio" name="position" value="left"><span class="radio-label">Float Left</span>
+        <label>Border style</label>
+        <input type="radio" name="color" value="tt" checked><span class="radio-label color-tt">Texas Tribune</span>
+        <input type="radio" name="color" value="bsp"><span class="radio-label color-bsp">Bordering on Insecurity</span>
+        <input type="submit" class="copy-button" value="Update &amp; Copy Code">
+      </form>
+
+      <button id="pullquote_clipboard" class="copy hidden" data-clipboard-target="#pullquote_code"></button>
+
+      <pre>
+        <code id="pullquote_code">
+        &lt;div<span class="pullquote_position"></span>>
+          &lt;p class="story_quote--pull" style="border-bottom: 2px; border-left: 0; border-right: 0; border-top: 2px; border-color: <span class="pullquote_color"></span>; border-style: solid; color: #444; font-family: Georgia,Times,serif; font-size: 1.2em; font-style: italic; font-weight: 600; line-height: 1.3; padding-top: 1em; padding-bottom: 1em; margin-bottom: 0">&lt;span>&ldquo;&lt;/span><span class="pullquote_quoteHTML"></span>&lt;span>&rdquo;&lt;/span>&lt;span style="display: block; font-family: Helvetica, Arial, sans-serif; font-size: .85em; font-style: normal; font-weight: 400; margin: .5em 0 0;">&mdash; <span class="pullquote_speakerHTML"></span>&lt;/span>&lt;/p>
+        &lt;/div>
+        </code>
+      </pre>
+    </section>

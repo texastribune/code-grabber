@@ -1,0 +1,184 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <title>Bordering on Insecurity Component Templates | The Texas Tribune</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <base target='_parent'>
+  <!-- build:css styles/main.min.css -->
+  <link rel="stylesheet" href="styles/main.css">
+  <!-- endbuild -->
+</head>
+<body>
+  <div class="resize-buttons">
+    <header>
+      <h1>Bordering on Insecurity Component Templates</h1>
+    </header>
+    <button id="desktop" class="ghost-button">640px</button>
+    <button id="mobile" class="ghost-button">320px</button>
+    <button id="full" class="ghost-button">100%</button>
+  </div>
+
+  <main class="main" role="main">
+
+  <!--   Series Header -->  
+    <header>
+      <h2>Series Header</h2>
+    </header>
+    <div class="template-frame">
+      <div class="story_series--header" style="border-top: 0; border-right: 0; border-left: 0; border-bottom: 5px; border-style: solid; border-color: #925352; padding-bottom: 1em; margin-bottom: 1em;"><a href="http://apps.texastribune.org/bordering-on-insecurity/"><img style="display: block; margin: 0 auto .75em; width: 210px;" src="https://static.texastribune.org/media/images/2016/01/29/TT-BSP_LogoA-sml.jpg" alt="Bordering on Insecurity Logo" /></a><em style="line-height: 1; font-size: .9em;">The Texas Tribune is taking a yearlong look at the issues of border security and immigration, reporting on the reality and rhetoric around these topics. <a href="http://apps.texastribune.org/bordering-on-insecurity/" target="_blank">Sign up to get</a> story alerts.</em></div>
+    </div>
+    <pre style="display:block;">
+      <code class="language-markup">
+&lt;div class="story_series--header" style="border-top: 0; border-right: 0; border-left: 0; border-bottom: 5px; border-style: solid; border-color: #925352; padding-bottom: 1em; margin-bottom: 1em;">&lt;a href="http://apps.texastribune.org/bordering-on-insecurity/">&lt;img style="display: block; margin: 0 auto .75em; width: 210px;" src="https://static.texastribune.org/media/images/2016/01/29/TT-BSP_LogoA-sml.jpg" alt="Bordering on Insecurity Logo" />&lt;/a>&lt;em style="line-height: 1; font-size: .9em;">The Texas Tribune is taking a yearlong look at the issues of border security and immigration, reporting on the reality and rhetoric around these topics. &lt;a href="http://apps.texastribune.org/bordering-on-insecurity/" target="_blank">Sign up to get&lt;/a> story alerts.&lt;/em>&lt;/div>
+      </code>
+    </pre>
+
+  <!-- Read More -->
+    <header>
+      <h2>Read More</h2>
+      <p>The link must be inside a &lt;p> tag or the CMS text editor will auto-remove it.</p>
+    </header>
+    <div class="template-frame">
+      <p onclick="sendEvent('readmore', 'story-string')"  class="readmore"><span class="readmore--label">Read More</span><a href="http://texastribune.org">Pellentesque auctor neque nec urna</a></p>
+    </div>
+
+    <pre>
+      <code class="language-markup">
+        &lt;p onclick="sendEvent('readmore', 'story-string')" class="readmore" style="font-style: italic; padding-top: .5em; padding-bottom: .5em; vertically-align: middle;">&lt;span class="readmore--label" style="color: #111111; font-family: Helvetica,Arial,sans-serif; font-size: .9em; font-style: italic; font-weight: 800; margin: 0 1em 1em 0; text-decoration: none; text-transform: uppercase;">Read More&lt;/span>&lt;a class="readmore" href="http://texastribune.org">Pellentesque auctor neque nec urna&lt;/a>&lt;/p>
+      </code>
+    </pre>
+
+    <!-- Pull Quote -->
+    <header>
+      <h2>Pull Quotes</h2>
+      <p>There are two options for pull quotes, full-width or 50% width, floated right. You'll need to adjust the styles on the container, and use &lt;blockquote> for 50% width/floated and a regular &lt;p> on full-width. Otherwise, class names and styles are the same.</p>
+    </header>
+    <div class="template-frame">
+      <p>Float right, 50% width:</p>
+      <div class="float_right" style="width: 50%; margin-right: 1em;">
+        <blockquote class="story_quote--pull" style="border-bottom: 3px; border-left: 0; border-right: 0; border-top: 3px; border-color: #925352; border-style: solid; font-family: Georgia,Times,serif; font-size: 1.2em; font-weight: 600; line-height: 1.3; margin-bottom: 1.2em; padding-top: 1em; padding-bottom: 1em;">"Proin magna. Vestibulum rutrum, mi nec elementum vehicula, eros quam gravida nisl, id fringilla neque ante vel mi."
+        <span class="story_quote--pull_attribution">&mdash; Person McPerson<span>
+        </blockquote>
+      </div>
+    </div>
+    <pre>
+      <code>
+        &lt;div class="float_right" style="width: 50%; margin-right: 1em;">
+          &lt;blockquote class="story_quote--pull" style="border-bottom: 2px; border-left: 0; border-right: 0; border-top: 2px; border-color: #925352; border-style: solid; font-family: Georgia,Times,serif; font-size: 1.2em; font-weight: 600; line-height: 1.3; margin-bottom: 1.2em; padding-top: 1em; padding-bottom: 1em;">"Proin magna. Vestibulum rutrum, mi nec elementum vehicula, eros quam gravida nisl, id fringilla neque ante vel mi." &mdash; Person McPerson
+            &lt;p style="display: block; font-family: Helvetica, Arial, sans-serif; font-size: .85em; font-style: normal; font-weight: 400; margin: .5em 0 0;">&mdash; Person McPerson&lt;/p>
+          &lt;/blockquote>
+        &lt;/div>
+      </code>
+    </pre>
+    <div class="template-frame">
+      <p>Full width:</p>
+      <div style="width: 100%;">
+        <p class="story_quote--pull" style="border-bottom: 3px; border-left: 0; border-right: 0; border-top: 3px; border-color: #925352; border-style: solid; color: #444; font-family: Georgia,Times,serif; font-size: 1.2em; font-style: italic; font-weight: 600; line-height: 1.3; margin-bottom: 1.2em; padding-top: 1em; padding-bottom: 1em;">"Proin magna. Vestibulum rutrum, mi nec elementum vehicula, eros quam gravida nisl, id fringilla neque ante vel mi." &mdash; Person McPerson</p>
+      </div>
+    </div>
+    <pre>
+      <code>
+        &lt;div style="width: 100%;">
+          &lt;p class="story_quote--pull" style="border-bottom: 2px; border-left: 0; border-right: 0; border-top: 2px; border-color: #925352; border-style: solid; color: #444; font-family: Georgia,Times,serif; font-size: 1.2em; font-style: italic; font-weight: 600; line-height: 1.3; margin-bottom: 1.2em; padding-top: 1em; padding-bottom: 1em;">"Proin magna. Vestibulum rutrum, mi nec elementum vehicula, eros quam gravida nisl, id fringilla neque ante vel mi."&lt;span style="display: block; font-family: Helvetica, Arial, sans-serif; font-size: .85em; font-style: normal; font-weight: 400; margin: .5em 0 0;">&mdash; Person McPerson&lt;/span>
+          &lt;/p>
+        &lt;/div>
+      </code>
+    </pre>
+
+    <!-- Photo Embeds -->
+    <header>
+      <h1>Right align with caption</h1>
+    </header>
+    <div class="media article_detail float_right unprose"><a class="lightbox" href="http://d2o6nd3dubbyr6.cloudfront.net/media/images/TxTrib_SummitCommunity_MS_20111101_42.jpg"><img src="http://d2o6nd3dubbyr6.cloudfront.net/media/images/TxTrib_SummitCommunity_MS_20111101_42.jpg" alt="" width="312" /></a>
+    <div class="photo_links"><a class="lightbox enlarge" href="http://d2o6nd3dubbyr6.cloudfront.net/media/images/TxTrib_SummitCommunity_MS_20111101_42.jpg">Enlarge</a>&nbsp;<cite>photo by: Muliadi Soenaryo</cite></div>
+    <div class="photo_caption"><em>Put your caption information here Okie Noodling II</em>.</div>
+    </div>
+
+    <pre>
+      <code>
+      &lt;div class="media article_detail float_right unprose">&lt;a class="lightbox" href="http://d2o6nd3dubbyr6.cloudfront.net/media/images/TxTrib_SummitCommunity_MS_20111101_42.jpg">&lt;img src="http://d2o6nd3dubbyr6.cloudfront.net/media/images/TxTrib_SummitCommunity_MS_20111101_42.jpg" alt="" width="312" />&lt;/a>
+      &lt;div class="photo_links">&lt;a class="lightbox enlarge" href="http://d2o6nd3dubbyr6.cloudfront.net/media/images/TxTrib_SummitCommunity_MS_20111101_42.jpg">Enlarge&lt;/a>&nbsp;&lt;cite>photo by: Muliadi Soenaryo&lt;/cite>&lt;/div>
+      &lt;div class="photo_caption">&lt;em>Put your caption information here Okie Noodling II&lt;/em>.&lt;/div>
+      &lt;/div>
+      </code>
+    </pre>
+    <header>
+      <h1>Left align with caption</h1>
+    </header>
+    <div class="media article_detail float_left unprose"><a class="lightbox" href="http://d2o6nd3dubbyr6.cloudfront.net/media/images/TxTrib_SummitCommunity_MS_20111101_42.jpg"><img src="http://d2o6nd3dubbyr6.cloudfront.net/media/images/TxTrib_SummitCommunity_MS_20111101_42.jpg" alt="" width="312" /></a>
+    <div class="photo_links"><a class="lightbox enlarge" href="http://d2o6nd3dubbyr6.cloudfront.net/media/images/TxTrib_SummitCommunity_MS_20111101_42.jpg">Enlarge</a>&nbsp;<cite>photo by: Muliadi Soenaryo</cite></div>
+    <div class="photo_caption"><em>Put your caption information here Okie Noodling II</em>.</div>
+    </div>
+
+    <pre>
+      <code>
+        &lt;div class="media article_detail float_left unprose">&lt;a class="lightbox" href="http://d2o6nd3dubbyr6.cloudfront.net/media/images/TxTrib_SummitCommunity_MS_20111101_42.jpg">&lt;img src="http://d2o6nd3dubbyr6.cloudfront.net/media/images/TxTrib_SummitCommunity_MS_20111101_42.jpg" alt="" width="312" />&lt;/a>
+        &lt;div class="photo_links">&lt;a class="lightbox enlarge" href="http://d2o6nd3dubbyr6.cloudfront.net/media/images/TxTrib_SummitCommunity_MS_20111101_42.jpg">Enlarge&lt;/a>&nbsp;&lt;cite>photo by: Muliadi Soenaryo&lt;/cite>&lt;/div>
+        &lt;div class="photo_caption">&lt;em>Put your caption information here Okie Noodling II&lt;/em>.&lt;/div>
+        &lt;/div>
+      </code>
+    </pre>
+
+    <!-- Video Embed -->
+    <header>
+      <h2>Responsive Video Embed</h2>
+      <p>These code blocks rely on CMS classes to load FitVids.js and make the videos responsive.</p>
+    </header>
+    <p>YouTube:</p>
+    <div class="template-frame">
+      <div class="video story_relatedvideo" itemprop="associatedMedia">
+        <div class="youtube">
+          <iframe width="636" height="477" src="https://www.youtube.com/embed/5IuRzJRrRpQ" frameborder="0" allowfullscreen></iframe>
+        </div>
+      </div>
+    </div>
+    <pre>
+      <code>
+      &lt;div class="video story_relatedvideo" itemprop="associatedMedia" style="margin-bottom: 1.3em;">
+        &lt;div class="youtube">
+          <!-- SUB IFRAME EMBED CODE -->
+          &lt;iframe width="636" height="477" src="https://www.youtube.com/embed/5IuRzJRrRpQ" frameborder="0" allowfullscreen>&lt;/iframe>
+        &lt;/div>
+      &lt;/div>
+      </code>
+    </pre>
+    <p>Vimeo:</p>
+    <div class="template-frame">
+      <div class="video story_relatedvideo" itemprop="associatedMedia">
+        <div class="vimeo">
+          <iframe src="https://player.vimeo.com/video/95834056" width="500" height="281" frameborder="0" webkitallowfullscreen="" mozallowfullscreen="" allowfullscreen=""></iframe>
+        </div>
+      </div>
+    </div>
+    <pre>
+      <code>
+      &lt;div class="video story_relatedvideo" itemprop="associatedMedia" style="margin-bottom: 1.3em;">
+        &lt;div class="vimeo">
+          <!-- SUB IFRAME EMBED CODE -->
+          &lt;iframe src="https://player.vimeo.com/video/95834056" width="500" height="281" frameborder="0" webkitallowfullscreen="" mozallowfullscreen="" allowfullscreen="">&lt;/iframe>
+        &lt;/div>
+      &lt;/div>
+      </code>
+    </pre>
+
+  </main>
+
+
+
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.2.0/jquery.min.js"></script>
+  <!-- build:js scripts/main.min.js -->
+  <script src="/node_modules/pym.js/dist/pym.js"></script>
+  <script src="scripts/main.js"></script>
+  <!-- endbuild -->
+  <script async src='https://www.google-analytics.com/analytics.js'></script>
+  <script>
+    window.ga=window.ga||function(){(ga.q=ga.q||[]).push(arguments)};ga.l=+new Date;
+    ga('create', 'UA-9827490-1', 'auto');
+    ga('set', 'location', window.location.protocol + '//' + window.location.hostname + window.location.pathname);
+    ga('set', 'page', window.location.pathname);
+    ga('send', 'pageview');
+  </script>
+</body>
+</html>
