@@ -59,17 +59,14 @@ $sans-serif: 'Cabin', sans-serif;
     pre {
       background-color: $background-gray;
       display: block;
-      max-width: 65em;
-      height: 0;
+      max-width: 1080px;
       margin: 0;
-      visibility: hidden;
     }
 
     code {
       color: $green;
       max-width: 500px;
       word-wrap: normal;
-      height: 0;
     }
   }
 

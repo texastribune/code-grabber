@@ -70,7 +70,7 @@ $huckleberry: rgb(146,83,82); // #925352
 
 .copy-button {
   @include btn($orange, ghost);
-  margin: 0 auto;
+  margin: 0 auto 1em;
   width: 50%;
 }
 

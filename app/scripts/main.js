@@ -17,7 +17,6 @@
     });
   }
 
-
   var templateFrame = $('.preview--frame');
 
   // Add your JS here!
@@ -157,7 +156,5 @@
     $('.copied').hide();
     $(this).next($('.copied')).css('display', 'inline-block');
   });
-
-
 
 })();
