@@ -18,7 +18,7 @@
   }
 
 
-  var templateFrame = $('.template-frame');
+  var templateFrame = $('.preview--frame');
 
   // Add your JS here!
   $('#desktop').click(function() {
@@ -33,6 +33,11 @@
     templateFrame.width('100%');
   });
   
+  function copied(x) {
+    $('.copied').hide();
+    $(x).find('.copied').css('display', 'inline-block');
+  }
+
   $('#readmore_form').submit(function(e) {
     var headline = $('#readmore_headline').val(),
         link = $('#readmore_link').val(),
@@ -47,6 +52,7 @@
     linkHTML.prop('href', link);
 
     $('#readmore_clipboard').trigger('click');
+    copied(this);
     e.preventDefault();
   });
 
@@ -80,6 +86,7 @@
     pullquoteSpeakerHTML.html(pullquoteSpeaker);
 
     $('#pullquote_clipboard').trigger('click');
+    copied(this);
     e.preventDefault();
   });
 
@@ -107,6 +114,7 @@
     photoEmbedCaptionHTML.html(photoEmbedCaption);
 
     $('#photoEmbed_clipboard').trigger('click');
+    copied(this);
     e.preventDefault();
   });
 
@@ -137,10 +145,19 @@
     }
     
     $('#videoEmbed_clipboard').trigger('click');
+    copied(this);
     e.preventDefault();
   });
 
   new Clipboard('.copy');
 
   window.onload = load;
+
+  $('button.copy-button').click(function() {
+    $('.copied').hide();
+    $(this).next($('.copied')).css('display', 'inline-block');
+  });
+
+
+
 })();

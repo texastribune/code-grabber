@@ -70,25 +70,19 @@
         <h2>Choose a component</h2>
       </header>
       <ul class="section--list">
+        <li><a href="#series_headers">Series Headers</a></li>
         <li><a href="#pull_quotes">Pull Quotes</a></li>
         <li><a href="#read_more">Read More</a></li>
         <li><a href="#photo_embed">Photo Embed</a></li>
         <li><a href="#video_embed">Video Embed</a></li>
-        <li><a href="#bsp_header">Bordering on Insecurity series header</a></li>
         <li><a href="#bsp_embed">Bordering on Insecurity series embed</a></li>
       </ul>
     </section>
-
+    {% include 'templates/series_headers.html' %}
     {% include 'templates/pull_quotes.html' %}
-
     {% include 'templates/read_more.html' %}
-
     {% include 'templates/photo_embed.html' %}
-
     {% include 'templates/video_embed.html' %}
-
-    {% include 'templates/bsp_header.html' %}
-    
     {% include 'templates/bsp_embed.html' %}
 
   </main>

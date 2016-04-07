@@ -12,12 +12,15 @@
         <label>Photo caption</label>
         <input id="photoEmbed_caption" type="text" value="Put your caption information here.">
         <label>Position</label>
-        <input type="radio" name="photoPosition" value="full" checked><span class="radio-label">Full Width</span>  
-        <input type="radio" name="photoPosition" value="right"><span class="radio-label">Float Right</span>
-        <input type="radio" name="photoPosition" value="left"><span class="radio-label">Float Left</span>
+        <div class="copy-form--row">
+          <input type="radio" name="photoPosition" value="full" checked><span class="radio-label">Full Width</span>  
+          <input type="radio" name="photoPosition" value="right"><span class="radio-label">Float Right</span>
+          <input type="radio" name="photoPosition" value="left"><span class="radio-label">Float Left</span>
+        </div>
         <input type="submit" class="copy-button" value="Update &amp; Copy Code">
+        <div class="copied">Copied &#10003;</div>
       </form>
-
+      
       <button id="photoEmbed_clipboard" class="copy hidden" data-clipboard-target="#photoEmbed_code"></button>
 
       <pre>

@@ -2,21 +2,10 @@
 @import 'node_modules/newsapps-styles/theme/graphic';
 
 @import 'base';
-@import 'bsp';
+@import 'series';
+
 // Add your SCSS here!
 $sans-serif: 'Cabin', sans-serif;
-
-pre {
-  background-color: $background-gray;
-  display: block;
-  max-width: 65em;
-}
-
-code {
-  color: $green;
-  max-width: 500px;
-  word-wrap: normal;
-}
 
 .main {
   margin: 1em auto;
@@ -29,6 +18,8 @@ code {
 
 .section {
   &--block {
+    @include clearfix;
+
     header, p, ul, label, input, .radio-label { font-family: $sans-serif; }
     h2 { margin: 0 0 1em; }
     margin: 0 0 5em;
@@ -54,6 +45,32 @@ code {
         margin: 0 0 2em;
       }
     }
+
+    &_half {
+      margin: 0 0 3em;
+
+      @include media($default-desktop) {
+        float: left;
+        padding: 0 1em;
+        width: 50%;
+      }
+    }
+
+    pre {
+      background-color: $background-gray;
+      display: block;
+      max-width: 65em;
+      height: 0;
+      margin: 0;
+      visibility: hidden;
+    }
+
+    code {
+      color: $green;
+      max-width: 500px;
+      word-wrap: normal;
+      height: 0;
+    }
   }
 
   &--list {
@@ -66,11 +83,6 @@ code {
   }
 }
 
-.copy-button {
-  @include btn($orange, ghost);
-  width: 100%;
-}
-
 .resize-buttons {
   border-bottom: 2px solid $green;
   padding: 0 1.5em;
@@ -78,7 +90,7 @@ code {
   width: 100%;
 }
 
-.template-frame {
+.preview--frame {
   header, p, ul { font-family: $base-serif; }
   border: 5px dashed $line-gray;
   margin: 0 0 1.5em;

@@ -3,7 +3,7 @@
       <header>
         <h2>Read More</h2>
       </header>
-      <div class="template-frame">
+      <div class="preview--frame">
         <p class="readmore"><span class="readmore--label">Read More</span><a onclick="sendEvent('readmore', 'story-string')" class="readmore_link" href="http://texastribune.org"><span class="readmore_headline">Your headline</span></a></p>
       </div>
 
@@ -13,6 +13,7 @@
         <label>Link to the story</label>
         <input type="text" id="readmore_link" value="http://texastribune.org">
         <input type="submit" class="copy-button" value="Update &amp; Copy Code">
+        <div class="copied">Copied &#10003;</div>
       </form>
       
       <button id="readmore_clipboard" class="copy hidden" data-clipboard-target="#readmore_code"></button>

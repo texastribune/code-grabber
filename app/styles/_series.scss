@@ -67,6 +67,20 @@ $huckleberry: rgb(146,83,82); // #925352
 }
 
 // Form & Clipboard Styles
+
+.copy-button {
+  @include btn($orange, ghost);
+  margin: 0 auto;
+  width: 50%;
+}
+
+.copied {
+  color: $green;
+  display: none;
+  font-family: $sans-serif;
+  margin: 0 0 0 1em;
+}
+
 .copy-form {
   label {
     @include font-size($base);
@@ -74,6 +88,11 @@ $huckleberry: rgb(146,83,82); // #925352
     font-family: $base-sans-serif;
     font-weight: 600;
     margin: 0 0 .25em;
+
+    &.copied {
+      font-weight: 400;
+      margin: 0 0 0 1em;
+    }
   }
 
   input[type=text] {
@@ -83,12 +102,20 @@ $huckleberry: rgb(146,83,82); // #925352
   }
 
   input[type=submit] {
-    display: block;
+    display: inline-block;
     margin: 0 0 1em;
   }
 
   input[type=radio] {
     margin: 0 .5em 1em 0;
+  }
+
+  &--half {
+    @include media($default-desktop) {
+      float: left;
+      padding: 0 1em;
+      width: 50%;
+    }
   }
 
   .radio-label {
