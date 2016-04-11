@@ -11,24 +11,15 @@
         <input id="photoEmbed_credit" type="text" value="Photo by: Muliadi Soenaryo">
         <label>Photo caption</label>
         <input id="photoEmbed_caption" type="text" value="Put your caption information here.">
-        <label>Position</label>
-        <div class="copy-form--row">
-          <input type="radio" name="photoPosition" value="full" checked><span class="radio-label">Full Width</span>  
-          <input type="radio" name="photoPosition" value="right"><span class="radio-label">Float Right</span>
-          <input type="radio" name="photoPosition" value="left"><span class="radio-label">Float Left</span>
-        </div>
         <input type="submit" class="copy-button" value="Update &amp; Copy Code">
         <div class="copied">Copied &#10003;</div>
       </form>
-      
+
       <button id="photoEmbed_clipboard" class="copy hidden" data-clipboard-target="#photoEmbed_code"></button>
 
       <pre>
         <code id="photoEmbed_code">
-        &lt;div<span class="photoEmbed_position"></span>>&lt;a class="lightbox" href="<span class="photoEmbed_URL"></span>">&lt;img src="<span class="photoEmbed_URL"></span>" alt="" width="312" />&lt;/a>
-        &lt;div class="photo_links">&lt;a class="lightbox enlarge" href="<span class="photoEmbed_URL"></span>">Enlarge&lt;/a>&nbsp;&lt;cite><span class="photoEmbed_credit"></span>&lt;/cite>&lt;/div>
-        &lt;div class="photo_caption">&lt;em><span class="photoEmbed_caption"></span>&lt;/em>&lt;/div>
-        &lt;/div>
+        &lt;figure class="story_embed--image&gt;&lt;img src="<span class="photoEmbed_URL"></span>"&gt;&lt;figcaption style="background-color:;color:;font-family:;padding:0 0.8em 0.8em 0.8em;"&gt;&lt;cite&gt;<span class="photoEmbed_credit"></span>&lt;/cite&gt;&lt;br/&gt;&lt;p style="float: left; font-size: 0.8em; margin: 0.5em 0;&gt;<span class="photoEmbed_caption"></span>&lt;/p&gt;&lt;/figcaption&gt;&lt;/figure&gt;
         </code>
       </pre>
     </section>
