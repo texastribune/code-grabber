@@ -1,0 +1,28 @@
+<section id="twitter_inline" class="section--block">
+  <header>
+    <h2>Story Inline — Twitter Share</h2>
+  </header>
+  <form id="twitterinline_form" class="copy-form">
+<!--     <label>Story URL — Click "View on site" and copy the URL without "preview/"</label>
+    <input id="twitterinline_url" type="text"> -->
+    <label>Sentence you want to share.</label>
+    <label>Count: <span id="twitterinline_sentence_length"></span></label>
+    <input id="twitterinline_sentence" type="text" value="Sed fringilla mauris sit amet nibh. Vivamus elementum semper nisi. Sed fringilla mauris sit amet nibh. Vivamus eleme"></input>
+    <label>Add a hashtag</label>
+    <input id="twitterinline_hashtag" type="text"></input>
+    <input type="submit" class="copy-button" value="Update &amp; Copy Code"><div class="copied">Copied &#10003;</div>
+  </form>
+<!--   Reminder: Count characters and show if its over the limit -->
+
+  <button id="twitterinline_clipboard" class="copy hidden" data-clipboard-target="#twitterinline_code"></button>
+
+  <pre>
+    <code id="twitterinline_code">
+    &lt;a href="https://twitter.com/share?text=<span class="twitterinline_sentence_encode"></span><span class="twitterinline_hashtag"></span>">
+    <span class="twitterinline_sentence"></span>&lt;i class="fa fa-twitter">&lt;/i>
+    &lt;/a>
+    </code>
+
+    <!-- url=<span class="twitterinline_url"></span>&amp; -->
+  </pre>
+</section>

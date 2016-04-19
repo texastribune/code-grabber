@@ -55,6 +55,28 @@
     e.preventDefault();
   });
 
+  $('#twitterinline_form').submit(function(e) {
+    var shareSentence = $('#twitterinline_sentence').val(),
+        shareHashtag = $('#twitterinline_hashtag').val(),
+        shareSentenceHTML = $('.twitterinline_sentence'),
+        shareSentenceEncodeHTML = $('.twitterinline_sentence_encode'),
+        shareHashtagHTML = $('.twitterinline_hashtag'),
+        shareSentenceLength = shareSentence.length,
+        shareSentenceLengthHTML = $('#twitterinline_sentence_length');
+    
+    shareSentenceEncodeHTML.html(encodeURI(shareSentence));
+    shareSentenceHTML.html(shareSentence);
+    shareSentenceLengthHTML.html(shareSentenceLength);
+
+    if(shareHashtag !== '') {
+      shareHashtagHTML.html('&amp;hashtag=' + shareHashtag);
+    }
+
+    $('#twitterinline_clipboard').trigger('click');
+    copied(this);
+    e.preventDefault();
+  });
+
   $('#pullquote_form').submit(function(e) {
     var color = $('input[name=color]:checked').val(),
         colorHTML = $('.pullquote_color'),
