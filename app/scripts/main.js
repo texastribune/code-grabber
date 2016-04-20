@@ -62,11 +62,21 @@
         shareSentenceEncodeHTML = $('.twitterinline_sentence_encode'),
         shareHashtagHTML = $('.twitterinline_hashtag'),
         shareSentenceLength = shareSentence.length,
+        shareHashtagLength = shareHashtag.length,
+        shareLength = shareSentenceLength + shareHashtagLength,
         shareSentenceLengthHTML = $('#twitterinline_sentence_length');
     
     shareSentenceEncodeHTML.html(encodeURI(shareSentence));
     shareSentenceHTML.html(shareSentence);
-    shareSentenceLengthHTML.html(shareSentenceLength);
+
+    if(shareLength >= 110) {
+      $('#twitterinline_warning').removeClass('hidden');
+      shareSentenceLengthHTML.html(shareLength);
+    } else {
+      $('#twitterinline_warning').addClass('hidden');
+      shareSentenceLengthHTML.html(shareLength);
+    }
+    
 
     if(shareHashtag !== '') {
       shareHashtagHTML.html('&amp;hashtag=' + shareHashtag);

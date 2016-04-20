@@ -68,6 +68,11 @@ $sans-serif: 'Cabin', sans-serif;
       max-width: 500px;
       word-wrap: normal;
     }
+
+    .warning {
+      color: $orange;
+      font-weight: 800;
+    }
   }
 
   &--list {
