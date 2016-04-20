@@ -76,10 +76,9 @@
       $('#twitterinline_warning').addClass('hidden');
       shareSentenceLengthHTML.html(shareLength);
     }
-    
 
     if(shareHashtag !== '') {
-      shareHashtagHTML.html('&amp;hashtag=' + shareHashtag);
+      shareHashtagHTML.html(shareHashtag);
     }
 
     $('#twitterinline_clipboard').trigger('click');
