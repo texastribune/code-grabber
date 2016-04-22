@@ -55,6 +55,37 @@
     e.preventDefault();
   });
 
+  $('#twitterinline_form').submit(function(e) {
+    var shareSentence = $('#twitterinline_sentence').val(),
+        shareHashtag = $('#twitterinline_hashtag').val(),
+        shareSentenceHTML = $('.twitterinline_sentence'),
+        shareSentenceEncodeHTML = $('.twitterinline_sentence_encode'),
+        shareHashtagHTML = $('.twitterinline_hashtag'),
+        shareSentenceLength = shareSentence.length,
+        shareHashtagLength = shareHashtag.length,
+        shareLength = shareSentenceLength + shareHashtagLength,
+        shareSentenceLengthHTML = $('#twitterinline_sentence_length');
+    
+    shareSentenceEncodeHTML.html(encodeURI(shareSentence));
+    shareSentenceHTML.html(shareSentence);
+
+    if(shareLength >= 110) {
+      $('#twitterinline_warning').removeClass('hidden');
+      shareSentenceLengthHTML.html(shareLength);
+    } else {
+      $('#twitterinline_warning').addClass('hidden');
+      shareSentenceLengthHTML.html(shareLength);
+    }
+
+    if(shareHashtag !== '') {
+      shareHashtagHTML.html(shareHashtag);
+    }
+
+    $('#twitterinline_clipboard').trigger('click');
+    copied(this);
+    e.preventDefault();
+  });
+
   $('#pullquote_form').submit(function(e) {
     var color = $('input[name=color]:checked').val(),
         colorHTML = $('.pullquote_color'),
