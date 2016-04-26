@@ -3,7 +3,7 @@
     <h2>Twitter — Share Sentence</h2>
   </header>
   <div class="preview--frame">
-    <a href="https://twitter.com/share?text=Sed%20fringilla%20mauris%20sit%20amet%20nibh.%20Vivamus%20elementum%20semper%20nisi.%20Sed%20fringilla%20mauris%20sit%20amet%20nibh.%20Vivamus%20eleme"><span class="twitterinline_sentence">Sed fringilla mauris sit amet nibh. Vivamus elementum semper nisi. Sed fringilla mauris sit amet nibh vivamus</span><i style="margin-left: .5em;" class="fa fa-twitter"></i></a>
+    <a href="https://twitter.com/share?text=Sed%20fringilla%20mauris%20sit%20amet%20nibh.%20Vivamus%20elementum%20semper%20nisi.%20Sed%20fringilla%20mauris%20sit%20amet%20nibh.%20Vivamus%20eleme" onclick="ga('send', 'event', 'codegrabber', 'click', 'twitter-inline', {'nonInteraction': 1})"><span class="twitterinline_sentence">Sed fringilla mauris sit amet nibh. Vivamus elementum semper nisi. Sed fringilla mauris sit amet nibh vivamus</span><i style="margin-left: .5em;" class="fa fa-twitter"></i></a>
   </div>
       <p>Twitter will automatically pick up the story URL and shorten it to <strong>23 characters</strong>. That means you have 117 characters &mdash; including any added hashtags &mdash; to work with!</p>
     <p><span id="twitterinline_warning" class="warning hidden">Warning! You may want to shorten your tweet. </span>Current character count: <span id="twitterinline_sentence_length">110</span></p>
@@ -20,7 +20,7 @@
 
   <pre>
     <code id="twitterinline_code">
-    &lt;a href="https://twitter.com/share?text=<span class="twitterinline_sentence_encode"></span>&amp;hashtags=<span class="twitterinline_hashtag"></span>">&lt;span class="twitterinline_sentence"><span class="twitterinline_sentence"></span>&lt;/span>&lt;i style="margin-left: .5em;" class="fa fa-twitter">&lt;/i>&lt;/a>
+    &lt;a href="https://twitter.com/share?text=<span class="twitterinline_sentence_encode"></span>&amp;hashtags=<span class="twitterinline_hashtag"></span>" onclick="ga('send', 'event', 'codegrabber', 'click', 'twitter-inline', {'nonInteraction': 1})">&lt;span class="twitterinline_sentence"><span class="twitterinline_sentence"></span>&lt;/span>&lt;i style="margin-left: .5em;" class="fa fa-twitter">&lt;/i>&lt;/a>
     </code>
   </pre>
 </section>
