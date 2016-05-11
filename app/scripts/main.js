@@ -1,21 +1,7 @@
-/* global Clipboard, pym */
+/* global Clipboard */
 
 (function() {
   'use strict';
-
-  var pymChild;
-
-  function render() {
-    if (pymChild) {
-      pymChild.sendHeight();
-    }
-  }
-
-  function load() {
-    pymChild = new pym.Child({
-      renderCallback: render
-    });
-  }
 
   var templateFrame = $('.preview--frame');
 
@@ -31,10 +17,19 @@
   $('#full').click(function() {
     templateFrame.width('100%');
   });
-  
+
   function copied(x) {
     $('.copied').hide();
     $(x).find('.copied').css('display', 'inline-block');
+  }
+
+  function slugify(text) {
+    return text.toString().toLowerCase()
+      .replace(/\s+/g, '-')           // Replace spaces with -
+      .replace(/[^\w\-]+/g, '')       // Remove all non-word chars
+      .replace(/\-\-+/g, '-')         // Replace multiple - with single -
+      .replace(/^-+/, '')             // Trim - from start of text
+      .replace(/-+$/, '');            // Trim - from end of text
   }
 
   $('#readmore_form').submit(function(e) {
@@ -42,11 +37,14 @@
         link = $('#readmore_link').val(),
         headlineHTML = $('.readmore_headline'),
         headlineTextHTML = $('.readmore_headlineText'),
+        headlineSlugHTML = $('.readmore_headlineSlug'),
         linkHTML = $('.readmore_link'),
-        linkTextHTML = $('.readmore_linkText');
+        linkTextHTML = $('.readmore_linkText'),
+        headlineSlug = slugify(headline);
 
     headlineHTML.html(headline);
     headlineTextHTML.html(headline);
+    headlineSlugHTML.html(headlineSlug);
     linkTextHTML.html(link);
     linkHTML.prop('href', link);
 
@@ -65,7 +63,7 @@
         shareHashtagLength = shareHashtag.length,
         shareLength = shareSentenceLength + shareHashtagLength,
         shareSentenceLengthHTML = $('#twitterinline_sentence_length');
-    
+
     shareSentenceEncodeHTML.html(encodeURI(shareSentence));
     shareSentenceHTML.html(shareSentence);
 
@@ -101,7 +99,7 @@
     } else if (position === 'left') {
       positionHTML.html(' class="article_detail unprose media float_left"');
     } else {
-      positionHTML.html(' style="width: 100%"');
+      positionHTML.html(' style="width: 100%; margin-bottom: 1em"');
     }
 
     if (color === 'bsp') {
@@ -173,15 +171,13 @@
     } else {
       $('#videoEmbed_ID').html('https://player.vimeo.com/video/' + videoID);
     }
-    
+
     $('#videoEmbed_clipboard').trigger('click');
     copied(this);
     e.preventDefault();
   });
 
   new Clipboard('.copy');
-
-  window.onload = load;
 
   $('button.copy-button').click(function() {
     $('.copied').hide();
