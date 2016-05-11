@@ -1,21 +1,7 @@
-/* global Clipboard, pym */
+/* global Clipboard */
 
 (function() {
   'use strict';
-
-  var pymChild;
-
-  function render() {
-    if (pymChild) {
-      pymChild.sendHeight();
-    }
-  }
-
-  function load() {
-    pymChild = new pym.Child({
-      renderCallback: render
-    });
-  }
 
   var templateFrame = $('.preview--frame');
 
@@ -31,7 +17,7 @@
   $('#full').click(function() {
     templateFrame.width('100%');
   });
-  
+
   function copied(x) {
     $('.copied').hide();
     $(x).find('.copied').css('display', 'inline-block');
@@ -65,7 +51,7 @@
         shareHashtagLength = shareHashtag.length,
         shareLength = shareSentenceLength + shareHashtagLength,
         shareSentenceLengthHTML = $('#twitterinline_sentence_length');
-    
+
     shareSentenceEncodeHTML.html(encodeURI(shareSentence));
     shareSentenceHTML.html(shareSentence);
 
@@ -173,15 +159,13 @@
     } else {
       $('#videoEmbed_ID').html('https://player.vimeo.com/video/' + videoID);
     }
-    
+
     $('#videoEmbed_clipboard').trigger('click');
     copied(this);
     e.preventDefault();
   });
 
   new Clipboard('.copy');
-
-  window.onload = load;
 
   $('button.copy-button').click(function() {
     $('.copied').hide();
