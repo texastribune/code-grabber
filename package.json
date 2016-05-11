@@ -2,7 +2,7 @@
   "private": true,
   "config": {
     "s3_bucket": "moose.texastribune.org",
-    "slug": "antlers"
+    "slug": "code-grabber"
   },
   "devDependencies": {
     "archieml": "^0.3.1",
