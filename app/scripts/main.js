@@ -23,16 +23,28 @@
     $(x).find('.copied').css('display', 'inline-block');
   }
 
+  function slugify(text) {
+    return text.toString().toLowerCase()
+      .replace(/\s+/g, '-')           // Replace spaces with -
+      .replace(/[^\w\-]+/g, '')       // Remove all non-word chars
+      .replace(/\-\-+/g, '-')         // Replace multiple - with single -
+      .replace(/^-+/, '')             // Trim - from start of text
+      .replace(/-+$/, '');            // Trim - from end of text
+  }
+
   $('#readmore_form').submit(function(e) {
     var headline = $('#readmore_headline').val(),
         link = $('#readmore_link').val(),
         headlineHTML = $('.readmore_headline'),
         headlineTextHTML = $('.readmore_headlineText'),
+        headlineSlugHTML = $('.readmore_headlineSlug'),
         linkHTML = $('.readmore_link'),
-        linkTextHTML = $('.readmore_linkText');
+        linkTextHTML = $('.readmore_linkText'),
+        headlineSlug = slugify(headline);
 
     headlineHTML.html(headline);
     headlineTextHTML.html(headline);
+    headlineSlugHTML.html(headlineSlug);
     linkTextHTML.html(link);
     linkHTML.prop('href', link);
 
