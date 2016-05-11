@@ -41,13 +41,14 @@
   },
   "dependencies": {
     "newsapps-styles": "^1.1.0",
+    "jquery": "^2.2.0",
     "susy": "^2.2.5"
   },
   "scripts": {
     "build": "gulp build --production",
     "clean": "gulp clean",
     "data/fetch": "node utils/fetch_data.js",
-    "deploy/dev": "./utils/deploy.sh",
+    "deploy": "./utils/deploy.sh",
     "serve": "gulp serve",
     "serve/production": "gulp serve --production"
   }
