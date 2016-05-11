@@ -2,10 +2,80 @@
 
 {% block styles %}
 {{ super() }}
+<link href='https://fonts.googleapis.com/css?family=Cabin:400,700' rel='stylesheet' type='text/css'>
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.6.1/css/font-awesome.min.css">
 {% endblock %}
 
 {% block content %}
-hello!
+
+<main class="main" role="main">
+  <section class="section--block instructions">
+    <header>
+      <h1 class="title">Tribune Code Grabber</h1>
+      <p class="title_sub">The easy way to add special components to your story</p>
+    </header>
+    <div class="instructions--row">
+      <div class="instructions--box">
+        <div class="instructions--number_circle">
+          <div class="instructions--number">1</div>
+        </div>
+        <header class="instructions--header">
+          <h1>Build a story component</h1>
+        </header>
+      </div>
+      <div class="instructions--box">
+        <div class="instructions--number_circle">
+          <div class="instructions--number">2</div>
+        </div>
+        <header class="instructions--header">
+          <h1>Click copy</h1>
+        </header>
+      </div>
+      <div class="instructions--box">
+        <div class="instructions--number_circle">
+          <div class="instructions--number">3</div>
+        </div>
+        <header class="instructions--header">
+          <h1>Paste in your story HTML</h1>
+        </header>
+      </div>
+    </div>
+    <header class="instructions--header">
+      <h2 class="instructions--header_tips">Helpful tips</h2>
+    </header>
+    <ul class="section--list">
+      <li>Click the "HTML" button in the left corner of the CMS text editor to open the HTML version of your story. Then paste your embed code in the right place and hit the "Update" button.</li>
+      <li>Find the right spot for your embed <strong>before you open the HTML editor</strong> and mark it by adding a couple extra empty paragraph returns. When you open the HTML editor, look for a group of empty paragraph tags: <span class="instructions--highlight">&lt;p>&amp;nbsp;&lt;/p></span>. Highlight those empty paragraphs and paste your code in their place.</li>
+      <li>Always save and preview your elements on the page to make sure it worked correctly.</li>
+      <li>If you need to make a change, it may be easier to delete the entire component from your HTML editor and paste a new embed code in its place.</li>
+    </ul>
+  </section>
+
+  <section class="section--block">
+    <header>
+      <h2>Choose a component</h2>
+    </header>
+    <ul class="section--list">
+      <li><a href="#twitterinline">Twitter - Share Sentence</a></li>
+      <li><a href="#series_headers">Series Headers</a> - <a href="#bsp-embed">Bordering on Insecurity</a>, <a href="#roughpatch-header-embed">Rough Patch</a>, <a href="#mentalhealthmatters-header-embed">Mental Health Matters</a></li>
+      <li><a href="#bsp_embed">Series promotion embeds</a> - <a href="#bsp-embed">Bordering on Insecurity</a>, <a href="#hell-high-water-embed">Hell and High Water</a></li>
+      <li><a href="#pull_quotes">Pull Quotes</a></li>
+      <li><a href="#read_more">Read More</a></li>
+      <li><a href="#photo_embed">Photo Embed</a></li>
+      <li><a href="#video_embed">Video Embed</a></li>
+
+    </ul>
+  </section>
+  {% include 'templates/templates/twitter_inline.html' %}
+  {% include 'templates/templates/series_headers.html' %}
+  {% include 'templates/templates/bsp_embed.html' %}
+  {% include 'templates/templates/pull_quotes.html' %}
+  {% include 'templates/templates/read_more.html' %}
+  {% include 'templates/templates/photo_embed.html' %}
+  {% include 'templates/templates/video_embed.html' %}
+
+</main>
+
 {% endblock %}
 
 {% block script %}
