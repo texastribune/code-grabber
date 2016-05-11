@@ -86,7 +86,7 @@ gulp.task('templates', () => {
   })
 
   // All .html files are valid, unless they are found in templates
-  return gulp.src(['./app/**/*.html', `!./app/templates/**`])
+  return gulp.src(['./app/**/*.html', `!./app/templates/**/*`])
     .pipe(nunjuckify)
     .pipe(gulp.dest('./.tmp'))
     .pipe($.if(args.production, $.htmlmin({collapseWhitespace: true})))
