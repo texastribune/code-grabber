@@ -1,26 +1,6 @@
 /* global $ */
 
-const Clipboard = require ('clipboard');
-
-var templateFrame = $('.preview--frame');
-
-// Add your JS here!
-$('#desktop').click(function() {
-  templateFrame.width(640);
-});
-
-$('#mobile').click(function() {
-  templateFrame.width(320);
-});
-
-$('#full').click(function() {
-  templateFrame.width('100%');
-});
-
-function copied(x) {
-  $('.copied').hide();
-  $(x).find('.copied').css('display', 'inline-block');
-}
+import { copied } from './includes/copy';
 
 function slugify(text) {
   return text.toString().toLowerCase()
@@ -174,11 +154,4 @@ $('#videoEmbed_form').submit(function(e) {
   $('#videoEmbed_clipboard').trigger('click');
   copied(this);
   e.preventDefault();
-});
-
-new Clipboard('.copy');
-
-$('button.copy-button').click(function() {
-  $('.copied').hide();
-  $(this).next($('.copied')).css('display', 'inline-block');
 });
