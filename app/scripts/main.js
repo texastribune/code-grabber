@@ -87,7 +87,7 @@
     } else if (position === 'left') {
       positionHTML.html(' class="article_detail unprose media float_left"');
     } else {
-      positionHTML.html(' style="width: 100%"');
+      positionHTML.html(' style="width: 100%; margin-bottom: 1em"');
     }
 
     if (color === 'bsp') {
