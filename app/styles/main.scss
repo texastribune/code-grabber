@@ -72,8 +72,10 @@ $sans-serif: 'Cabin', sans-serif;
     }
 
     .warning {
+      @include font-size($xs);
+      display: none;
       color: $orange;
-      font-weight: 800;
+      font-family: $sans-serif;
     }
   }
 
@@ -254,6 +256,7 @@ $sans-serif: 'Cabin', sans-serif;
       padding: .25em;
     }
   }
+
   &--tooltip {
     background: $white;
     border: 2px solid $green;
