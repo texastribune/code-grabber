@@ -10,7 +10,6 @@ function copied(x) {
       tooltip = parent.find('.copy--tooltip');
 
   $('.copy--tooltip').hide();
-
   tooltip.css('display', 'inline-block');
 }
 
@@ -32,7 +31,6 @@ $('#readmorecode_form').submit(function(e) {
       linkHTML = $('.readmore_link'),
       linkTextHTML = $('.readmore_linkText'),
       headlineSlug = slugify(headline);
-
 
   headlineHTML.html(headline);
   headlineTextHTML.html(headline);
