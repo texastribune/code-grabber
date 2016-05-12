@@ -9,10 +9,10 @@
       {% endset %}
 
       {% set readmoreform %}
-        <label>Headline <span class="required">Required</span></label>
-        <input type="text" id="readmore_headline" value="">
+        <label>Headline</label>
+        <input type="text" id="readmore_headline" value="" required>
         <label>Link to the story</label>
-        <input type="text" id="readmore_link" value="">
+        <input type="text" id="readmore_link" value="" required>
       {% endset %}
 
       {{ macro.previewFrame(readmore) }}

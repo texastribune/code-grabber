@@ -5,29 +5,13 @@
 import Clipboard from 'clipboard';
 new Clipboard('.copy');
 
-function validateForm(x) {
-  var fields = document.getElementById(x).getElementsByTagName('input'),
-      parent = $('#'+ x).closest('.copy--wrapper'),
-      tooltip = parent.find('.copy--tooltip'),
-      warning = parent.find('.warning'),
-      test;
+function copied(x) {
+  var parent = $('#'+ x).closest('.copy--wrapper'),
+      tooltip = parent.find('.copy--tooltip');
 
-    for (var i=0; i < fields.length; i++){
-      if (fields[i].value === '') {
-        test = 'failed';
-      }
-    }
+  $('.copy--tooltip').hide();
 
-    $('.copy--tooltip').hide();
-    $('.warning').hide();
-
-    if(test === 'failed') {
-      warning.show();
-      return false;
-    } else {
-      tooltip.css('display', 'inline-block');
-      return true;
-    }
+  tooltip.css('display', 'inline-block');
 }
 
 function slugify(text) {
@@ -49,14 +33,15 @@ $('#readmorecode_form').submit(function(e) {
       linkTextHTML = $('.readmore_linkText'),
       headlineSlug = slugify(headline);
 
-  if( validateForm(this.id) ) {
-    headlineHTML.html(headline);
-    headlineTextHTML.html(headline);
-    headlineSlugHTML.html(headlineSlug);
-    linkTextHTML.html(link);
-    linkHTML.prop('href', link);
-    $('#readmorecode_clipboard').trigger('click');
-  }
+
+  headlineHTML.html(headline);
+  headlineTextHTML.html(headline);
+  headlineSlugHTML.html(headlineSlug);
+  linkTextHTML.html(link);
+  linkHTML.prop('href', link);
+  $('#readmorecode_clipboard').trigger('click');
+  copied(this.id);
+
   e.preventDefault();
 });
 
@@ -87,6 +72,8 @@ $('#twitterinlinecode_form').submit(function(e) {
   }
 
   $('#twitterinlinecode_clipboard').trigger('click');
+  copied(this.id);
+
   e.preventDefault();
 });
 
@@ -120,6 +107,8 @@ $('#pullquotecode_form').submit(function(e) {
   pullquoteSpeakerHTML.html(pullquoteSpeaker);
 
   $('#pullquotecode_clipboard').trigger('click');
+  copied(this.id);
+
   e.preventDefault();
 });
 
@@ -147,6 +136,8 @@ $('#photoEmbedcode_form').submit(function(e) {
   photoEmbedCaptionHTML.html(photoEmbedCaption);
 
   $('#photoEmbedcode_clipboard').trigger('click');
+  copied(this.id);
+
   e.preventDefault();
 });
 
@@ -177,5 +168,7 @@ $('#videoEmbedcode_form').submit(function(e) {
   }
 
   $('#videoEmbedcode_clipboard').trigger('click');
+  copied(this.id);
+
   e.preventDefault();
 });

@@ -72,8 +72,6 @@ $sans-serif: 'Cabin', sans-serif;
     }
 
     .warning {
-      @include font-size($xs);
-      display: none;
       color: $orange;
       font-family: $sans-serif;
     }

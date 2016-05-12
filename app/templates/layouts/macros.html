@@ -12,7 +12,6 @@
       {{ formOptions}}
       <input type="submit" class="copy--button" value="Update &amp; Copy Code">
       <span class="copy--tooltip">Copied &#10003;</span>
-      <span class="warning">Oops, you're missing something.</span>
     </form>
     <button id="{{ id }}_clipboard" class="copy hidden" data-clipboard-target="#{{ id }}"></button>
   </div>
@@ -20,7 +19,6 @@
   <div id="{{ id }}_copy" class="copy--wrapper">
     <button class="copy--button copy tooltips" data-clipboard-target="#{{ id }}">Copy Code </button>
     <span class="copy--tooltip success">Copied &#10003;</span>
-    <span class="warning">Oops, you're missing something.</span>
   </div>
   {% endif %}
 
