@@ -1,0 +1,32 @@
+<!--   Pull Quote      -->
+  <section id="text_block" class="section--block">
+    <header>
+      <h2>Text Block</h2>
+    </header>
+
+    {% set textblock %}
+    <div>
+      <p class="story_quote--pull" style="border-bottom: 2px; border-left: 0; border-right: 0; border-top: 2px; border-color: rgb(255, 194, 0); border-style: solid; color: #444; font-family: Georgia,Times,serif; font-size: 1.2em; font-style: italic; font-weight: 600; line-height: 1.3; padding-top: 1em; padding-bottom: 1em; margin-bottom: 0"><span class="textblock_textHTML"></span></p>
+    </div>
+    {% endset %}
+
+    {% set textblockform %}
+      <label>Text</label>
+      <input id="textblock_text" type="text" value="" required>
+      <div class="copy-form--half">
+        <label>Position</label>
+        <input type="radio" name="position" value="full" checked><span class="radio-label">Full Width</span>
+        <input type="radio" name="position" value="right"><span class="radio-label">Float Right</span>
+        <input type="radio" name="position" value="left"><span class="radio-label">Float Left</span>
+      </div>
+      <div class="copy-form--half">
+        <label>Border style</label>
+        <input type="radio" name="color" value="tt" checked><span class="radio-label color-tt">Texas Tribune</span>
+        <input type="radio" name="color" value="bsp"><span class="radio-label color-bsp">Bordering on Insecurity</span>
+      </div>
+    {% endset %}
+
+    {{ macro.previewFrame(textblock) }}
+    {{ macro.copyBlock(textblock, 'textblockcode', textblockform)}}
+
+  </section>

@@ -112,6 +112,38 @@ $('#pullquotecode_form').submit(function(e) {
   e.preventDefault();
 });
 
+$('#textblockcode_form').submit(function(e) {
+  var color = $('input[name=color]:checked').val(),
+      colorHTML = $('.textblock_color'),
+      position = $('input[name=position]:checked').val(),
+      positionHTML = $('.textblock_position'),
+      textblockText = $('#textblock_text').val(),
+      textblocktextHTML = $('.textblock_textHTML');
+
+  if (position === 'right' ) {
+    positionHTML.html(' class="article_detail unprose media float_right"');
+  } else if (position === 'left') {
+    positionHTML.html(' class="article_detail unprose media float_left"');
+  } else {
+    positionHTML.html(' style="width: 100%; margin-bottom: 1em"');
+  }
+
+  if (color === 'bsp') {
+    colorHTML.html('#925352');
+    $('.story_quote--pull').css('border-color', '#925352');
+  } else {
+    colorHTML.html('rgb(255, 194, 0)');
+    $('.story_quote--pull').css('border-color', 'rgb(255, 194, 0)');
+  }
+
+  textblocktextHTML.html(textblockText);
+
+  $('#textblockcode_clipboard').trigger('click');
+  copied(this.id);
+
+  e.preventDefault();
+});
+
 
 $('#photoEmbedcode_form').submit(function(e) {
   var position = $('input[name=photoPosition]:checked').val(),
