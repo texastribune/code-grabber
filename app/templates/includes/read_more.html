@@ -3,24 +3,18 @@
       <header>
         <h2>Read More</h2>
       </header>
-      <div class="preview--frame">
-        <p class="readmore"><span class="readmore--label">Read More</span><a onclick="ga('send', 'event', 'codegrabber', 'click', 'readmore', {'nonInteraction': 1})" class="readmore_link" href="http://texastribune.org"><span class="readmore_headline">Your headline</span></a></p>
-      </div>
 
-      <form id="readmore_form" class="copy-form">
+      {% set readmore %}
+      <p class="readmore"><span class="readmore--label">Read More</span><a onclick="ga('send', 'event', 'codegrabber', 'click', 'readmore', {'nonInteraction': 1})" class="readmore_link" href="http://texastribune.org"><span class="readmore_headline">Your headline</span></a></p>
+      {% endset %}
+
+      {% set readmoreform %}
         <label>Headline</label>
         <input type="text" id="readmore_headline" value="">
         <label>Link to the story</label>
         <input type="text" id="readmore_link" value="">
-        <input type="submit" class="copy-button" value="Update &amp; Copy Code">
-        <div class="copied">Copied &#10003;</div>
-      </form>
+      {% endset %}
 
-      <button id="readmore_clipboard" class="copy hidden" data-clipboard-target="#readmore_code"></button>
-
-      <pre>
-        <code id="readmore_code" class="language-markup">
-          &lt;p class="readmore" style="font-style: italic; padding-top: .5em; padding-bottom: .5em; vertically-align: middle;">&lt;span class="readmore--label" style="color: #111111; font-family: Helvetica,Arial,sans-serif; font-size: .9em; font-style: italic; font-weight: 800; margin: 0 1em 1em 0; text-decoration: none; text-transform: uppercase;">Read More&lt;/span>&lt;a onclick="ga('send', 'event', 'codegrabber', 'click', 'readmore', '<span class="readmore_headlineSlug"></span>' {'nonInteraction': 1})" class="readmore" href="<span class="readmore_linkText"></span>"><span class="readmore_headlineText"></span>&lt;/a>&lt;/p>
-        </code>
-      </pre>
+      {{ macro.previewFrame(readmore) }}
+      {{ macro.copyBlock(readmore, 'readmorecode', readmoreform)}}
     </section>

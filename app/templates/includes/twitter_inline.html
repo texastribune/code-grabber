@@ -2,27 +2,25 @@
   <header>
     <h2>Twitter — Share Sentence</h2>
   </header>
-  <p>This component creates a link to share a sentence in your story on Twitter. It should be used to highlight and promote very compelling content like an investigative finding or dramatic lede. To use this component, copy and paste the sentence you want to make shareable, then replace it in your story HTML with the copied code.</p>
-  <div class="preview--frame">
-    <a href="https://twitter.com/share?text=Sed%20fringilla%20mauris%20sit%20amet%20nibh.%20Vivamus%20elementum%20semper%20nisi.%20Sed%20fringilla%20mauris%20sit%20amet%20nibh.%20Vivamus%20eleme" onclick="ga('send', 'event', 'codegrabber', 'click', 'twitter-inline', {'nonInteraction': 1})"><span class="twitterinline_sentence">Sed fringilla mauris sit amet nibh. Vivamus elementum semper nisi. Sed fringilla mauris sit amet nibh vivamus</span><i style="margin-left: .5em;" class="fa fa-twitter"></i></a>
-  </div>
-  <p>Important: Twitter will automatically pick up the story URL and add it to the tweet. The URL will always be shortened to 23 characters. That means you have <strong>117 characters</strong> &mdash; including any added hashtags &mdash; to work with!</p>
-  <p><span id="twitterinline_warning" class="warning hidden">Warning! Your tweet is too long. Max length: 117 characters. </span>Current character count: <span id="twitterinline_sentence_length">0</span></p>
+  {% set twitterinline %}
+  <a href="https://twitter.com/share?text=Sed%20fringilla%20mauris%20sit%20amet%20nibh.%20Vivamus%20elementum%20semper%20nisi.%20Sed%20fringilla%20mauris%20sit%20amet%20nibh.%20Vivamus%20eleme" onclick="ga('send', 'event', 'codegrabber', 'click', 'twitter-inline', {'nonInteraction': 1})"><span class="twitterinline_sentence">Sed fringilla mauris sit amet nibh. Vivamus elementum semper nisi. Sed fringilla mauris sit amet nibh vivamus</span><i style="margin-left: .5em;" class="fa fa-twitter"></i></a>
+  {% endset %}
 
-  <form id="twitterinline_form" class="copy-form">
+  {% set twitterinlineform %}
     <label>Sentence you want to share.</label>
     <input id="twitterinline_sentence" type="text" value=""></input>
     <label>Hashtags &mdash; Optional.</label>
     <label class="subtext">Don't include the #. For multiple hashtags, separate words with commas. Hashtags won't be visible in the preview or story content, but will be added when someone clicks the link to Tweet. Example: txlege, highered</label>
     <input id="twitterinline_hashtag" type="text"></input>
-    <input type="submit" class="copy-button" value="Update &amp; Copy Code"><div class="copied">Copied &#10003;</div>
-  </form>
+  {% endset %}
 
-  <button id="twitterinline_clipboard" class="copy hidden" data-clipboard-target="#twitterinline_code"></button>
+  <p>This component creates a link to share a sentence in your story on Twitter. It should be used to highlight and promote very compelling content like an investigative finding or dramatic lede. To use this component, copy and paste the sentence you want to make shareable, then replace it in your story HTML with the copied code.</p>
 
-  <pre>
-    <code id="twitterinline_code">
-    &lt;a href="https://twitter.com/share?text=<span class="twitterinline_sentence_encode"></span>&amp;hashtags=<span class="twitterinline_hashtag"></span>" onclick="ga('send', 'event', 'codegrabber', 'click', 'twitter-inline', {'nonInteraction': 1})">&lt;span class="twitterinline_sentence"><span class="twitterinline_sentence"></span>&lt;/span>&lt;i style="margin-left: .5em;" class="fa fa-twitter">&lt;/i>&lt;/a>
-    </code>
-  </pre>
+  {{ macro.previewFrame(twitterinline) }}
+
+  <p>Important: Twitter will automatically pick up the story URL and add it to the tweet. The URL will always be shortened to 23 characters. That means you have <strong>117 characters</strong> &mdash; including any added hashtags &mdash; to work with!</p>
+  <p><span id="twitterinline_warning" class="warning hidden">Warning! Your tweet is too long. Max length: 117 characters. </span>Current character count: <span id="twitterinline_sentence_length">0</span></p>
+
+  {{ macro.copyBlock(twitterinline, 'twitterinlinecode', twitterinlineform)}}
+
 </section>

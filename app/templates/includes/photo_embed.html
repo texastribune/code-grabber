@@ -4,32 +4,28 @@
         <h2>Photo Embeds</h2>
       </header>
 
-      <form id="photoEmbed_form" class="copy-form">
-        <label>Image URL</label>
-        <label class="subtext">This is the actual URL for the photo, not a link to the photo in CMS. To use an image in CMS, click on the image URL link, then copy &amp; paste the URL from your browser. If you are on an individual image page in CMS, you may click either the Desktop or Mobile preview buttons to grab the URL, but make sure you DO NOT INCLUDE "/preview" at the end of the URL when you copy the link.</label>
-        <input id="photoEmbed_URL" type="text" value="">
-        <label>Photo credit</label>
-        <input id="photoEmbed_credit" type="text" value="">
-        <label>Photo caption</label>
-        <input id="photoEmbed_caption" type="text" value="">
-        <label>Position</label>
-        <div class="copy-form--row">
-          <input type="radio" name="photoPosition" value="full" checked><span class="radio-label">Full Width</span>
-          <input type="radio" name="photoPosition" value="right"><span class="radio-label">Float Right</span>
-          <input type="radio" name="photoPosition" value="left"><span class="radio-label">Float Left</span>
-        </div>
-        <input type="submit" class="copy-button" value="Update &amp; Copy Code">
-        <div class="copied">Copied &#10003;</div>
-      </form>
+      {% set photoembed %}
+      <div><span class="photoEmbed_position"></span>><a class="lightbox" href="<span class="photoEmbed_URL"></span>"><img src="<span class="photoEmbed_URL"></span>" alt="" width="312" /></a>
+      <div class="photo_links"><a class="lightbox enlarge" href="<span class="photoEmbed_URL"></span>">Enlarge</a>&nbsp;<cite>Photo by: <span class="photoEmbed_credit"></span></cite></div>
+      <div class="photo_caption"><em><span class="photoEmbed_caption"></span></em></div>
+      </div>
+      {% endset %}
 
-      <button id="photoEmbed_clipboard" class="copy hidden" data-clipboard-target="#photoEmbed_code"></button>
+      {% set photoembedform %}
+      <label>Image URL</label>
+      <label class="subtext">This is the actual URL for the photo, not a link to the photo in CMS. To use an image in CMS, click on the image URL link, then copy &amp; paste the URL from your browser. If you are on an individual image page in CMS, you may click either the Desktop or Mobile preview buttons to grab the URL, but make sure you DO NOT INCLUDE "/preview" at the end of the URL when you copy the link.</label>
+      <input id="photoEmbed_URL" type="text" value="">
+      <label>Photo credit</label>
+      <input id="photoEmbed_credit" type="text" value="">
+      <label>Photo caption</label>
+      <input id="photoEmbed_caption" type="text" value="">
+      <label>Position</label>
+      <div class="copy-form--row">
+        <input type="radio" name="photoPosition" value="full" checked><span class="radio-label">Full Width</span>
+        <input type="radio" name="photoPosition" value="right"><span class="radio-label">Float Right</span>
+        <input type="radio" name="photoPosition" value="left"><span class="radio-label">Float Left</span>
+      </div>
+      {% endset %}
 
-      <pre>
-        <code id="photoEmbed_code">
-        &lt;div<span class="photoEmbed_position"></span>>&lt;a class="lightbox" href="<span class="photoEmbed_URL"></span>">&lt;img src="<span class="photoEmbed_URL"></span>" alt="" width="312" />&lt;/a>
-        &lt;div class="photo_links">&lt;a class="lightbox enlarge" href="<span class="photoEmbed_URL"></span>">Enlarge&lt;/a>&nbsp;&lt;cite>Photo by: <span class="photoEmbed_credit"></span>&lt;/cite>&lt;/div>
-        &lt;div class="photo_caption">&lt;em><span class="photoEmbed_caption"></span>&lt;/em>&lt;/div>
-        &lt;/div>
-        </code>
-      </pre>
+      {{ macro.copyBlock(photoembed, 'photoEmbedcode', photoembedform)}}
     </section>

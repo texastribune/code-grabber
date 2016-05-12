@@ -8,10 +8,12 @@
 {% macro copyBlock(code, id, formOptions) %}
   {% if formOptions %}
   <div class="copy--wrapper">
+    <form id="{{ id }}_form" class="copy--form">
       {{ formOptions}}
       <input type="submit" class="copy--button" value="Update &amp; Copy Code">
       <div class="copy--tooltip">Copied &#10003;</div>
     </form>
+    <button id="{{ id }}_clipboard" class="copy hidden" data-clipboard-target="#{{ id }}"></button>
   </div>
   {% else %}
   <div class="copy--wrapper">

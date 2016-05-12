@@ -5,29 +5,26 @@
       <p>These code blocks rely on CMS classes to load FitVids.js and make the videos responsive. Indicating whether you're using a YouTube or Vimeo embed is very important! You don't need to set a width or height &mdash; but dimensions will get funky if you set one and not the other.</p>
     </header>
 
-    <form id="videoEmbed_form" class="copy-form">
-      <label>Video ID</label>
-      <input id="videoID" type="text" value="">
-      <label>Host</label>
-      <input type="radio" name="videoHost" value="youtube" checked><span class="radio-label">YouTube</span>
-      <input type="radio" name="videoHost" value="vimeo"><span class="radio-label">Vimeo</span>
-      <label>Width</label>
-      <input id="videoWidth" type="text" value="">
-      <label>Height</label>
-      <input id="videoHeight" type="text" value="">
-      <input type="submit" class="copy-button" value="Update &amp; Copy Code">
-      <div class="copied">Copied &#10003;</div>
-    </form>
+    {% set videoembed %}
+    <div class="video story_relatedvideo" itemprop="associatedMedia" style="margin-bottom: 1.3em;">
+      <div class="<span id="videoEmbed_host"></span>">
+        <iframe<span id="videoEmbed_width"></span><span id="videoEmbed_height"></span> src="<span id="videoEmbed_ID"></span>" frameborder="0" allowfullscreen></iframe>
+      </div>
+    </div>
+    {% endset %}
 
-    <button id="videoEmbed_clipboard" class="copy hidden" data-clipboard-target="#videoEmbed_code"></button>
+    {% set videoembedform %}
+    <label>Video ID</label>
+    <input id="videoID" type="text" value="">
+    <label>Host</label>
+    <input type="radio" name="videoHost" value="youtube" checked><span class="radio-label">YouTube</span>
+    <input type="radio" name="videoHost" value="vimeo"><span class="radio-label">Vimeo</span>
+    <label>Width</label>
+    <input id="videoWidth" type="text" value="">
+    <label>Height</label>
+    <input id="videoHeight" type="text" value="">
+    {% endset %}
 
-    <pre>
-      <code id="videoEmbed_code">
-      &lt;div class="video story_relatedvideo" itemprop="associatedMedia" style="margin-bottom: 1.3em;">
-        &lt;div class="<span id="videoEmbed_host"></span>">
-          &lt;iframe<span id="videoEmbed_width"></span><span id="videoEmbed_height"></span> src="<span id="videoEmbed_ID"></span>" frameborder="0" allowfullscreen>&lt;/iframe>
-        &lt;/div>
-      &lt;/div>
-      </code>
-    </pre>
+    {{ macro.copyBlock(videoembed, 'videoEmbedcode', videoembedform)}}
+
   </section>

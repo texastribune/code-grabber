@@ -11,7 +11,7 @@ function slugify(text) {
     .replace(/-+$/, '');            // Trim - from end of text
 }
 
-$('#readmore_form').submit(function(e) {
+$('#readmorecode_form').submit(function(e) {
   var headline = $('#readmore_headline').val(),
       link = $('#readmore_link').val(),
       headlineHTML = $('.readmore_headline'),
@@ -27,12 +27,12 @@ $('#readmore_form').submit(function(e) {
   linkTextHTML.html(link);
   linkHTML.prop('href', link);
 
-  $('#readmore_clipboard').trigger('click');
+  $('#readmorecode_clipboard').trigger('click');
   copied(this);
   e.preventDefault();
 });
 
-$('#twitterinline_form').submit(function(e) {
+$('#twitterinlinecode_form').submit(function(e) {
   var shareSentence = $('#twitterinline_sentence').val(),
       shareHashtag = $('#twitterinline_hashtag').val(),
       shareSentenceHTML = $('.twitterinline_sentence'),
@@ -58,12 +58,12 @@ $('#twitterinline_form').submit(function(e) {
     shareHashtagHTML.html(shareHashtag);
   }
 
-  $('#twitterinline_clipboard').trigger('click');
+  $('#twitterinlinecode_clipboard').trigger('click');
   copied(this);
   e.preventDefault();
 });
 
-$('#pullquote_form').submit(function(e) {
+$('#pullquotecode_form').submit(function(e) {
   var color = $('input[name=color]:checked').val(),
       colorHTML = $('.pullquote_color'),
       position = $('input[name=position]:checked').val(),
@@ -92,13 +92,13 @@ $('#pullquote_form').submit(function(e) {
   pullquoteQuoteHTML.html(pullquoteQuote);
   pullquoteSpeakerHTML.html(pullquoteSpeaker);
 
-  $('#pullquote_clipboard').trigger('click');
+  $('#pullquotecode_clipboard').trigger('click');
   copied(this);
   e.preventDefault();
 });
 
 
-$('#photoEmbed_form').submit(function(e) {
+$('#photoEmbedcode_form').submit(function(e) {
   var position = $('input[name=photoPosition]:checked').val(),
       positionHTML = $('.photoEmbed_position'),
       photoEmbedURL = $('#photoEmbed_URL').val(),
@@ -120,12 +120,12 @@ $('#photoEmbed_form').submit(function(e) {
   photoEmbedCreditHTML.html(photoEmbedCredit);
   photoEmbedCaptionHTML.html(photoEmbedCaption);
 
-  $('#photoEmbed_clipboard').trigger('click');
+  $('#photoEmbedcode_clipboard').trigger('click');
   copied(this);
   e.preventDefault();
 });
 
-$('#videoEmbed_form').submit(function(e) {
+$('#videoEmbedcode_form').submit(function(e) {
   var videoID = $('#videoID').val(),
       videoHost = $('input[name=videoHost]:checked').val(),
       videoWidth = $('#videoWidth').val(),
@@ -151,7 +151,7 @@ $('#videoEmbed_form').submit(function(e) {
     $('#videoEmbed_ID').html('https://player.vimeo.com/video/' + videoID);
   }
 
-  $('#videoEmbed_clipboard').trigger('click');
+  $('#videoEmbedcode_clipboard').trigger('click');
   copied(this);
   e.preventDefault();
 });
