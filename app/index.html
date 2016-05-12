@@ -7,6 +7,7 @@
 {% endblock %}
 
 {% block content %}
+{% import 'layouts/macros.html' as macro %}
 
 <main class="main" role="main">
   <section class="section--block instructions">
@@ -58,7 +59,7 @@
     <ul class="section--list">
       <li><a href="#twitterinline">Twitter - Share Sentence</a></li>
       <li><a href="#series_headers">Series Headers</a> - <a href="#bsp-embed">Bordering on Insecurity</a>, <a href="#roughpatch-header-embed">Rough Patch</a>, <a href="#mentalhealthmatters-header-embed">Mental Health Matters</a></li>
-      <li><a href="#bsp_embed">Series promotion embeds</a> - <a href="#bsp-embed">Bordering on Insecurity</a>, <a href="#hell-high-water-embed">Hell and High Water</a></li>
+      <li><a href="#promotional_embeds">Promotional embeds</a> - <a href="#bsp-embed">Bordering on Insecurity</a>, <a href="#hell-high-water-embed">Hell and High Water</a></li>
       <li><a href="#pull_quotes">Pull Quotes</a></li>
       <li><a href="#read_more">Read More</a></li>
       <li><a href="#photo_embed">Photo Embed</a></li>
@@ -68,7 +69,7 @@
   </section>
   {% include 'includes/twitter_inline.html' %}
   {% include 'includes/series_headers.html' %}
-  {% include 'includes/bsp_embed.html' %}
+  {% include 'includes/promotional_embeds.html' %}
   {% include 'includes/pull_quotes.html' %}
   {% include 'includes/read_more.html' %}
   {% include 'includes/photo_embed.html' %}

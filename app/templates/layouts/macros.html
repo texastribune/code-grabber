@@ -1,0 +1,17 @@
+{% macro previewFrame(code) %}
+  <div class="preview--frame">
+    {{ code }}
+  </div>
+{% endmacro %}
+
+{% macro copyBlock(code, id) %}
+<div class="copy--wrapper">
+  <button class="copy--button copy tooltips" data-clipboard-target="#{{ id }}">Copy Code </button>
+  <span class="copy--tooltip">Copied &#10003;</span>
+</div>
+<pre style="display:block;">
+  <code class="language-markup" id="{{ id }}" >
+    {{ code|escape}}
+  </code>
+</pre>
+{% endmacro %}
