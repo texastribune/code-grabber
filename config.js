@@ -9,25 +9,6 @@ config.deploy = {
   profile: 'newsapps'
 };
 
-config.dataFolder = './data';
 config.templateFolder = './app/templates';
-
-config.data = {
-  docs: [
-    {
-      fileid: '1ehh3ISrwq5lHNQS-eEs_i30Wi7UAF9txWgYTo56NFBI',
-      name: 'test'
-    }
-  ],
-  sheets: [
-    {
-      fileid: '1EACmSpajC1V7nJtwIxfA9aR-HAbTSDugSjStSSKWEaE',
-      name: 'metadata',
-      copytext: {
-        basetype: 'objectlist'
-      }
-    }
-  ]
-};
 
 module.exports = config;
