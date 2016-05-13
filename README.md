@@ -2,7 +2,7 @@
 
 This repo uses the latest version of the Data Visuals app kit.
 
-To start run, `npm install`. This project requires [Node v4.0.0](https://nodejs.org/en/blog/release/v4.0.0/). If you hit a syntax error on your initial attempts to serve the project locally, try updating your node version.
+To start run, `npm install`. This project requires [Node v4.0.0](https://nodejs.org/en/blog/release/v4.0.0/). If you hit a syntax error on your initial attempts to serve the project locally, it's likely that you're trying to use an older version of node. Update node, completely remove your node_modules folder and re-run `npm install`.
 
 ## Instructions for adding or editing a component
 
