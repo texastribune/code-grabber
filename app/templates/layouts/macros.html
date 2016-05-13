@@ -5,7 +5,10 @@
   </div>
 {% endmacro %}
 
+<!-- Build Story Component generator -->
 {% macro copyBlock(code, id, formOptions) %}
+
+  <!-- Add Form if form options are provided -->
   {% if formOptions %}
   <div id="{{ id }}_copy" class="copy--wrapper">
     <form id="{{ id }}_form" class="copy--form">
@@ -15,6 +18,8 @@
     </form>
     <button id="{{ id }}_clipboard" class="copy hidden" data-clipboard-target="#{{ id }}"></button>
   </div>
+
+  <!-- Otherwise, just add a copy button -->
   {% else %}
   <div id="{{ id }}_copy" class="copy--wrapper">
     <button class="copy--button copy tooltips" data-clipboard-target="#{{ id }}">Copy Code </button>
@@ -22,6 +27,8 @@
   </div>
   {% endif %}
 
+  <!-- Add escaped version of generated code block to preview
+  and grab when you hit copy -->
   <pre style="display:block;">
     <code class="language-markup" id="{{ id }}" >
       {{ code|escape}}
