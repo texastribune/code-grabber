@@ -2,15 +2,7 @@
 
 This repo uses the latest version of the Data Visuals app kit.
 
-## Quickstart
-
-Run this command in your project's folder:
-
-```sh
-curl -fsSL https://github.com/texastribune/code-grabber/archive/master.tar.gz | tar -xz --strip-components=1
-```
-
-Next, `npm install`.
+To start run, `npm install`.
 
 ## Development
 
