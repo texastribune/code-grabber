@@ -1,6 +1,6 @@
 /* global $ */
 
-import {copied, slugify, returnCode} from './includes/utils.js';
+import {copied, slugify, positionCheck, returnCode} from './includes/utils.js';
 
 // Load clipboard.js
 // add functionality to all .copy
@@ -59,17 +59,6 @@ $('#twitterinlinecode_form').submit(function(e) {
   e.preventDefault();
 });
 
-
-function initializePreviews() {
-  var readmorecode = readmore('test', 'http://', 'This is a test headline'),
-      twitterinlinecode = twitterinline('This is preview sentence', '', '');
-
-  $('#readmorecode_preview').html(readmorecode);
-  $('#twitterinlinecode_preview').html(twitterinlinecode);
-}
-
-initializePreviews();
-
 function pullquote(type, text, speaker, color, position) {
   var codeBlock;
 
@@ -78,11 +67,11 @@ function pullquote(type, text, speaker, color, position) {
   } else {
     codeBlock = '<div' + position + '><p class="story_quote--pull" style="border-bottom: 2px; border-left: 0; border-right: 0; border-top: 2px; border-color: ' + color + '; border-style: solid; color: #444; font-family: Georgia,Times,serif; font-size: 1.2em; font-style: italic; font-weight: 600; line-height: 1.3; padding-top: 1em; padding-bottom: 1em; margin-bottom: 0">' + text + '</p></div>'
   }
-  
+
   return codeBlock;
 }
 
-$('#pullquotecode_form').change(function(e) {
+$('#pulltextcode_form').change(function(e) {
   var type = $('input[name=type]:checked').val();
   if (type === 'quote') {
     $('.quote-label').show();
@@ -97,22 +86,14 @@ $('#pullquotecode_form').change(function(e) {
   }
 });
 
-$('#pullquotecode_form').submit(function(e) {
+$('#pulltextcode_form').submit(function(e) {
   var type = $('input[name=type]:checked').val(),
       colorVal = $('input[name=color]:checked').val(),
       color,
       positionVal = $('input[name=position]:checked').val(),
-      position,
+      position = positionCheck(positionVal),
       text = $('#pullquote_quote').val(),
       speaker = $('#pullquote_speaker').val();
-
-  if (positionVal === 'right' ) {
-    position = ' class="article_detail unprose media float_right"';
-  } else if (positionVal === 'left') {
-    position = ' class="article_detail unprose media float_left"';
-  } else {
-    position = ' style="width: 100%; margin-bottom: 1em"';
-  }
 
   if (colorVal === 'bsp') {
     color = '#925352';
@@ -121,101 +102,66 @@ $('#pullquotecode_form').submit(function(e) {
   }
 
   var codeBlock = pullquote(type, text, speaker, color, position);
-  returnCode (codeBlock, 'pullquotecode');
-  copied(this.id);
-
-  e.preventDefault();
-});
-
-$('#textblockcode_form').submit(function(e) {
-  var color = $('input[name=color]:checked').val(),
-      colorHTML = $('.textblock_color'),
-      position = $('input[name=position]:checked').val(),
-      positionHTML = $('.textblock_position'),
-      textblockText = $('#textblock_text').val(),
-      textblocktextHTML = $('.textblock_textHTML');
-
-  if (position === 'right' ) {
-    positionHTML.html(' class="article_detail unprose media float_right"');
-  } else if (position === 'left') {
-    positionHTML.html(' class="article_detail unprose media float_left"');
-  } else {
-    positionHTML.html(' style="width: 100%; margin-bottom: 1em"');
-  }
-
-  if (color === 'bsp') {
-    colorHTML.html('#925352');
-    $('.story_quote--pull').css('border-color', '#925352');
-  } else {
-    colorHTML.html('rgb(255, 194, 0)');
-    $('.story_quote--pull').css('border-color', 'rgb(255, 194, 0)');
-  }
-
-  textblocktextHTML.html(textblockText);
-
-  $('#textblockcode_clipboard').trigger('click');
+  returnCode (codeBlock, 'pulltextcode');
   copied(this.id);
 
   e.preventDefault();
 });
 
 
-$('#photoEmbedcode_form').submit(function(e) {
-  var position = $('input[name=photoPosition]:checked').val(),
-      positionHTML = $('.photoEmbed_position'),
-      photoEmbedURL = $('#photoEmbed_URL').val(),
-      photoEmbedCredit = $('#photoEmbed_credit').val(),
-      photoEmbedCaption = $('#photoEmbed_caption').val(),
-      photoEmbedURLHTML = $('.photoEmbed_URL'),
-      photoEmbedCreditHTML = $('.photoEmbed_credit'),
-      photoEmbedCaptionHTML = $('.photoEmbed_caption');
+function photoEmbed(url, credit, caption, position) {
+  var codeBlock = '<div' + position + '><a class="lightbox" href="' + url + '"><img src="' + url + '" alt="" width="312" /></a><div class="photo_links"><a class="lightbox enlarge" href="' + url + '">Enlarge</a>&nbsp;<cite>Photo by: ' + credit + '</cite></div><div class="photo_caption"><em>' + caption + '</em></div></div>';
 
-  if (position === 'right' ) {
-    positionHTML.html(' class="article_detail unprose media float_right"');
-  } else if (position === 'left') {
-    positionHTML.html(' class="article_detail unprose media float_left"');
-  } else {
-    positionHTML.html(' class="article_detail unprose media" style="width: 100%"');
-  }
+  return codeBlock;
+}
 
-  photoEmbedURLHTML.html(photoEmbedURL);
-  photoEmbedCreditHTML.html(photoEmbedCredit);
-  photoEmbedCaptionHTML.html(photoEmbedCaption);
+$('#photoembedcode_form').submit(function(e) {
+  var positionVal = $('input[name=photoPosition]:checked').val(),
+      url = $('#photoEmbed_URL').val(),
+      credit = $('#photoEmbed_credit').val(),
+      caption = $('#photoEmbed_caption').val(),
+      position = positionCheck(positionVal, 'photo'),
+      codeBlock = photoEmbed(url, credit, caption, position);
 
-  $('#photoEmbedcode_clipboard').trigger('click');
+  returnCode(codeBlock, 'photoembedcode');
   copied(this.id);
-
   e.preventDefault();
 });
 
-$('#videoEmbedcode_form').submit(function(e) {
+
+function videoEmbed(video, host, width, height) {
+  var codeBlock = '<div class="video story_relatedvideo" itemprop="associatedMedia" style="margin-bottom: 1.3em;"><div class="' + host + '"><iframe width="' + width + '" height="' + height + '"  src="' + video + '" frameborder="0" allowfullscreen></iframe></div></div>';
+
+  return codeBlock;
+}
+
+$('#videoembedcode_form').submit(function(e) {
   var videoID = $('#videoID').val(),
       videoHost = $('input[name=videoHost]:checked').val(),
-      videoWidth = $('#videoWidth').val(),
-      videoHeight = $('#videoHeight').val();
-
-  $('#videoEmbed_host').html(videoHost);
-
-  if(videoWidth === '') {
-    $('#videoEmbed_width').empty();
-  } else {
-    $('#videoEmbed_width').html(' width="' + videoWidth + '"');
-  }
-
-  if(videoHeight === '') {
-    $('#videoEmbed_width').empty();
-  } else {
-    $('#videoEmbed_height').html(' height="' + videoHeight + '"');
-  }
+      width = $('#videoWidth').val(),
+      height = $('#videoHeight').val(),
+      video;
 
   if(videoHost === 'youtube') {
-    $('#videoEmbed_ID').html('https://www.youtube.com/embed/' + videoID);
+    video = 'https://www.youtube.com/embed/' + videoID;
   } else {
-    $('#videoEmbed_ID').html('https://player.vimeo.com/video/' + videoID);
+    video = 'https://player.vimeo.com/video/' + videoID;
   }
 
-  $('#videoEmbedcode_clipboard').trigger('click');
+  var codeBlock = videoEmbed(video, videoHost, width, height);
+  returnCode (codeBlock, 'videoembedcode');
+
   copied(this.id);
 
   e.preventDefault();
 });
+
+function initializePreviews() {
+  var readmorecode = readmore('test', 'http://', 'This is a test headline'),
+      twitterinlinecode = twitterinline('This is preview sentence', '', '');
+
+  $('#readmorecode_preview').html(readmorecode);
+  $('#twitterinlinecode_preview').html(twitterinlinecode);
+}
+
+initializePreviews();

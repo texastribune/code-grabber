@@ -5,16 +5,8 @@
       <p>These code blocks rely on CMS classes to load FitVids.js and make the videos responsive. Indicating whether you're using a YouTube or Vimeo embed is very important! You don't need to set a width or height &mdash; but dimensions will get funky if you set one and not the other.</p>
     </header>
 
-    {% set videoembed %}
-    <div class="video story_relatedvideo" itemprop="associatedMedia" style="margin-bottom: 1.3em;">
-      <div class="<span id="videoEmbed_host"></span>">
-        <iframe<span id="videoEmbed_width"></span><span id="videoEmbed_height"></span> src="<span id="videoEmbed_ID"></span>" frameborder="0" allowfullscreen></iframe>
-      </div>
-    </div>
-    {% endset %}
-
     {% set videoembedform %}
-    <label>Video ID &emdash; Ex: BtZF007Lep4</label>
+    <label>Video ID - Ex: BtZF007Lep4</label>
     <input id="videoID" type="text" value="" required>
     <label>Host</label>
     <input type="radio" name="videoHost" value="youtube" checked><span class="radio-label">YouTube</span>
@@ -25,6 +17,6 @@
     <input id="videoHeight" type="text" value="">
     {% endset %}
 
-    {{ macro.copyBlock(videoembed, 'videoEmbedcode', videoembedform)}}
+    {{ macro.copyBlock('videoembedcode', videoembedform)}}
 
   </section>
