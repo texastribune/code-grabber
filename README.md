@@ -6,22 +6,15 @@ To start run, `npm install`. This project requires [Node v4.0.0](https://nodejs.
 
 ## Instructions for adding or editing a component
 
-The HTML for each component in Code Grabber is built using a Nunjucks [{% macro %}](https://mozilla.github.io/nunjucks/templating.html#macro) called `{{ copyBlock(code, id, formOptions) }}` located in `app/templates/layouts/macros.html`. It takes three arguments:
-+ `code`: The HTML code that will be generated and copied. If the component is customizable, it will also include `<span>` tags with class names that are targeted in the `main.js` to add or substitute HTML content when the form is submitted.
+The HTML for each component in Code Grabber is built using a Nunjucks [{% macro %}](https://mozilla.github.io/nunjucks/templating.html#macro) called `{{ copyBlock(id, formOptions, preview) }}` located in `app/templates/layouts/macros.html`. It takes three arguments:
 + `id`: A string to identify the component and the targeted clipboard. For customizable components, it's also used to locate the form in `main.js` and set its behaviors.
-+ `formOptions`: OPTIONAL - If you include formOptions, the template will add a `<form>` tag around the options. If its not included, it automatically creates a static element that you may copy with a button.
++ `formOptions`: The template will add a `<form>` tag around the options.
++ `preview`: Not required. If set to 'load', the template will include a dashed frame to preview the component.
 
-You may also use `{{ previewFrame(code) }}` to create a preview frame around your code block.
-
-Each group of components has a file in `app/templates/includes/` in which the parameters for these templates are set and then called. For example, here's how the `{{ copyBlock() }` and `{{ previewFrame() }}` are used in the `read_more.html` file:
+Each group of components has a file in `app/templates/includes/` in which the parameters for these templates are set and then called. For example, here's how the `{{ copyBlock() }` is used in the `read_more.html` file:
 
 ```
-<!-- Set the "code" variable -->
-{% set readmore %}
-<p class="readmore"><span class="readmore--label">Read More</span><a onclick="ga('send', 'event', 'codegrabber', 'click', 'readmore', {'nonInteraction': 1})" class="readmore_link" href="http://texastribune.org"><span class="readmore_headline">Your headline</span></a></p>
-{% endset %}
-
-<!-- Set the "formOptions" variable -->
+<!-- formOptions  -->
 {% set readmoreform %}
   <label>Headline</label>
   <input type="text" id="readmore_headline" value="" required>
@@ -29,10 +22,37 @@ Each group of components has a file in `app/templates/includes/` in which the pa
   <input type="text" id="readmore_link" value="" required>
 {% endset %}
 
-<!-- Call variables and add an ID string  -->
-{{ macro.previewFrame(readmore) }}
-{{ macro.copyBlock(readmore, 'readmorecode', readmoreform)}}
+<!-- id, formOptions, preview -->
+{{ macro.copyBlock('readmorecode', readmoreform, preview='load')}}
 
+```
+
+Each component has a function to build its codeBlock. For some components (readmore and twitterinline) that function is also used to initialized a preview on load, but for most, it's just called when the component's form is submitted. When the user submits the form, it picks up the variables, calls that component function with the variables to build a new codeBlock, then runs `returnCode(codeBlock, id)`. (The id must match the id assigned to the component in `{% copyBlock() %}`). The `returnCode()` function uses the id to push the updated codeBlock to the DOM in both the preview frame and the <code> block for that component, and then triggers a hidden clipboard copy button for that component. Afterwards, it triggers `copied(this.id)` to show the Copied! tooltip.
+
+```
+// build readmore codeBlock
+function readmore(headlineSlug, link, headline) {
+  var codeBlock = '<p class="readmore" style="font-style: italic; padding-top: .5em; padding-bottom: .5em; vertically-align: middle;"><span class="readmore--label" style="color: #111111; font-family: Helvetica,Arial,sans-serif; font-size: .9em; font-style: italic; font-weight: 800; margin: 0 1em 1em 0; text-decoration: none; text-transform: uppercase;">Read More</span><a onclick="ga(\'send\', \'event\', \'codegrabber\', \'click\', \'readmore\', \'' + headlineSlug + '\', {\'nonInteraction\': 1})" class="readmore_link" href="'+ link +'">'+ headline +'</a></p>';
+
+  return codeBlock;
+}
+
+// submit readmore form
+$('#readmorecode_form').submit(function(e) {
+  var headline = $('#readmore_headline').val(),
+      link = $('#readmore_link').val(),
+      headlineSlug = slugify(headline),
+      // assign output from readmore() to codeBlock
+      codeBlock = readmore(headlineSlug, link, headline);
+
+  // update DOM & copy element
+  returnCode(codeBlock, 'readmorecode');
+
+  // provide user feedback
+  copied(this.id);
+
+  e.preventDefault();
+});
 ```
 
 ## Development

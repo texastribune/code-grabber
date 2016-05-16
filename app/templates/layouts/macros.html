@@ -4,7 +4,7 @@
 {% endmacro %}
 
 <!-- Build Story Component generator -->
-{% macro copyBlock(id, formOptions, preview, code) %}
+{% macro copyBlock(id, formOptions, preview) %}
   {% if preview == 'load' %}
   <div id="{{ id }}_preview" class="preview--frame">
     {{ code }}
@@ -34,7 +34,6 @@
   and grab when you hit copy -->
   <pre style="display:block;">
     <code class="language-markup" id="{{ id }}" >
-      {{ code|escape }}
     </code>
   </pre>
 {% endmacro %}
