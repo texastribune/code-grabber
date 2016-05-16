@@ -2,9 +2,6 @@
   <header>
     <h2>Twitter — Share Sentence</h2>
   </header>
-  {% set twitterinline %}
-  <a href="https://twitter.com/share?text=Sed%20fringilla%20mauris%20sit%20amet%20nibh.%20Vivamus%20elementum%20semper%20nisi.%20Sed%20fringilla%20mauris%20sit%20amet%20nibh.%20Vivamus%20eleme" onclick="ga('send', 'event', 'codegrabber', 'click', 'twitter-inline', {'nonInteraction': 1})"><span class="twitterinline_sentence">Sed fringilla mauris sit amet nibh. Vivamus elementum semper nisi. Sed fringilla mauris sit amet nibh vivamus</span><i style="margin-left: .5em;" class="fa fa-twitter"></i></a>
-  {% endset %}
 
   {% set twitterinlineform %}
     <label>Sentence you want to share.</label>
@@ -16,11 +13,9 @@
 
   <p>This component creates a link to share a sentence in your story on Twitter. It should be used to highlight and promote very compelling content like an investigative finding or dramatic lede. To use this component, copy and paste the sentence you want to make shareable, then replace it in your story HTML with the copied code.</p>
 
-  {{ macro.previewFrame(twitterinline) }}
-
   <p>Important: Twitter will automatically pick up the story URL and add it to the tweet. The URL will always be shortened to 23 characters. That means you have <strong>117 characters</strong> &mdash; including any added hashtags &mdash; to work with!</p>
-  <p><span id="twitterinline_warning" class="warning hidden">Warning! Your tweet is too long. Max length: 117 characters. </span>Current character count: <span id="twitterinline_sentence_length">0</span></p>
+  <p><span id="twitterinline_warning" class="warning hidden">Warning! Your tweet is too long. Max length: 117 characters. </span>Character count: <span id="twitterinline_sentence_length">0</span></p>
 
-  {{ macro.copyBlock(twitterinline, 'twitterinlinecode', twitterinlineform)}}
+  {{ macro.copyBlock('twitterinlinecode', twitterinlineform, preview='load')}}
 
 </section>

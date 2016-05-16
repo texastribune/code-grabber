@@ -1,42 +1,13 @@
 /* global $ */
 
+import {copied, slugify, returnCode} from './includes/utils.js';
+
 // Load clipboard.js
 // add functionality to all .copy
 import Clipboard from 'clipboard';
 new Clipboard('.copy');
 
-function copied(x) {
-  var parent = $('#'+ x).closest('.copy--wrapper'),
-      tooltip = parent.find('.copy--tooltip');
-
-  $('.copy--tooltip').hide();
-  tooltip.css('display', 'inline-block');
-}
-
-function slugify(text) {
-  return text.toString().toLowerCase()
-    .replace(/\s+/g, '-')           // Replace spaces with -
-    .replace(/[^\w\-]+/g, '')       // Remove all non-word chars
-    .replace(/\-\-+/g, '-')         // Replace multiple - with single -
-    .replace(/^-+/, '')             // Trim - from start of text
-    .replace(/-+$/, '');            // Trim - from end of text
-}
-
-function escapeCode(code) {
-  return code.replace(/\</g, '&lt;');
-}
-
-function returnCode(codeBlock, id) {
-  var codeEscaped = escapeCode(codeBlock);
-
-  $('#' + id + '_preview').html(codeBlock);
-  $('#' + id).html(codeEscaped);
-
-  // Trigger hidden clipboard button to copy code block
-  $('#' + id + '_clipboard').trigger('click');
-}
-
-function readmore(headlineSlug, link, headline) {
+export function readmore(headlineSlug, link, headline) {
   var codeBlock = '<p class="readmore" style="font-style: italic; padding-top: .5em; padding-bottom: .5em; vertically-align: middle;"><span class="readmore--label" style="color: #111111; font-family: Helvetica,Arial,sans-serif; font-size: .9em; font-style: italic; font-weight: 800; margin: 0 1em 1em 0; text-decoration: none; text-transform: uppercase;">Read More</span><a onclick="ga(\'send\', \'event\', \'codegrabber\', \'click\', \'readmore\', \'' + headlineSlug + '\', {\'nonInteraction\': 1})" class="readmore_link" href="'+ link +'">'+ headline +'</a></p>';
 
   return codeBlock;
@@ -49,33 +20,31 @@ $('#readmorecode_form').submit(function(e) {
       codeBlock = readmore(headlineSlug, link, headline);
 
   returnCode(codeBlock, 'readmorecode');
-
   copied(this.id);
-
   e.preventDefault();
 });
 
-function initializePreviews() {
-  var readmorecode = readmore('test', '', 'This is a test headline');
+function twitterinline(sentence, sentenceEncode, hashtag) {
+  var codeBlock;
 
-  $('#readmorecode_preview').html(readmorecode);
+  if(hashtag) {
+    codeBlock = '<a href=\"https://twitter.com/share?text=' + sentenceEncode + '&hashtags=' + hashtag + '\" onclick=\"ga(\'send\', \'event\', \'codegrabber\', \'click\', \'twitter-inline\', {\'nonInteraction\': 1})\">' + sentence + '<i style="margin-left: .5em;" class="fa fa-twitter"></i></a>';
+  } else {
+    codeBlock = '<a href=\"https://twitter.com/share?text=' + sentenceEncode + '\" onclick=\"ga(\'send\', \'event\', \'codegrabber\', \'click\', \'twitter-inline\', {\'nonInteraction\': 1})\">' + sentence + '<i style="margin-left: .5em;" class="fa fa-twitter"></i></a>';
+  }
+
+  return codeBlock;
 }
-
-initializePreviews();
 
 $('#twitterinlinecode_form').submit(function(e) {
   var shareSentence = $('#twitterinline_sentence').val(),
-      shareHashtag = $('#twitterinline_hashtag').val(),
-      shareSentenceHTML = $('.twitterinline_sentence'),
-      shareSentenceEncodeHTML = $('.twitterinline_sentence_encode'),
-      shareHashtagHTML = $('.twitterinline_hashtag'),
+      shareSentenceEncoded = encodeURI(shareSentence),
+      shareHashtag = $('#twitterinline_hashtag').val().replace(/\s+/g, ''),
+      codeBlock = twitterinline(shareSentence, shareSentenceEncoded, shareHashtag),
       shareSentenceLength = shareSentence.length,
       shareHashtagLength = shareHashtag.length,
       shareLength = shareSentenceLength + shareHashtagLength,
       shareSentenceLengthHTML = $('#twitterinline_sentence_length');
-
-  shareSentenceEncodeHTML.html(encodeURI(shareSentence));
-  shareSentenceHTML.html(shareSentence);
 
   if(shareLength >= 110) {
     $('#twitterinline_warning').removeClass('hidden');
@@ -85,15 +54,21 @@ $('#twitterinlinecode_form').submit(function(e) {
     shareSentenceLengthHTML.html(shareLength);
   }
 
-  if(shareHashtag !== '') {
-    shareHashtagHTML.html(shareHashtag);
-  }
-
-  $('#twitterinlinecode_clipboard').trigger('click');
+  returnCode(codeBlock, 'twitterinlinecode')
   copied(this.id);
-
   e.preventDefault();
 });
+
+
+function initializePreviews() {
+  var readmorecode = readmore('test', 'http://', 'This is a test headline'),
+      twitterinlinecode = twitterinline('This is preview sentence', '', '');
+
+  $('#readmorecode_preview').html(readmorecode);
+  $('#twitterinlinecode_preview').html(twitterinlinecode);
+}
+
+initializePreviews();
 
 $('#pullquotecode_form').submit(function(e) {
   var color = $('input[name=color]:checked').val(),
