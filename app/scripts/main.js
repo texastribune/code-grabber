@@ -54,7 +54,7 @@ $('#twitterinlinecode_form').submit(function(e) {
     shareSentenceLengthHTML.html(shareLength);
   }
 
-  returnCode(codeBlock, 'twitterinlinecode')
+  returnCode(codeBlock, 'twitterinlinecode');
   copied(this.id);
   e.preventDefault();
 });
@@ -70,36 +70,58 @@ function initializePreviews() {
 
 initializePreviews();
 
+function pullquote(type, text, speaker, color, position) {
+  var codeBlock;
+
+  if (type === 'quote') {
+    codeBlock = '<div' + position + '><p class="story_quote--pull" style="border-bottom: 2px; border-left: 0; border-right: 0; border-top: 2px; border-color: ' + color + '; border-style: solid; color: #444; font-family: Georgia,Times,serif; font-size: 1.2em; font-style: italic; font-weight: 600; line-height: 1.3; padding-top: 1em; padding-bottom: 1em; margin-bottom: 0"><span>&ldquo;</span>' + text + '<span>&rdquo;</span><span style="display: block; font-family: Helvetica, Arial, sans-serif; font-size: .85em; font-style: normal; font-weight: 400; margin: .5em 0 0;">&mdash; ' + speaker + '</span></p></div>'
+  } else {
+    codeBlock = '<div' + position + '><p class="story_quote--pull" style="border-bottom: 2px; border-left: 0; border-right: 0; border-top: 2px; border-color: ' + color + '; border-style: solid; color: #444; font-family: Georgia,Times,serif; font-size: 1.2em; font-style: italic; font-weight: 600; line-height: 1.3; padding-top: 1em; padding-bottom: 1em; margin-bottom: 0">' + text + '</p></div>'
+  }
+  
+  return codeBlock;
+}
+
+$('#pullquotecode_form').change(function(e) {
+  var type = $('input[name=type]:checked').val();
+  if (type === 'quote') {
+    $('.quote-label').show();
+    $('.speaker-label').show();
+    $('.speaker-input').show();
+    $('.text-label').hide();
+  } else {
+    $('.quote-label').hide();
+    $('.speaker-label').hide();
+    $('.speaker-input').hide();
+    $('.text-label').show();
+  }
+});
+
 $('#pullquotecode_form').submit(function(e) {
-  var color = $('input[name=color]:checked').val(),
-      colorHTML = $('.pullquote_color'),
-      position = $('input[name=position]:checked').val(),
-      positionHTML = $('.pullquote_position'),
-      pullquoteQuote = $('#pullquote_quote').val(),
-      pullquoteSpeaker = $('#pullquote_speaker').val(),
-      pullquoteQuoteHTML = $('.pullquote_quoteHTML'),
-      pullquoteSpeakerHTML = $('.pullquote_speakerHTML');
+  var type = $('input[name=type]:checked').val(),
+      colorVal = $('input[name=color]:checked').val(),
+      color,
+      positionVal = $('input[name=position]:checked').val(),
+      position,
+      text = $('#pullquote_quote').val(),
+      speaker = $('#pullquote_speaker').val();
 
-  if (position === 'right' ) {
-    positionHTML.html(' class="article_detail unprose media float_right"');
-  } else if (position === 'left') {
-    positionHTML.html(' class="article_detail unprose media float_left"');
+  if (positionVal === 'right' ) {
+    position = ' class="article_detail unprose media float_right"';
+  } else if (positionVal === 'left') {
+    position = ' class="article_detail unprose media float_left"';
   } else {
-    positionHTML.html(' style="width: 100%; margin-bottom: 1em"');
+    position = ' style="width: 100%; margin-bottom: 1em"';
   }
 
-  if (color === 'bsp') {
-    colorHTML.html('#925352');
-    $('.story_quote--pull').css('border-color', '#925352');
+  if (colorVal === 'bsp') {
+    color = '#925352';
   } else {
-    colorHTML.html('rgb(255, 194, 0)');
-    $('.story_quote--pull').css('border-color', 'rgb(255, 194, 0)');
+    color = 'rgb(255, 194, 0)';
   }
 
-  pullquoteQuoteHTML.html(pullquoteQuote);
-  pullquoteSpeakerHTML.html(pullquoteSpeaker);
-
-  $('#pullquotecode_clipboard').trigger('click');
+  var codeBlock = pullquote(type, text, speaker, color, position);
+  returnCode (codeBlock, 'pullquotecode');
   copied(this.id);
 
   e.preventDefault();
