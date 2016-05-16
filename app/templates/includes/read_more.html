@@ -5,7 +5,12 @@
       </header>
 
       {% set readmore %}
-      <p class="readmore"><span class="readmore--label">Read More</span><a onclick="ga('send', 'event', 'codegrabber', 'click', 'readmore', {'nonInteraction': 1})" class="readmore_link" href="http://texastribune.org"><span class="readmore_headline">Your headline</span></a></p>
+      <p class="readmore">
+        <span class="readmore--label">Read More</span>
+        <a onclick="ga('send', 'event', 'codegrabber', 'click', 'readmore', {'nonInteraction': 1})" class="readmore_link" href="http://texastribune.org">
+          <span class="readmore_headline">Your headline</span>
+        </a>
+      </p>
       {% endset %}
 
       {% set readmoreform %}
@@ -15,6 +20,5 @@
         <input type="text" id="readmore_link" value="" required>
       {% endset %}
 
-      {{ macro.previewFrame(readmore) }}
-      {{ macro.copyBlock(readmore, 'readmorecode', readmoreform)}}
+      {{ macro.copyBlock('readmorecode', readmoreform, readmore)}}
     </section>

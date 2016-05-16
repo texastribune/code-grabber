@@ -22,24 +22,29 @@ function slugify(text) {
     .replace(/-+$/, '');            // Trim - from end of text
 }
 
+function escapeCode(code) {
+  return code.replace(/\</g, '&lt;');
+}
+
+function returnCode(codeBlock, id) {
+  var codeEscaped = escapeCode(codeBlock);
+
+  $('#' + id + '_preview').html(codeBlock);
+  $('#' + id).html(codeEscaped);
+
+  // Trigger hidden clipboard button to copy code block
+  $('#' + id + '_clipboard').trigger('click');
+}
+
 $('#readmorecode_form').submit(function(e) {
   var headline = $('#readmore_headline').val(),
       link = $('#readmore_link').val(),
-      headlineHTML = $('.readmore_headline'),
-      headlineTextHTML = $('.readmore_headlineText'),
-      headlineSlugHTML = $('.readmore_headlineSlug'),
-      linkHTML = $('.readmore_link'),
-      linkTextHTML = $('.readmore_linkText'),
       headlineSlug = slugify(headline);
 
-  headlineHTML.html(headline);
-  headlineTextHTML.html(headline);
-  headlineSlugHTML.html(headlineSlug);
-  linkTextHTML.html(link);
-  linkHTML.prop('href', link);
-  $('#readmorecode_clipboard').trigger('click');
-  copied(this.id);
+  var codeBlock = '<p class="readmore" style="font-style: italic; padding-top: .5em; padding-bottom: .5em; vertically-align: middle;"><span class="readmore--label" style="color: #111111; font-family: Helvetica,Arial,sans-serif; font-size: .9em; font-style: italic; font-weight: 800; margin: 0 1em 1em 0; text-decoration: none; text-transform: uppercase;">Read More</span><a onclick="ga(\'send\', \'event\', \'codegrabber\', \'click\', \'readmore\', \'' + headlineSlug + '\', {\'nonInteraction\': 1})" class="readmore_link" href="'+ link +'">'+ headline +'</a></p>';
 
+  returnCode(codeBlock, 'readmorecode');
+  copied(this.id);
   e.preventDefault();
 });
 

@@ -1,13 +1,16 @@
 <!-- Preview Code -->
-{% macro previewFrame(code) %}
-  <div class="preview--frame">
-    {{ code }}
-  </div>
+{% macro previewFrame(code, id) %}
+
 {% endmacro %}
 
 <!-- Build Story Component generator -->
-{% macro copyBlock(code, id, formOptions) %}
-
+{% macro copyBlock(id, formOptions, code) %}
+  {% if code %}
+  <div id="{{ id }}_preview" class="preview--frame">
+    {{ code }}
+  </div>
+  {% endif %}
+  
   <!-- Add Form if form options are provided -->
   {% if formOptions %}
   <div id="{{ id }}_copy" class="copy--wrapper">
@@ -31,7 +34,6 @@
   and grab when you hit copy -->
   <pre style="display:block;">
     <code class="language-markup" id="{{ id }}" >
-      {{ code|escape}}
     </code>
   </pre>
 {% endmacro %}
