@@ -36,17 +36,32 @@ function returnCode(codeBlock, id) {
   $('#' + id + '_clipboard').trigger('click');
 }
 
+function readmore(headlineSlug, link, headline) {
+  var codeBlock = '<p class="readmore" style="font-style: italic; padding-top: .5em; padding-bottom: .5em; vertically-align: middle;"><span class="readmore--label" style="color: #111111; font-family: Helvetica,Arial,sans-serif; font-size: .9em; font-style: italic; font-weight: 800; margin: 0 1em 1em 0; text-decoration: none; text-transform: uppercase;">Read More</span><a onclick="ga(\'send\', \'event\', \'codegrabber\', \'click\', \'readmore\', \'' + headlineSlug + '\', {\'nonInteraction\': 1})" class="readmore_link" href="'+ link +'">'+ headline +'</a></p>';
+
+  return codeBlock;
+}
+
 $('#readmorecode_form').submit(function(e) {
   var headline = $('#readmore_headline').val(),
       link = $('#readmore_link').val(),
-      headlineSlug = slugify(headline);
-
-  var codeBlock = '<p class="readmore" style="font-style: italic; padding-top: .5em; padding-bottom: .5em; vertically-align: middle;"><span class="readmore--label" style="color: #111111; font-family: Helvetica,Arial,sans-serif; font-size: .9em; font-style: italic; font-weight: 800; margin: 0 1em 1em 0; text-decoration: none; text-transform: uppercase;">Read More</span><a onclick="ga(\'send\', \'event\', \'codegrabber\', \'click\', \'readmore\', \'' + headlineSlug + '\', {\'nonInteraction\': 1})" class="readmore_link" href="'+ link +'">'+ headline +'</a></p>';
+      headlineSlug = slugify(headline),
+      codeBlock = readmore(headlineSlug, link, headline);
 
   returnCode(codeBlock, 'readmorecode');
+
   copied(this.id);
+
   e.preventDefault();
 });
+
+function initializePreviews() {
+  var readmorecode = readmore('test', '', 'This is a test headline');
+
+  $('#readmorecode_preview').html(readmorecode);
+}
+
+initializePreviews();
 
 $('#twitterinlinecode_form').submit(function(e) {
   var shareSentence = $('#twitterinline_sentence').val(),

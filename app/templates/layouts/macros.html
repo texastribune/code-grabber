@@ -4,13 +4,11 @@
 {% endmacro %}
 
 <!-- Build Story Component generator -->
-{% macro copyBlock(id, formOptions, code) %}
-  {% if code %}
-  <div id="{{ id }}_preview" class="preview--frame">
-    {{ code }}
-  </div>
+{% macro copyBlock(id, formOptions, preview) %}
+  {% if preview %}
+  <div id="{{ id }}_preview" class="preview--frame"></div>
   {% endif %}
-  
+
   <!-- Add Form if form options are provided -->
   {% if formOptions %}
   <div id="{{ id }}_copy" class="copy--wrapper">

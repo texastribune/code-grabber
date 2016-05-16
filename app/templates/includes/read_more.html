@@ -4,15 +4,7 @@
         <h2>Read More</h2>
       </header>
 
-      {% set readmore %}
-      <p class="readmore">
-        <span class="readmore--label">Read More</span>
-        <a onclick="ga('send', 'event', 'codegrabber', 'click', 'readmore', {'nonInteraction': 1})" class="readmore_link" href="http://texastribune.org">
-          <span class="readmore_headline">Your headline</span>
-        </a>
-      </p>
-      {% endset %}
-
+      <!-- formOptions  -->
       {% set readmoreform %}
         <label>Headline</label>
         <input type="text" id="readmore_headline" value="" required>
@@ -20,5 +12,6 @@
         <input type="text" id="readmore_link" value="" required>
       {% endset %}
 
-      {{ macro.copyBlock('readmorecode', readmoreform, readmore)}}
+      <!-- id, formOptions, code -->
+      {{ macro.copyBlock('readmorecode', readmoreform, preview='load')}}
     </section>
