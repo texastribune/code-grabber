@@ -1,0 +1,18 @@
+  <!--   Series Header   -->
+    <section id="series_headers" class="section--block">
+      <header>
+        <h2>Series Headers</h2>
+      </header>
+        {% set formOptions %}
+        <div class="copy-form--half">
+          <label>Pick a series:</label>
+          <input type="radio" name="series" value="bsp" checked><span class="radio-label">Bordering on Insecurity</span>
+          <input type="radio" name="series" value="rough-patch"><span class="radio-label">Rough Patch</span>
+          <input type="radio" name="series" value="mental-health-matters"><span class="radio-label">Mental Health Matters</span>
+        </div>
+        {% endset %}
+
+
+        {{ macro.copyBlock('seriesheadercode', formOptions, preview='load')}}
+      </div>
+    </section>

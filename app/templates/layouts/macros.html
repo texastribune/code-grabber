@@ -1,0 +1,39 @@
+<!-- Preview Code -->
+{% macro previewFrame(code, id) %}
+
+{% endmacro %}
+
+<!-- Build Story Component generator -->
+{% macro copyBlock(id, formOptions, preview) %}
+  {% if preview == 'load' %}
+  <div id="{{ id }}_preview" class="preview--frame">
+    {{ code }}
+  </div>
+  {% endif %}
+
+  <!-- Add Form if form options are provided -->
+  {% if formOptions %}
+  <div id="{{ id }}_copy" class="copy--wrapper">
+    <form id="{{ id }}_form" class="copy--form">
+      {{ formOptions}}
+      <input type="submit" class="copy--button" value="Update &amp; Copy Code">
+      <span class="copy--tooltip">Copied &#10003;</span>
+    </form>
+    <button id="{{ id }}_clipboard" class="copy hidden" data-clipboard-target="#{{ id }}"></button>
+  </div>
+
+  <!-- Otherwise, just add a copy button -->
+  {% else %}
+  <div id="{{ id }}_copy" class="copy--wrapper">
+    <button class="copy--button copy tooltips" data-clipboard-target="#{{ id }}">Copy Code </button>
+    <span class="copy--tooltip success">Copied &#10003;</span>
+  </div>
+  {% endif %}
+
+  <!-- Add escaped version of generated code block to preview
+  and grab when you hit copy -->
+  <pre style="display:block;">
+    <code class="language-markup" id="{{ id }}" >
+    </code>
+  </pre>
+{% endmacro %}

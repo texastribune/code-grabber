@@ -9,8 +9,8 @@ $sans-serif: 'Cabin', sans-serif;
 
 .main {
   margin: 1em auto;
-  padding: 0 1.5em;
   max-width: 65em;
+  padding: 0 1.5em;
 
   h1 { @include font-size($xl, .8); }
   h2 { @include font-size($l, .8); }
@@ -19,10 +19,20 @@ $sans-serif: 'Cabin', sans-serif;
 .section {
   &--block {
     @include clearfix;
-
-    header, p, ul, label, input, .radio-label { font-family: $sans-serif; }
-    h2 { margin: 0 0 1em; }
     margin: 0 0 5em;
+
+    header,
+    p,
+    ul,
+    label,
+    input,
+    .radio-label {
+      font-family: $sans-serif;
+    }
+
+    h2 {
+      margin: 0 0 1em;
+    }
 
     a {
       color: $orange;
@@ -30,19 +40,6 @@ $sans-serif: 'Cabin', sans-serif;
       &:hover,
       &:active {
         color: $orange;
-      }
-    }
-
-    .title {
-      @include font-size(72, .8);
-      // background-color: $green;
-      // border-radius: 5px;
-      // padding-top: 1em;
-      margin: 0;
-
-      &_sub {
-        @include font-size($l, .8);
-        margin: 0 0 2em;
       }
     }
 
@@ -76,7 +73,7 @@ $sans-serif: 'Cabin', sans-serif;
 
     .warning {
       color: $orange;
-      font-weight: 800;
+      font-family: $sans-serif;
     }
   }
 
@@ -90,20 +87,29 @@ $sans-serif: 'Cabin', sans-serif;
   }
 }
 
+.title {
+  @include font-size(72, .8);
+  margin: 0;
+
+  &_sub {
+    @include font-size($l, .8);
+    margin: 0 0 2em;
+  }
+}
+
 .resize-buttons {
   border-bottom: 2px solid $green;
-  padding: 0 1.5em;
   margin: 0 0 2em;
+  padding: 0 1.5em;
   width: 100%;
 }
 
 .preview--frame {
-  header, p, ul { font-family: $base-serif; }
-  border: 5px dashed $line-gray;
-  margin: 0 0 1.5em;
-  padding: 1em;
-  width: 100%;
-  max-width: 25em;
+  header,
+  p,
+  ul {
+    font-family: $base-serif;
+  }
 
   a {
     color: $tribune-teal;
@@ -113,6 +119,12 @@ $sans-serif: 'Cabin', sans-serif;
       color: $tribune-teal;
     }
   }
+
+  border: 5px dashed $line-gray;
+  margin: 0 0 1.5em;
+  max-width: 25em;
+  padding: 1em;
+  width: 100%;
 }
 
 .instructions {
@@ -137,8 +149,8 @@ $sans-serif: 'Cabin', sans-serif;
 
   &--highlight {
     background-color: $green;
-    padding: .2em;
     border-radius: 3px;
+    padding: .2em;
   }
 
   &--header {
@@ -164,6 +176,120 @@ $sans-serif: 'Cabin', sans-serif;
 
     @include media($default-desktop) {
       float: none;
+    }
+  }
+}
+
+
+// Form & Clipboard Styles
+
+.copy {
+  &--wrapper {
+    margin: 0 0 1em;
+  }
+
+  &--button {
+    @include btn($orange, ghost);
+    font-family: $sans-serif;
+    margin: 0 auto;
+    width: 50%;
+  }
+
+  .copied {
+    color: $green;
+    display: none;
+    font-family: $sans-serif;
+    margin: 0 0 0 1em;
+  }
+
+  &--form {
+    label {
+      @include font-size($base);
+      display: block;
+      font-family: $base-sans-serif;
+      font-weight: 600;
+      margin: 0 0 .25em;
+
+      &.copied {
+        font-weight: 400;
+        margin: 0 0 0 1em;
+      }
+    }
+
+    input[type=text] {
+      margin: 0 0 1em;
+      padding: .5em;
+      width: 100%;
+    }
+
+    input[type=submit] {
+      display: inline-block;
+      margin: 0;
+    }
+
+    input[type=radio] {
+      margin: 0 .5em 1em 0;
+    }
+
+    &--half {
+      @include media($default-desktop) {
+        float: left;
+        padding: 0 1em;
+        width: 50%;
+      }
+    }
+
+    .radio-label {
+      margin: 0 1em 0 0;
+    }
+
+    .color-bsp {
+      background-color: #925352;
+      color: $white;
+      padding: .25em;
+    }
+
+    .color-tt {
+      background-color: $tribune-yellow;
+      padding: .25em;
+    }
+  }
+
+  &--tooltip {
+    background: $white;
+    border: 2px solid $green;
+    border-radius: 6px;
+    color: $green;
+    display: none;
+    font-family: $sans-serif;
+    margin: 0 0 0 .4em;
+    padding: .5em;
+    position: relative;
+    text-align: center;
+
+    &:before {
+      border-bottom: 12px solid transparent;
+      border-right: 12px solid $green;
+      border-top: 12px solid transparent;
+      content: '';
+      margin: -12px 0 0;
+      position: absolute;
+      right: 100%;
+      top: 50%;
+      width: 0;
+      height: 0;
+    }
+
+    &:after {
+      border-bottom: 9px solid transparent;
+      border-right: 9px solid #FFFFFF;
+      border-top: 9px solid transparent;
+      content: '';
+      margin-top: -9px;
+      position: absolute;
+      right: 100%;
+      top: 50%;
+      width: 0; height: 0;
     }
   }
 }

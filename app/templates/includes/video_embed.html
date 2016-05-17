@@ -1,0 +1,22 @@
+<!-- Video Embed     -->
+  <section id="video_embed" class="section--block">
+    <header>
+      <h2>Responsive Video Embed</h2>
+      <p>These code blocks rely on CMS classes to load FitVids.js and make the videos responsive. Indicating whether you're using a YouTube or Vimeo embed is very important! You don't need to set a width or height &mdash; but dimensions will get funky if you set one and not the other.</p>
+    </header>
+
+    {% set videoembedform %}
+    <label>Video ID - Ex: BtZF007Lep4</label>
+    <input id="videoID" type="text" value="" required>
+    <label>Host</label>
+    <input type="radio" name="videoHost" value="youtube" checked><span class="radio-label">YouTube</span>
+    <input type="radio" name="videoHost" value="vimeo"><span class="radio-label">Vimeo</span>
+    <label>Width</label>
+    <input id="videoWidth" type="text" value="">
+    <label>Height</label>
+    <input id="videoHeight" type="text" value="">
+    {% endset %}
+
+    {{ macro.copyBlock('videoembedcode', videoembedform)}}
+
+  </section>

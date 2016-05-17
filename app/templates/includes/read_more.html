@@ -1,0 +1,17 @@
+  <!--   Read More       -->
+    <section id="read_more" class="section--block">
+      <header>
+        <h2>Read More</h2>
+      </header>
+
+      <!-- formOptions  -->
+      {% set readmoreform %}
+        <label>Headline</label>
+        <input type="text" id="readmore_headline" value="" required>
+        <label>Link to the story</label>
+        <input type="text" id="readmore_link" value="" required>
+      {% endset %}
+
+      <!-- id, formOptions, code -->
+      {{ macro.copyBlock('readmorecode', readmoreform, preview='load')}}
+    </section>

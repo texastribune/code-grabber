@@ -1,187 +1,192 @@
-/* global Clipboard */
+/* global $ */
 
-(function() {
-  'use strict';
+import {copied, slugify, positionCheck, returnCode} from './includes/utils.js';
 
-  var templateFrame = $('.preview--frame');
+// Load clipboard.js
+// add functionality to all .copy
+import Clipboard from 'clipboard';
+new Clipboard('.copy');
 
-  // Add your JS here!
-  $('#desktop').click(function() {
-    templateFrame.width(640);
-  });
+function readmore(headlineSlug, link, headline) {
+  var codeBlock = '<p class="readmore" style="font-style: italic; padding-top: .5em; padding-bottom: .5em; vertically-align: middle;"><span class="readmore--label" style="color: #111111; font-family: Helvetica,Arial,sans-serif; font-size: .9em; font-style: italic; font-weight: 800; margin: 0 1em 1em 0; text-decoration: none; text-transform: uppercase;">Read More</span><a onclick="ga(\'send\', \'event\', \'codegrabber\', \'click\', \'readmore\', \'' + headlineSlug + '\', {\'nonInteraction\': 1})" class="readmore_link" href="'+ link +'">'+ headline +'</a></p>';
 
-  $('#mobile').click(function() {
-    templateFrame.width(320);
-  });
+  return codeBlock;
+}
 
-  $('#full').click(function() {
-    templateFrame.width('100%');
-  });
+$('#readmorecode_form').submit(function(e) {
+  var headline = $('#readmore_headline').val(),
+      link = $('#readmore_link').val(),
+      headlineSlug = slugify(headline),
+      codeBlock = readmore(headlineSlug, link, headline);
 
-  function copied(x) {
-    $('.copied').hide();
-    $(x).find('.copied').css('display', 'inline-block');
+  returnCode(codeBlock, 'readmorecode');
+  copied(this.id);
+  e.preventDefault();
+});
+
+function twitterinline(sentence, sentenceEncode, hashtag) {
+  var codeBlock;
+
+  if(hashtag) {
+    codeBlock = '<a href=\"https://twitter.com/share?text=' + sentenceEncode + '&hashtags=' + hashtag + '\" onclick=\"ga(\'send\', \'event\', \'codegrabber\', \'click\', \'twitter-inline\', {\'nonInteraction\': 1})\">' + sentence + '<i style="margin-left: .5em;" class="fa fa-twitter"></i></a>';
+  } else {
+    codeBlock = '<a href=\"https://twitter.com/share?text=' + sentenceEncode + '\" onclick=\"ga(\'send\', \'event\', \'codegrabber\', \'click\', \'twitter-inline\', {\'nonInteraction\': 1})\">' + sentence + '<i style="margin-left: .5em;" class="fa fa-twitter"></i></a>';
   }
 
-  function slugify(text) {
-    return text.toString().toLowerCase()
-      .replace(/\s+/g, '-')           // Replace spaces with -
-      .replace(/[^\w\-]+/g, '')       // Remove all non-word chars
-      .replace(/\-\-+/g, '-')         // Replace multiple - with single -
-      .replace(/^-+/, '')             // Trim - from start of text
-      .replace(/-+$/, '');            // Trim - from end of text
+  return codeBlock;
+}
+
+$('#twitterinlinecode_form').submit(function(e) {
+  var shareSentence = $('#twitterinline_sentence').val(),
+      shareSentenceEncoded = encodeURI(shareSentence),
+      shareHashtag = $('#twitterinline_hashtag').val().replace(/\s+/g, ''),
+      codeBlock = twitterinline(shareSentence, shareSentenceEncoded, shareHashtag),
+      shareSentenceLength = shareSentence.length,
+      shareHashtagLength = shareHashtag.length,
+      shareLength = shareSentenceLength + shareHashtagLength,
+      shareSentenceLengthHTML = $('#twitterinline_sentence_length');
+
+  if(shareLength >= 110) {
+    $('#twitterinline_warning').removeClass('hidden');
+    shareSentenceLengthHTML.html(shareLength);
+  } else {
+    $('#twitterinline_warning').addClass('hidden');
+    shareSentenceLengthHTML.html(shareLength);
   }
 
-  $('#readmore_form').submit(function(e) {
-    var headline = $('#readmore_headline').val(),
-        link = $('#readmore_link').val(),
-        headlineHTML = $('.readmore_headline'),
-        headlineTextHTML = $('.readmore_headlineText'),
-        headlineSlugHTML = $('.readmore_headlineSlug'),
-        linkHTML = $('.readmore_link'),
-        linkTextHTML = $('.readmore_linkText'),
-        headlineSlug = slugify(headline);
+  returnCode(codeBlock, 'twitterinlinecode');
+  copied(this.id);
+  e.preventDefault();
+});
 
-    headlineHTML.html(headline);
-    headlineTextHTML.html(headline);
-    headlineSlugHTML.html(headlineSlug);
-    linkTextHTML.html(link);
-    linkHTML.prop('href', link);
+function pullquote(type, text, speaker, color, position) {
+  var codeBlock;
 
-    $('#readmore_clipboard').trigger('click');
-    copied(this);
-    e.preventDefault();
-  });
+  if (type === 'quote') {
+    codeBlock = '<div' + position + '><p class="story_quote--pull" style="border-bottom: 2px; border-left: 0; border-right: 0; border-top: 2px; border-color: ' + color + '; border-style: solid; color: #444; font-family: Georgia,Times,serif; font-size: 1.2em; font-style: italic; font-weight: 600; line-height: 1.3; padding-top: 1em; padding-bottom: 1em; margin-bottom: 0"><span>&ldquo;</span>' + text + '<span>&rdquo;</span><span style="display: block; font-family: Helvetica, Arial, sans-serif; font-size: .85em; font-style: normal; font-weight: 400; margin: .5em 0 0;">&mdash; ' + speaker + '</span></p></div>'
+  } else {
+    codeBlock = '<div' + position + '><p class="story_quote--pull" style="border-bottom: 2px; border-left: 0; border-right: 0; border-top: 2px; border-color: ' + color + '; border-style: solid; color: #444; font-family: Georgia,Times,serif; font-size: 1.2em; font-style: italic; font-weight: 600; line-height: 1.3; padding-top: 1em; padding-bottom: 1em; margin-bottom: 0">' + text + '</p></div>'
+  }
 
-  $('#twitterinline_form').submit(function(e) {
-    var shareSentence = $('#twitterinline_sentence').val(),
-        shareHashtag = $('#twitterinline_hashtag').val(),
-        shareSentenceHTML = $('.twitterinline_sentence'),
-        shareSentenceEncodeHTML = $('.twitterinline_sentence_encode'),
-        shareHashtagHTML = $('.twitterinline_hashtag'),
-        shareSentenceLength = shareSentence.length,
-        shareHashtagLength = shareHashtag.length,
-        shareLength = shareSentenceLength + shareHashtagLength,
-        shareSentenceLengthHTML = $('#twitterinline_sentence_length');
+  return codeBlock;
+}
 
-    shareSentenceEncodeHTML.html(encodeURI(shareSentence));
-    shareSentenceHTML.html(shareSentence);
+$('#pulltextcode_form').change(function(e) {
+  var type = $('input[name=type]:checked').val();
+  if (type === 'quote') {
+    $('.quote-label').show();
+    $('.speaker-label').show();
+    $('.speaker-input').show();
+    $('.text-label').hide();
+  } else {
+    $('.quote-label').hide();
+    $('.speaker-label').hide();
+    $('.speaker-input').hide();
+    $('.text-label').show();
+  }
+});
 
-    if(shareLength >= 110) {
-      $('#twitterinline_warning').removeClass('hidden');
-      shareSentenceLengthHTML.html(shareLength);
-    } else {
-      $('#twitterinline_warning').addClass('hidden');
-      shareSentenceLengthHTML.html(shareLength);
-    }
+$('#pulltextcode_form').submit(function(e) {
+  var type = $('input[name=type]:checked').val(),
+      colorVal = $('input[name=color]:checked').val(),
+      color,
+      positionVal = $('input[name=position]:checked').val(),
+      position = positionCheck(positionVal),
+      text = $('#pullquote_quote').val(),
+      speaker = $('#pullquote_speaker').val();
 
-    if(shareHashtag !== '') {
-      shareHashtagHTML.html(shareHashtag);
-    }
+  if (colorVal === 'bsp') {
+    color = '#925352';
+  } else {
+    color = 'rgb(255, 194, 0)';
+  }
 
-    $('#twitterinline_clipboard').trigger('click');
-    copied(this);
-    e.preventDefault();
-  });
+  var codeBlock = pullquote(type, text, speaker, color, position);
+  returnCode (codeBlock, 'pulltextcode');
+  copied(this.id);
 
-  $('#pullquote_form').submit(function(e) {
-    var color = $('input[name=color]:checked').val(),
-        colorHTML = $('.pullquote_color'),
-        position = $('input[name=position]:checked').val(),
-        positionHTML = $('.pullquote_position'),
-        pullquoteQuote = $('#pullquote_quote').val(),
-        pullquoteSpeaker = $('#pullquote_speaker').val(),
-        pullquoteQuoteHTML = $('.pullquote_quoteHTML'),
-        pullquoteSpeakerHTML = $('.pullquote_speakerHTML');
-
-    if (position === 'right' ) {
-      positionHTML.html(' class="article_detail unprose media float_right"');
-    } else if (position === 'left') {
-      positionHTML.html(' class="article_detail unprose media float_left"');
-    } else {
-      positionHTML.html(' style="width: 100%; margin-bottom: 1em"');
-    }
-
-    if (color === 'bsp') {
-      colorHTML.html('#925352');
-      $('.story_quote--pull').css('border-color', '#925352');
-    } else {
-      colorHTML.html('rgb(255, 194, 0)');
-      $('.story_quote--pull').css('border-color', 'rgb(255, 194, 0)');
-    }
-
-    pullquoteQuoteHTML.html(pullquoteQuote);
-    pullquoteSpeakerHTML.html(pullquoteSpeaker);
-
-    $('#pullquote_clipboard').trigger('click');
-    copied(this);
-    e.preventDefault();
-  });
+  e.preventDefault();
+});
 
 
-  $('#photoEmbed_form').submit(function(e) {
-    var position = $('input[name=photoPosition]:checked').val(),
-        positionHTML = $('.photoEmbed_position'),
-        photoEmbedURL = $('#photoEmbed_URL').val(),
-        photoEmbedCredit = $('#photoEmbed_credit').val(),
-        photoEmbedCaption = $('#photoEmbed_caption').val(),
-        photoEmbedURLHTML = $('.photoEmbed_URL'),
-        photoEmbedCreditHTML = $('.photoEmbed_credit'),
-        photoEmbedCaptionHTML = $('.photoEmbed_caption');
+function photoEmbed(url, credit, caption, position) {
+  var codeBlock = '<div' + position + '><a class="lightbox" href="' + url + '"><img src="' + url + '" alt="" width="312" /></a><div class="photo_links"><a class="lightbox enlarge" href="' + url + '">Enlarge</a>&nbsp;<cite>Photo by: ' + credit + '</cite></div><div class="photo_caption"><em>' + caption + '</em></div></div>';
 
-    if (position === 'right' ) {
-      positionHTML.html(' class="article_detail unprose media float_right"');
-    } else if (position === 'left') {
-      positionHTML.html(' class="article_detail unprose media float_left"');
-    } else {
-      positionHTML.html(' class="article_detail unprose media" style="width: 100%"');
-    }
+  return codeBlock;
+}
 
-    photoEmbedURLHTML.html(photoEmbedURL);
-    photoEmbedCreditHTML.html(photoEmbedCredit);
-    photoEmbedCaptionHTML.html(photoEmbedCaption);
+$('#photoembedcode_form').submit(function(e) {
+  var positionVal = $('input[name=photoPosition]:checked').val(),
+      url = $('#photoEmbed_URL').val(),
+      credit = $('#photoEmbed_credit').val(),
+      caption = $('#photoEmbed_caption').val(),
+      position = positionCheck(positionVal, 'photo'),
+      codeBlock = photoEmbed(url, credit, caption, position);
 
-    $('#photoEmbed_clipboard').trigger('click');
-    copied(this);
-    e.preventDefault();
-  });
+  returnCode(codeBlock, 'photoembedcode');
+  copied(this.id);
+  e.preventDefault();
+});
 
-  $('#videoEmbed_form').submit(function(e) {
-    var videoID = $('#videoID').val(),
-        videoHost = $('input[name=videoHost]:checked').val(),
-        videoWidth = $('#videoWidth').val(),
-        videoHeight = $('#videoHeight').val();
 
-    $('#videoEmbed_host').html(videoHost);
+function videoEmbed(video, host, width, height) {
+  var codeBlock = '<div class="video story_relatedvideo" itemprop="associatedMedia" style="margin-bottom: 1.3em;"><div class="' + host + '"><iframe width="' + width + '" height="' + height + '"  src="' + video + '" frameborder="0" allowfullscreen></iframe></div></div>';
 
-    if(videoWidth === '') {
-      $('#videoEmbed_width').empty();
-    } else {
-      $('#videoEmbed_width').html(' width="' + videoWidth + '"');
-    }
+  return codeBlock;
+}
 
-    if(videoHeight === '') {
-      $('#videoEmbed_width').empty();
-    } else {
-      $('#videoEmbed_height').html(' height="' + videoHeight + '"');
-    }
+$('#videoembedcode_form').submit(function(e) {
+  var videoID = $('#videoID').val(),
+      videoHost = $('input[name=videoHost]:checked').val(),
+      width = $('#videoWidth').val(),
+      height = $('#videoHeight').val(),
+      video;
 
-    if(videoHost === 'youtube') {
-      $('#videoEmbed_ID').html('https://www.youtube.com/embed/' + videoID);
-    } else {
-      $('#videoEmbed_ID').html('https://player.vimeo.com/video/' + videoID);
-    }
+  if(videoHost === 'youtube') {
+    video = 'https://www.youtube.com/embed/' + videoID;
+  } else {
+    video = 'https://player.vimeo.com/video/' + videoID;
+  }
 
-    $('#videoEmbed_clipboard').trigger('click');
-    copied(this);
-    e.preventDefault();
-  });
+  var codeBlock = videoEmbed(video, videoHost, width, height);
+  returnCode (codeBlock, 'videoembedcode');
 
-  new Clipboard('.copy');
+  copied(this.id);
 
-  $('button.copy-button').click(function() {
-    $('.copied').hide();
-    $(this).next($('.copied')).css('display', 'inline-block');
-  });
+  e.preventDefault();
+});
 
-})();
+function seriesHeader(series) {
+  var codeBlock;
+
+  if (series === 'bsp') {
+    codeBlock = '<div class="story_series--header" style="border-top: 0; border-right: 0; border-left: 0; border-bottom: 2px; border-style: solid; border-color: #925352; padding-bottom: 1em; margin-bottom: 1em;"><a href="http://apps.texastribune.org/bordering-on-insecurity/" onclick="ga(\'send\', \'event\', \'codegrabber\', \'click\', \'border-series-header-logo\', {\'nonInteraction\': 1})"><img style="display: block; margin: 0 auto .75em; width: 210px;" src="https://static.texastribune.org/media/images/2016/01/29/TT-BSP_LogoA-sml.jpg" alt="Bordering on Insecurity Logo" /></a><em style="line-height: 1; font-size: .9em;">The Texas Tribune is taking a yearlong look at the issues of border security and immigration, reporting on the reality and rhetoric around these topics. <a href="http://apps.texastribune.org/bordering-on-insecurity/" target="_blank" onclick="ga(\'send\', \'event\', \'codegrabber\', \'click\', \'border-series-header-link\', {\'nonInteraction\': 1})">Sign up to get</a> story alerts.</em></div>';
+  } else if (series === 'rough-patch') {
+    codeBlock = '<div class="story_series--header" style="border-top: 0; border-right: 0; border-left: 0; border-bottom: 2px; border-style: solid; border-color: #ffc200; padding-bottom: 1em; margin-bottom: 1em;"><a href="https://www.texastribune.org/tribpedia/rough-patch/" onclick="ga(\'send\', \'event\', \'codegrabber\', \'click\', \'rough-patch-header-logo\', {\'nonInteraction\': 1})"><img style="display: block; margin: 0 auto .75em; width: 210px;" src="https://static.texastribune.org/media/images/2016/04/06/roughpatch-logo_sm.png" alt="Rough Patch Logo" /></a><em style="line-height: 1; font-size: .9em;">How plunging oil prices are reversing fortunes across Texas. Read <a href="https://www.texastribune.org/tribpedia/rough-patch/" onclick="ga(\'send\', \'event\', \'codegrabber\', \'click\', \'rough-patch-header-link\', {\'nonInteraction\': 1})">all the stories</a> in this series.</em></div>';
+  } else if (series === 'mental-health-matters') {
+    codeBlock = '<div class="story_series--header" style="border-top: 0; border-right: 0; border-left: 0; border-bottom: 2px; border-style: solid; border-color: #ffc200; padding-bottom: 1em; margin-bottom: 1em;"><a href="https://www.texastribune.org/projects/mental-health-matters/" onclick="ga(\'send\', \'event\', \'codegrabber\', \'click\', \'mental-health-header-logo\', {\'nonInteraction\': 1})"><img style="display: block; margin: 0 auto .75em; width: 210px;" src="https://s3.amazonaws.com/static.texastribune.org/media/logos/TTE-MHM_logo-sm.png" alt="Mental Health Matters Logo" /></a><em style="line-height: 1; font-size: .9em;">Throughout Mental Health Month in May, The Texas Tribune is partnering with Mental Health Channel and KLRU to focus on some of Texas’ biggest challenges in providing mental health care. See <a href="https://www.texastribune.org/projects/mental-health-matters" onclick="ga(\'send\', \'event\', \'codegrabber\', \'click\', \'mental-health-header-link\', {\'nonInteraction\': 1})">all the stories</a> in this series.</em></div>';
+  }
+
+  return codeBlock;
+}
+
+function initializePreviews() {
+  var readmorecode = readmore('test', 'http://', 'This is a test headline'),
+      twitterinlinecode = twitterinline('This is preview sentence', '', '');
+
+  $('#readmorecode_preview').html(readmorecode);
+  $('#twitterinlinecode_preview').html(twitterinlinecode);
+}
+
+
+$('#seriesheadercode_form').submit(function(e) {
+  var series = $('input[name=series]:checked').val();
+
+  var codeBlock = seriesHeader(series);
+  returnCode (codeBlock, 'seriesheadercode');
+
+  copied(this.id);
+
+  e.preventDefault();
+});
+initializePreviews();

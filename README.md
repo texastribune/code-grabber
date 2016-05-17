@@ -1,18 +1,75 @@
-# Tribune Code Grabber Prototype
+# Tribune Code Grabber
 
-This prototype was built using the News Apps Graphic Kit.
+This repo uses the latest version of the Data Visuals app kit.
 
-## Quickstart
+To start run, `npm install`. This project requires [Node v4.0.0](https://nodejs.org/en/blog/release/v4.0.0/). If you hit a syntax error on your initial attempts to serve the project locally, it's likely that you're trying to use an older version of node. Update node, completely remove your node_modules folder and re-run `npm install`.
 
-1) Clone this repo.
+## Instructions for adding or editing a component
 
-2) Download the packages: `npm install`.
+The HTML for each component in Code Grabber is built using a Nunjucks [{% macro %}](https://mozilla.github.io/nunjucks/templating.html#macro) called `{{ copyBlock(id, formOptions, preview) }}` located in `app/templates/layouts/macros.html`. It takes three arguments:
++ `id`: A string to identify the component and the targeted clipboard. For customizable components, it's also used to locate the form in `main.js` and set its behaviors.
++ `formOptions`: The template will add a `<form>` tag around the options.
++ `preview`: Not required. If set to 'load', the template will include a dashed frame to preview the component.
 
-3) To view the project and watch changes in a browser, start a local server: `gulp serve`
+Each group of components has a file in `app/templates/includes/` in which the parameters for these templates are set and then called. For example, here's how the `{{ copyBlock() }` is used in the `read_more.html` file:
 
-## Connecting to S3 for Deployment
+```
+<!-- formOptions  -->
+{% set readmoreform %}
+  <label>Headline</label>
+  <input type="text" id="readmore_headline" value="" required>
+  <label>Link to the story</label>
+  <input type="text" id="readmore_link" value="" required>
+{% endset %}
 
-To use the commands to deploy your project to Amazon S3, you'll need to add a [profile newsapps] to ~/.aws/config. It should look like this:
+<!-- id, formOptions, preview -->
+{{ macro.copyBlock('readmorecode', readmoreform, preview='load')}}
+
+```
+
+Each component has a function to build its codeBlock. For some components (readmore and twitterinline) that function is also used to initialized a preview on load, but for most, it's just called when the component's form is submitted. When the user submits the form, it picks up the variables, calls that component function with the variables to build a new codeBlock, then runs `returnCode(codeBlock, id)`. (The id must match the id assigned to the component in `{% copyBlock() %}`). The `returnCode()` function uses the id to push the updated codeBlock to the DOM in both the preview frame and the <code> block for that component, and then triggers a hidden clipboard copy button for that component. Afterwards, it triggers `copied(this.id)` to show the Copied! tooltip.
+
+```
+// build readmore codeBlock
+function readmore(headlineSlug, link, headline) {
+  var codeBlock = '<p class="readmore" style="font-style: italic; padding-top: .5em; padding-bottom: .5em; vertically-align: middle;"><span class="readmore--label" style="color: #111111; font-family: Helvetica,Arial,sans-serif; font-size: .9em; font-style: italic; font-weight: 800; margin: 0 1em 1em 0; text-decoration: none; text-transform: uppercase;">Read More</span><a onclick="ga(\'send\', \'event\', \'codegrabber\', \'click\', \'readmore\', \'' + headlineSlug + '\', {\'nonInteraction\': 1})" class="readmore_link" href="'+ link +'">'+ headline +'</a></p>';
+
+  return codeBlock;
+}
+
+// submit readmore form
+$('#readmorecode_form').submit(function(e) {
+  var headline = $('#readmore_headline').val(),
+      link = $('#readmore_link').val(),
+      headlineSlug = slugify(headline),
+      // assign output from readmore() to codeBlock
+      codeBlock = readmore(headlineSlug, link, headline);
+
+  // update DOM & copy element
+  returnCode(codeBlock, 'readmorecode');
+
+  // provide user feedback
+  copied(this.id);
+
+  e.preventDefault();
+});
+```
+
+## Development
+
+Run the following command to start the development server:
+
+```sh
+npm run serve
+```
+
+## Webpack
+
+This kit uses the [webpack module bundler](https://webpack.github.io/).
+
+## Connect to S3
+
+To use the commands to deploy your project to Amazon S3, you'll need to add a profile to your ~/.aws/config. It should look something like this:
 
 ```
 [profile newsapps]
@@ -20,42 +77,13 @@ aws_access_key_id=YOUR_UNIQUE_ID
 aws_secret_access_key=YOUR_SECRET_ACCESS_KEY
 ```
 
+## Deployment
 
-
-Then you can run these commands to build and deploy:
+Run these commands to build and deploy:
 
 ```
-gulp
+npm run build
 npm run deploy
 ```
 
-The package will deploy to moose.texastribune.org/code-grabber. To change the location, update the package.json file.
-
-## Assets
-
-The graphics kit comes with an empty app/assets folder for you to store images, fonts and data files. The kit works best if you add these files to app/assets/images, app/assets/fonts and app/assets/data. These files will automatically be ignored by github, if added to the proper folders, to prevent a storage overload and to keep files locally that may have sensitive information in an open source project.
-
-If you need to pull assets from the deployed version of this project, run:
-
-```sh
-npm run assets/pull
-```
-
-There is also a command to push only raw assets to S3:
-```sh
-npm run assets/push
-```
-
-## Features
-
-- Live reloading and viewing powered by [BrowserSync](http://www.browsersync.io/)
-- Compiling of Sass/SCSS with [Ruby Sass](http://sass-lang.com/)
-- CSS prefixing with [autoprefixer](https://github.com/postcss/autoprefixer)
-- CSS sourcemaps with [gulp-sourcemaps](https://www.npmjs.com/package/gulp-sourcemaps)
-- CSS compression with [csso](https://github.com/css/csso)
-- JavaScript linting with [jshint](http://jshint.com/)
-- JavaScript compression with [uglifyjs](https://github.com/mishoo/UglifyJS2)
-- Template compiling with [nunjucks](http://mozilla.github.io/nunjucks/)
-- Image compression with [gulp-imagemin](https://github.com/sindresorhus/gulp-imagemin)
-- Asset revisioning with [gulp-rev](https://github.com/sindresorhus/gulp-rev) and [gulp-rev-replace](https://github.com/jamesknelson/gulp-rev-replace)
-- [pym.js](http://blog.apps.npr.org/pym.js/) included by default for easy embedding in hostile CMS environments
+The project will deploy using the S3 bucket and slug found in your `config.js`.
