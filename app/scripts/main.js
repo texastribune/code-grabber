@@ -160,7 +160,7 @@ function seriesHeader(series) {
   var codeBlock;
 
   if (series === 'bsp') {
-    codeBlock = '<div class="story_series--header" style="border-top: 0; border-right: 0; border-left: 0; border-bottom: 2px; border-style: solid; border-color: #925352; padding-bottom: 1em; margin-bottom: 1em;"><a href="http://apps.texastribune.org/bordering-on-insecurity/" onclick="ga(\'send\', \'event\', \'codegrabber\', \'click\', \'border-series-header-logo\', {\'nonInteraction\': 1})"><img style="display: block; margin: 0 auto .75em; width: 210px;" src="https://static.texastribune.org/media/images/2016/01/29/TT-BSP_LogoA-sml.jpg" alt="Bordering on Insecurity Logo" /></a><em style="line-height: 1; font-size: .9em;">The Texas Tribune is taking a yearlong look at the issues of border security and immigration, reporting on the reality and rhetoric around these topics. <a href="http://apps.texastribune.org/bordering-on-insecurity/" target="_blank" onclick="ga(\'send\', \'event\', \'codegrabber\', \'click\', \'border-series-header-link\', {\'nonInteraction\': 1})">Sign up to get</a> story alerts.</em></div>';
+    codeBlock = '<div class="story_series--header" style="border-top: 0; border-right: 0; border-left: 0; border-bottom: 2px; border-style: solid; border-color: #925352; padding-bottom: 1em; margin-bottom: 1em;"><a href="https://apps.texastribune.org/bordering-on-insecurity/" onclick="ga(\'send\', \'event\', \'codegrabber\', \'click\', \'border-series-header-logo\', {\'nonInteraction\': 1})"><img style="display: block; margin: 0 auto .75em; width: 210px;" src="https://static.texastribune.org/media/images/2016/01/29/TT-BSP_LogoA-sml.jpg" alt="Bordering on Insecurity Logo" /></a><em style="line-height: 1; font-size: .9em;">The Texas Tribune is taking a yearlong look at the issues of border security and immigration, reporting on the reality and rhetoric around these topics. <a href="https://apps.texastribune.org/bordering-on-insecurity/" target="_blank" onclick="ga(\'send\', \'event\', \'codegrabber\', \'click\', \'border-series-header-link\', {\'nonInteraction\': 1})">Sign up to get</a> story alerts.</em></div>';
   } else if (series === 'rough-patch') {
     codeBlock = '<div class="story_series--header" style="border-top: 0; border-right: 0; border-left: 0; border-bottom: 2px; border-style: solid; border-color: #ffc200; padding-bottom: 1em; margin-bottom: 1em;"><a href="https://www.texastribune.org/projects/rough-patch/" onclick="ga(\'send\', \'event\', \'codegrabber\', \'click\', \'rough-patch-header-logo\', {\'nonInteraction\': 1})"><img style="display: block; margin: 0 auto .75em; width: 210px;" src="https://static.texastribune.org/media/images/2016/04/06/roughpatch-logo_sm.png" alt="Rough Patch Logo" /></a><em style="line-height: 1; font-size: .9em;">How plunging oil prices are reversing fortunes across Texas. Read <a href="https://www.texastribune.org/projects/rough-patch/" onclick="ga(\'send\', \'event\', \'codegrabber\', \'click\', \'rough-patch-header-link\', {\'nonInteraction\': 1})">all the stories</a> in this series.</em></div>';
   } else if (series === 'mental-health-matters') {
@@ -171,7 +171,7 @@ function seriesHeader(series) {
 }
 
 function initializePreviews() {
-  var readmorecode = readmore('test', 'http://', 'This is a test headline'),
+  var readmorecode = readmore('test', 'https://', 'This is a test headline'),
       twitterinlinecode = twitterinline('This is preview sentence', '', '');
 
   $('#readmorecode_preview').html(readmorecode);
