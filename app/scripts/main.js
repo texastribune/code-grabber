@@ -108,8 +108,8 @@ $('#pulltextcode_form').submit(function(e) {
 });
 
 
-function photoEmbed(url, credit, caption, position) {
-  var codeBlock = '<div' + position + '><a class="lightbox" href="' + url + '"><img src="' + url + '" alt="" width="312" /></a><div class="photo_links"><a class="lightbox enlarge" href="' + url + '">Enlarge</a>&nbsp;<cite>Photo by: ' + credit + '</cite></div><div class="photo_caption"><em>' + caption + '</em></div></div>';
+function photoEmbed(url, credit, caption, positionVal) {
+  var codeBlock = '<figure class="story_image--inline" style="float:' + positionVal + ';"><img src="' + url + '"/><figcaption style="color: #4a4a4a; font-family: Helvetica, Arial, sans-serif; font-size: 0.8em;">' + caption + '<cite style="color: #222222; font-family: Helvetica, Arial, sans-serif; font-size: 0.7em; letter-spacing: 0.03em; padding-left: 1em; text-transform: uppercase;">' + credit + '</cite>'+ '</figcaption></figure>';
 
   return codeBlock;
 }
@@ -119,8 +119,7 @@ $('#photoembedcode_form').submit(function(e) {
       url = $('#photoEmbed_URL').val(),
       credit = $('#photoEmbed_credit').val(),
       caption = $('#photoEmbed_caption').val(),
-      position = positionCheck(positionVal, 'photo'),
-      codeBlock = photoEmbed(url, credit, caption, position);
+      codeBlock = photoEmbed(url, credit, caption, positionVal);
 
   returnCode(codeBlock, 'photoembedcode');
   copied(this.id);
