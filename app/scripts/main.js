@@ -128,7 +128,7 @@ $('#photoembedcode_form').submit(function(e) {
 
 
 function videoEmbed(video, host, width, height) {
-  var codeBlock = '<div class="video story_relatedvideo" itemprop="associatedMedia" style="margin-bottom: 1.3em;"><div class="' + host + '"><iframe width="' + width + '" height="' + height + '"  src="' + video + '" frameborder="0" allowfullscreen></iframe></div></div>';
+  var codeBlock = '<figure class="op-social video story_relatedvideo" itemprop="associatedMedia style="margin-bottom: 1.3em;"><div class="youtube"><iframe width="' + width + '" height="' + height + '"  src="' + video + '" frameborder="0" allowfullscreen></iframe></div></figure>';
 
   return codeBlock;
 }
