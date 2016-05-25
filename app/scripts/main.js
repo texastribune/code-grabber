@@ -109,14 +109,18 @@ $('#pulltextcode_form').submit(function(e) {
 
 
 function photoEmbed(url, credit, caption, positionVal) {
-  var codeBlock = '<figure class="story_image--inline" style="float:' + positionVal + ';"><img src="' + url + '"/><figcaption style="color: #4a4a4a; font-family: Helvetica, Arial, sans-serif; font-size: 0.8em;">' + caption + '<cite style="color: #222222; font-family: Helvetica, Arial, sans-serif; font-size: 0.7em; letter-spacing: 0.03em; padding-left: 1em; text-transform: uppercase;">' + credit + '</cite>'+ '</figcaption></figure>';
+  var codeBlock = '<figure class="story_image--inline" style="float:' + positionVal + '; margin: 1em 0;"><img src="' + url + '" style="width: 100%;" /><figcaption style="color: #4a4a4a; font-family: Helvetica, Arial, sans-serif; font-size: 0.8em;">' + caption + '<cite style="color: #222222; font-family: Helvetica, Arial, sans-serif; font-size: 0.7em; letter-spacing: 0.03em; padding-left: 1em; text-transform: uppercase;">' + credit + '</cite>'+ '</figcaption></figure>';
 
   return codeBlock;
 }
 
 $('#photoembedcode_form').submit(function(e) {
-  var positionVal = $('input[name=photoPosition]:checked').val(),
-      url = $('#photoEmbed_URL').val(),
+  var positionVal = $('input[name=photoPosition]:checked').val();
+  if (positionVal === 'full') {
+    positionVal = 'none';
+  }
+
+  var url = $('#photoEmbed_URL').val(),
       credit = $('#photoEmbed_credit').val(),
       caption = $('#photoEmbed_caption').val(),
       codeBlock = photoEmbed(url, credit, caption, positionVal);
