@@ -59,13 +59,13 @@ $('#twitterinlinecode_form').submit(function(e) {
   e.preventDefault();
 });
 
-function pullquote(type, text, speaker, color, position) {
+function pullquote(type, text, speaker, color, positionVal) {
   var codeBlock;
 
   if (type === 'quote') {
-    codeBlock = '<div' + position + '><p class="story_quote--pull" style="border-bottom: 2px; border-left: 0; border-right: 0; border-top: 2px; border-color: ' + color + '; border-style: solid; color: #444; font-family: Georgia,Times,serif; font-size: 1.2em; font-style: italic; font-weight: 600; line-height: 1.3; padding-top: 1em; padding-bottom: 1em; margin-bottom: 0"><span>&ldquo;</span>' + text + '<span>&rdquo;</span><span style="display: block; font-family: Helvetica, Arial, sans-serif; font-size: .85em; font-style: normal; font-weight: 400; margin: .5em 0 0;">&mdash; ' + speaker + '</span></p></div>'
+    codeBlock = '<aside class="story_quote--pull" style="border-bottom: 2px; border-left: 0; border-right: 0; border-top: 2px; border-color: ' + color + '; border-style: solid; color: #444; float: ' + positionVal + '; font-family: Georgia,Times,serif; font-size: 1.2em; font-style: italic; font-weight: 600; line-height: 1.3; padding-top: 1em; padding-bottom: 1em; margin: 0.8em"><span>&ldquo;</span>' + text + '<span>&rdquo;</span><cite><span style="display: block; font-family: Helvetica, Arial, sans-serif; font-size: .85em; font-style: normal; font-weight: 400; margin: .5em 0 0;">&mdash; ' + speaker + '</span></cite></aside>';
   } else {
-    codeBlock = '<div' + position + '><p class="story_quote--pull" style="border-bottom: 2px; border-left: 0; border-right: 0; border-top: 2px; border-color: ' + color + '; border-style: solid; color: #444; font-family: Georgia,Times,serif; font-size: 1.2em; font-style: italic; font-weight: 600; line-height: 1.3; padding-top: 1em; padding-bottom: 1em; margin-bottom: 0">' + text + '</p></div>'
+    codeBlock = '<aside class="story_quote--pull" style="border-bottom: 2px; border-left: 0; border-right: 0; border-top: 2px; border-color: ' + color + '; border-style: solid; color: #444; float: ' + positionVal + '; font-family: Georgia,Times,serif; font-size: 1.2em; font-style: italic; font-weight: 600; line-height: 1.3; padding-top: 1em; padding-bottom: 1em; margin: 0.8em">' + text + '</aside>';
   }
 
   return codeBlock;
@@ -91,7 +91,6 @@ $('#pulltextcode_form').submit(function(e) {
       colorVal = $('input[name=color]:checked').val(),
       color,
       positionVal = $('input[name=position]:checked').val(),
-      position = positionCheck(positionVal),
       text = $('#pullquote_quote').val(),
       speaker = $('#pullquote_speaker').val();
 
@@ -101,7 +100,7 @@ $('#pulltextcode_form').submit(function(e) {
     color = 'rgb(255, 194, 0)';
   }
 
-  var codeBlock = pullquote(type, text, speaker, color, position);
+  var codeBlock = pullquote(type, text, speaker, color, positionVal);
   returnCode (codeBlock, 'pulltextcode');
   copied(this.id);
 
