@@ -145,7 +145,7 @@ $('#photoembedcode_form').submit(function(e) {
 });
 
 
-function videoEmbed(video, host, width, height) {
+function videoEmbed(video, width, height) {
   var codeBlock = '<figure class="op-social video story_relatedvideo" itemprop="associatedMedia style="margin-bottom: 1.3em;"><div class="youtube"><iframe width="' + width + '" height="' + height + '"  src="' + video + '" frameborder="0" allowfullscreen></iframe></div></figure>';
 
   return codeBlock;
@@ -153,18 +153,11 @@ function videoEmbed(video, host, width, height) {
 
 $('#videoembedcode_form').submit(function(e) {
   var videoID = $('#videoID').val(),
-      videoHost = $('input[name=videoHost]:checked').val(),
       width = $('#videoWidth').val(),
       height = $('#videoHeight').val(),
-      video;
+      video = 'https://www.youtube.com/embed/' + videoID;
 
-  if(videoHost === 'youtube') {
-    video = 'https://www.youtube.com/embed/' + videoID;
-  } else {
-    video = 'https://player.vimeo.com/video/' + videoID;
-  }
-
-  var codeBlock = videoEmbed(video, videoHost, width, height);
+  var codeBlock = videoEmbed(video, width, height);
   returnCode (codeBlock, 'videoembedcode');
 
   copied(this.id);
