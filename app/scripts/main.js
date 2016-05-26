@@ -65,7 +65,7 @@ function pullquote(type, text, speaker, color, positionFloat) {
   if (type === 'quote') {
     codeBlock = '<aside class="story_quote--pull media article_detail unprose' + positionFloat + 'border-bottom: 2px; border-left: 0; border-right: 0; border-top: 2px; border-color: ' + color + '; border-style: solid; color: #444; font-family: Georgia,Times,serif; font-size: 1.2em; font-style: italic; font-weight: 600; line-height: 1.3; padding-top: 1em; padding-bottom: 1em;"><span>&ldquo;</span>' + text + '<span>&rdquo;</span><cite><span style="display: block; font-family: Helvetica, Arial, sans-serif; font-size: .85em; font-style: normal; font-weight: 400; margin: .5em 0 0;">&mdash; ' + speaker + '</span></cite></aside>';
   } else {
-    codeBlock = '<aside class="story_quote--pull media article_detail unprose' + positionFloat + 'border-bottom: 2px; border-left: 0; border-right: 0; border-top: 2px; border-color: ' + color + '; border-style: solid; color: #444; font-family: Georgia,Times,serif; font-size: 1.2em; font-style: italic; font-weight: 600; line-height: 1.3; padding-top: 1em; padding-bottom: 1em;">' + text + '</aside>';
+    codeBlock = '<blockquote class="story_quote--pull media article_detail unprose' + positionFloat + 'border-bottom: 2px; border-left: 0; border-right: 0; border-top: 2px; border-color: ' + color + '; border-style: solid; color: #444; font-family: Georgia,Times,serif; font-size: 1.2em; font-style: italic; font-weight: 600; line-height: 1.3; padding-top: 1em; padding-bottom: 1em;">' + text + '</blockquote>';
   }
 
   return codeBlock;
