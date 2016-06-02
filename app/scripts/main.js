@@ -206,10 +206,12 @@ function seriesHeader(series) {
 
 function initializePreviews() {
   var readmorecode = readmore('test', 'https://', 'This is a test headline'),
-      twitterinlinecode = twitterinline('This is preview sentence', '', '');
+      twitterinlinecode = twitterinline('This is preview sentence', '', ''),
+      festivalcode = festival('Steve Adler, Mayor of Austin', '" style="width: 100%;');
 
   $('#readmorecode_preview').html(readmorecode);
   $('#twitterinlinecode_preview').html(twitterinlinecode);
+  $('#festivalcode_preview').html(festivalcode);
 }
 
 
@@ -223,4 +225,5 @@ $('#seriesheadercode_form').submit(function(e) {
 
   e.preventDefault();
 });
+
 initializePreviews();
