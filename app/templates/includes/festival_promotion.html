@@ -1,0 +1,26 @@
+  <!--   Pull Quote      -->
+    <section id="pull_text" class="section--block">
+      <header>
+        <h2>2016 Festival Talent Promotion</h2>
+      </header>
+
+      {% set festivalData = data.festival %}
+
+      {% set festivalform %}
+        <label>Festival Talent</label>
+        <select name="festival-speaker">
+          {% for x in festivalData.Festival_Speakers %}
+            <option id="{{ x.Last_Name }}" value="{{ x.First_Name }} {{ x.Last_Name }}, {{ x.Title }}">{{ x.Last_Name }}, {{ x.First_Name }} &mdash; {{ x.Title }}</option>
+          {% endfor %}
+        </select>
+        <span class="select-carat"><i class="fa fa-caret-down" aria-hidden="true"></i></span>
+        <div class="copy-form--half">
+          <label>Position</label>
+          <input type="radio" name="position" value="full" checked><span class="radio-label">Full Width</span>
+          <input type="radio" name="position" value="right"><span class="radio-label">Float Right</span>
+          <input type="radio" name="position" value="left"><span class="radio-label">Float Left</span>
+        </div>
+      {% endset %}
+      {{ macro.copyBlock('festivalcode', festivalform, preview='load')}}
+
+    </section>

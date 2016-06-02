@@ -24,6 +24,31 @@ $('#readmorecode_form').submit(function(e) {
   e.preventDefault();
 });
 
+function festival(speaker, positionFloat) {
+  var codeBlock = '<blockquote class="story_quote--pull media article_detail unprose' + positionFloat + 'border-bottom: 2px; border-left: 0; border-right: 0; border-top: 2px; border-color: #ffc200; border-style: solid; color: #444; font-family: Georgia,Times,serif; font-size: 1em; font-style: italic; font-weight: 400; line-height: 1.3; padding-top: 1em; padding-bottom: 1em;">' + speaker + ' is speaking at the 2016 Texas Tribune Festival. Find out more at <a href="texastribune.org/festival">texastribune.org/festival</a></blockquote>';
+
+  return codeBlock;
+}
+
+$('#festivalcode_form').submit(function(e) {
+  var speaker = $('select[name=festival-speaker] option:selected').val(),
+      positionVal = $('input[name=position]:checked').val(),
+      positionFloat;
+
+  if (positionVal === 'right') {
+    positionFloat = ' float_right" style="';
+  } else if (positionVal === 'left') {
+    positionFloat = ' float_left" style="';
+  } else {
+    positionFloat = '" style="width: 100%;';
+  }
+
+  var codeBlock = festival(speaker, positionFloat);
+  returnCode(codeBlock, 'festivalcode');
+  copied(this.id);
+  e.preventDefault();
+});
+
 function twitterinline(sentence, sentenceEncode, hashtag) {
   var codeBlock;
 
