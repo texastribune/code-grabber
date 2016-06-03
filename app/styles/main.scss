@@ -232,6 +232,24 @@ $sans-serif: 'Cabin', sans-serif;
       margin: 0 .5em 1em 0;
     }
 
+    select {
+      -webkit-appearance: none;
+      display: inline-block;
+      margin: 0 0 1em;
+      padding: .5em 2em .5em .5em;
+      width: 95%
+    }
+
+    option {
+      font-family: $sans-serif;
+      padding: .5em 0;
+    }
+
+    .select-carat {
+      font-size: 1.5em;
+      margin: .1em -1.25em;
+    }
+
     &--half {
       @include media($default-desktop) {
         float: left;

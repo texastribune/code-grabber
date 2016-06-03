@@ -9,6 +9,19 @@ config.deploy = {
   profile: 'newsapps'
 };
 
+config.dataFolder = './data';
 config.templateFolder = './app/templates';
+
+config.data = {
+  sheets: [
+    {
+      fileid: '1gCNdF5Zq1EhVvP_R5QUgkLqojD0KnPYqFq4TcVCokvs',
+      name: 'festival',
+      copytext: {
+        basetype: 'objectlist'
+      }
+    }
+  ]
+};
 
 module.exports = config;

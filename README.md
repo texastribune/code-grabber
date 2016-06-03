@@ -87,3 +87,9 @@ npm run deploy
 ```
 
 The project will deploy using the S3 bucket and slug found in your `config.js`.
+
+## Google Sheets
+
+Currently, the 2016 Festival Talent lineup is brought into the project through a Google Doc. If this is your first time using Google sheets with a Data Visuals Kit, you'll need to authorize your computer by saving a file named `.tt_kit_google_client_secrets.json` in your root directory. You can get the specific contents of that file from a fellow teammate.
+
+The `config.js` is already set up to pull in the information. If you need to make changes or add another Google sheet or document, this is where you do it. To update the data pulled into the project, run `npm run data/fetch`. You'll see an updated `.json` file in the `data` folder, which you can then reference in your `app/templates`.
