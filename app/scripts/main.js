@@ -25,7 +25,7 @@ $('#readmorecode_form').submit(function(e) {
 });
 
 function festival(speaker, positionFloat, lastName) {
-  var codeBlock = '<blockquote class="story_quote--pull media article_detail unprose' + positionFloat + 'border-bottom: 2px; border-left: 0; border-right: 0; border-top: 2px; border-color: #ffc200; border-style: solid; color: #444; font-family: Georgia,Times,serif; font-size: 1em; font-style: italic; font-weight: 400; line-height: 1.3; padding-top: 1em; padding-bottom: 1em;">' + speaker + ' is speaking at the 2016 Texas Tribune Festival. Find out more at <a onclick="ga(\'send\', \'event\', \'codegrabber\', \'click\', \'festival\', \'' + lastName + '\', {\'nonInteraction\': 1})" href="https://www.texastribune.org/festival/">texastribune.org/festival</a></blockquote>';
+  var codeBlock = '<blockquote class="story_quote--pull media article_detail unprose' + positionFloat + 'border-bottom: 2px; border-left: 0; border-right: 0; border-top: 2px; border-color: #ffc200; border-style: solid; color: #444; font-family: Georgia,Times,serif; font-size: 1em; font-style: italic; font-weight: 400; line-height: 1.3; padding-top: 1em; padding-bottom: 1em;">' + speaker + ', is speaking at the 2016 Texas Tribune Festival. Find out more at <a onclick="ga(\'send\', \'event\', \'codegrabber\', \'click\', \'festival\', \'' + lastName + '\', {\'nonInteraction\': 1})" href="https://www.texastribune.org/festival/">texastribune.org/festival</a></blockquote>';
 
   return codeBlock;
 }
