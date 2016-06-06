@@ -11,8 +11,6 @@ $sans-serif: 'Cabin', sans-serif;
   margin: 1em auto;
   max-width: 65em;
   padding: 0 1.5em;
-
-  h1 { @include font-size($xl, .8); }
   h2 { @include font-size($l, .8); }
 }
 
@@ -88,8 +86,8 @@ $sans-serif: 'Cabin', sans-serif;
 }
 
 .title {
-  @include font-size(72, .8);
-  margin: 0;
+  @include font-size($xxl, .8);
+  margin: 0 0 1em;
 
   &_sub {
     @include font-size($l, .8);
@@ -159,6 +157,10 @@ $sans-serif: 'Cabin', sans-serif;
 
     &_tips {
       text-align: left;
+    }
+
+    h1 {
+      @include font-size($l);
     }
   }
 
