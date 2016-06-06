@@ -10,7 +10,7 @@
         <label>Festival Talent</label>
         <select name="festival-speaker">
           {% for x in festivalData.Festival_Speakers %}
-            <option id="{{ x.Last_Name }}" value="{{ x.First_Name }} {{ x.Last_Name }}, {{ x.Title }}" data-last="{{ x.Last_Name }}">{{ x.Last_Name }}, {{ x.First_Name }} &mdash; {{ x.Title }}</option>
+            <option id="{{ x.Last_Name }}" value="{{ x.Copyedited_Name }}" data-last="{{ x.Last_Name }}">{{ x.Last_Name }}, {{ x.First_Name }} &mdash; {{ x.Title }}</option>
           {% endfor %}
         </select>
         <span class="select-carat"><i class="fa fa-caret-down" aria-hidden="true"></i></span>
