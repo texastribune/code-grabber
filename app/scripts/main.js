@@ -172,7 +172,7 @@ $('#photoembedcode_form').submit(function(e) {
 
 
 function videoEmbed(video, width, height) {
-  var codeBlock = '<figure class="op-social video story_relatedvideo" itemprop="associatedMedia" style="margin: 0 0 1em 0;"><div class="youtube"><iframe width="' + width + '" height="' + height + '"  src="' + video + '" frameborder="0" allowfullscreen></iframe></div></figure>';
+  var codeBlock = '<figure class="op-social story_relatedvideo" itemprop="associatedMedia" style="margin: 0 0 1em 0;"><div class="video"><div class="youtube"><iframe width="' + width + '" height="' + height + '"  src="' + video + '" frameborder="0" allowfullscreen></iframe></div></div></figure>';
 
   return codeBlock;
 }
@@ -182,6 +182,11 @@ $('#videoembedcode_form').submit(function(e) {
       width = $('#videoWidth').val(),
       height = $('#videoHeight').val(),
       video = 'https://www.youtube.com/embed/' + videoID;
+
+  if (width === '' && height === '') {
+    width = 560;
+    height = 315;
+  }
 
   var codeBlock = videoEmbed(video, width, height);
   returnCode (codeBlock, 'videoembedcode');
