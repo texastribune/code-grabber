@@ -144,7 +144,7 @@ $('#pulltextcode_form').submit(function(e) {
 
 
 function photoEmbed(url, credit, caption, positionFloat) {
-  var codeBlock = '<figure style="line-height: 1.3;" class="story_image--inline media article_detail unprose' +positionFloat + ' data-feedback="fb:likes,fb:comments"><img src="' + url + '" style="width: 100%;" /><figcaption style="color: #4a4a4a; font-family: Helvetica, Arial, sans-serif; font-size: 0.8em;">' + caption + '<cite style="color: #222222; font-family: Helvetica, Arial, sans-serif; font-size: 0.7em; letter-spacing: 0.03em; padding-left: 1em; text-transform: uppercase;">' + credit + '</cite>'+ '</figcaption></figure>';
+  var codeBlock = '<figure class="story_image--inline media article_detail unprose' +positionFloat + ' data-feedback="fb:likes,fb:comments"><img src="' + url + '" style="width: 100%;" /><figcaption style="color: #4a4a4a; font-family: Helvetica, Arial, sans-serif; font-size: 0.8em; line-height: 1.3;">' + caption + '<cite style="color: #222222; font-family: Helvetica, Arial, sans-serif; font-size: 0.7em; letter-spacing: 0.03em; line-height: 1.3; padding-left: 1em; text-transform: uppercase;">' + credit + '</cite>'+ '</figcaption></figure>';
 
   return codeBlock;
 }
@@ -172,7 +172,7 @@ $('#photoembedcode_form').submit(function(e) {
 
 
 function videoEmbed(video, width, height) {
-  var codeBlock = '<figure class="op-social story_relatedvideo" itemprop="associatedMedia" style="margin: 0 0 1em 0;" data-feedback="fb:likes,fb:comments"><div class="video"><div class="youtube"><iframe width="' + width + '" height="' + height + '"  src="' + video + '" frameborder="0" allowfullscreen></iframe></div></div></figure>';
+  var codeBlock = '<figure class="op-social story_relatedvideo" itemprop="associatedMedia" style="margin: 0 0 1em 0;"><div class="video"><div class="youtube"><iframe width="' + width + '" height="' + height + '"  src="' + video + '" frameborder="0" allowfullscreen></iframe></div></div></figure>';
 
   return codeBlock;
 }
