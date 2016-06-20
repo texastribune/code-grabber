@@ -64,7 +64,7 @@ function twitterinline(sentence, sentenceEncode, hashtag) {
 
 $('#twitterinlinecode_form').submit(function(e) {
   var shareSentence = $('#twitterinline_sentence').val(),
-      shareSentenceEncoded = encodeURI(shareSentence),
+      shareSentenceEncoded = encodeURIComponent(shareSentence),
       shareHashtag = $('#twitterinline_hashtag').val().replace(/\s+/g, ''),
       codeBlock = twitterinline(shareSentence, shareSentenceEncoded, shareHashtag),
       shareSentenceLength = shareSentence.length,
