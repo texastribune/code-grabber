@@ -3,12 +3,16 @@
     <header>
       <h2>Responsive YouTube Embed</h2>
       <p>These code blocks rely on CMS classes to load FitVids.js and make YouTube videos responsive. All videos should be YouTube videos.</p>
-      <p>Insert the video ID into the form below — NOT THE URL FOR THE VIDEO.</p>
+      <p>Insert the video ID into the form below — NOT THE URL FOR THE VIDEO. The video will resize to match the browser, but we've included a default aspect ratio (width and height) that you may need to adjust.</p>
     </header>
 
     {% set videoembedform %}
     <label>Video ID - Ex: BtZF007Lep4</label>
     <input id="videoID" type="text" value="" required>
+    <label>Width — Default 560</label>
+    <input id="videoWidth" type="text" value="560" required>
+    <label>Height  — Default 315</label>
+    <input id="videoHeight" type="text" value="315" required>
     {% endset %}
 
     {{ macro.copyBlock('videoembedcode', videoembedform)}}

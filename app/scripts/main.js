@@ -171,16 +171,19 @@ $('#photoembedcode_form').submit(function(e) {
 });
 
 
-function videoEmbed(videoID) {
-  var codeBlock = '<figure class="op-social story_relatedvideo" itemprop="associatedMedia" style="margin: 0 0 1em 0;"><div class="video"><div class="youtube"><iframe src="https://www.youtube.com/embed/' + videoID + '" frameborder="0" allowfullscreen></iframe></div></div></figure>';
+function videoEmbed(videoID, videoWidth, videoHeight) {
+  var codeBlock = '<figure class="op-social story_relatedvideo" itemprop="associatedMedia" style="margin: 0 0 1em 0;"><div class="video"><div class="youtube"><iframe width="' + videoWidth + '" height="' + videoHeight + '" src="https://www.youtube.com/embed/' + videoID + '" frameborder="0" allowfullscreen></iframe></div></div></figure>';
 
   return codeBlock;
 }
 
 $('#videoembedcode_form').submit(function(e) {
-  var videoID = $('#videoID').val();
+  var videoID = $('#videoID').val(),
+      videoWidth = $('#videoWidth').val(),
+      videoHeight = $('#videoHeight').val();
 
-  var codeBlock = videoEmbed(videoID);
+  console.log(videoWidth);
+  var codeBlock = videoEmbed(videoID, videoWidth, videoHeight);
   returnCode (codeBlock, 'videoembedcode');
 
   copied(this.id);
