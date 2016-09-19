@@ -1,7 +1,36 @@
   <!--   Read More       -->
     <section id="read_more" class="section--block">
       <header>
-        <h2>Read More</h2>
+        <h2>Read More — Bottom</h2>
+        <p>**You can highlight, copy &amp; paste the preview text to put it directly in the story body without touching code. Remember to bold the "Read more" line, if you do this.</p>
+      </header>
+
+      <div id="readmorebottom_preview" class="preview--frame">
+        <p><strong>Read more about ... here:</strong></p>
+        <ul>
+          <li>Story one</li>
+          <li>Story two</li>
+        </ul>
+      </div>
+
+      <!-- Add Form if form options are provided -->
+      <div id="readmorebottom_copy" class="copy--wrapper">
+        <form id="readmorebottom_form" class="copy--form">
+          <input type="submit" class="copy--button" value="Copy Code">
+          <span class="copy--tooltip">Copied &#10003;</span>
+        </form>
+        <button id="readmorebottom_clipboard" class="copy hidden" data-clipboard-target="#readmorebottom"></button>
+      </div>
+
+      <!-- Add escaped version of generated code block to preview
+      and grab when you hit copy -->
+      <pre style="display:block;">
+        <code class="language-markup" id="readmorebottom" >
+        </code>
+      </pre>
+
+      <header>
+        <h2>Read More — Inline</h2>
       </header>
 
       <!-- formOptions  -->

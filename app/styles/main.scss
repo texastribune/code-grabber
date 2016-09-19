@@ -107,6 +107,11 @@ $sans-serif: 'Cabin', sans-serif;
   p,
   ul {
     font-family: $base-serif;
+    list-style-type: disc;
+  }
+
+  li {
+    margin: 0 0 1em 1em;
   }
 
   a {

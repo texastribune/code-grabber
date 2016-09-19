@@ -13,6 +13,14 @@ function readmore(headlineSlug, link, headline) {
   return codeBlock;
 }
 
+$('#readmorebottom_form').submit(function(e) {
+  var codeBlock = '<p><strong>Read more about ... here:</strong></p><ul><li>Story one</li><li>Story two</li></ul>';
+
+  returnCode(codeBlock, 'readmorebottom');
+  copied(this.id);
+  e.preventDefault();
+});
+
 $('#readmorecode_form').submit(function(e) {
   var headline = $('#readmore_headline').val(),
       link = $('#readmore_link').val(),
@@ -209,7 +217,7 @@ function initializePreviews() {
   var readmorecode = readmore('test', 'https://', 'This is a test headline'),
       twitterinlinecode = twitterinline('This is preview sentence', '', ''),
       festivalcode = festival('Austin Mayor Steve Adler', '" style="width: 100%;', 'preview');
-
+      
   $('#readmorecode_preview').html(readmorecode);
   $('#twitterinlinecode_preview').html(twitterinlinecode);
   $('#festivalcode_preview').html(festivalcode);
