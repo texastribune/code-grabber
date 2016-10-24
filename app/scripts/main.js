@@ -32,6 +32,14 @@ $('#readmorecode_form').submit(function(e) {
   e.preventDefault();
 });
 
+$('#texasvotesbottom_form').submit(function(e) {
+  var codeBlock = '<blockquote style="border-color: #ffc200; border-style: solid; border-width: 0 0 0 5px; padding: 0 1.1rem 0 1.5rem; margin: 0 0 1.1rem;"><p style="font-weight:400;"><strong>Did you have any trouble voting?</strong> Text us your experience by joining <a onclick="ga(\'send\', \'event\', \'codegrabber\', \'click\', \'elections\', \'electionland-mobile\', {\'nonInteraction\': 1})" href="https://www.texastribune.org/2016/10/24/texas-voters-tell-us-about-your-experience-2016-el/">the ElectionLand project</a>. We\'ll check in to find out how long it took you to vote and whether you had or saw any problems. Sign up now by texting TEXAS VOTES to 69866.<p></blockquote>';
+
+  returnCode(codeBlock, 'texasvotesbottom');
+  copied(this.id);
+  e.preventDefault();
+});
+
 function festival(speaker, positionFloat, lastName) {
   var codeBlock = '<blockquote class="story_quote--pull media article_detail unprose' + positionFloat + 'border-bottom: 2px; border-left: 0; border-right: 0; border-top: 2px; border-color: #ffc200; border-style: solid; color: #444; font-family: Georgia,Times,serif; font-size: 1em; font-style: italic; font-weight: 400; line-height: 1.3; padding-top: 1em; padding-bottom: 1em;"><span style="color: #111111; display: inline; font-family: Helvetica,Arial,sans-serif; font-size: .9em; font-style: italic; font-weight: 800; margin: 0 1em 1em 0; text-decoration: none; text-transform: uppercase;">Promotion: </span>' + speaker + ' is speaking at the 2016 Texas Tribune Festival. Find out more at <a onclick="ga(\'send\', \'event\', \'codegrabber\', \'click\', \'festival\', \'' + lastName + '\', {\'nonInteraction\': 1})" href="https://www.texastribune.org/festival/">texastribune.org/festival</a></blockquote>';
 
