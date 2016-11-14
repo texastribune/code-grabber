@@ -1,8 +1,8 @@
 {
   "private": true,
   "config": {
-    "s3_bucket": "moose.texastribune.org",
-    "slug": "code-grabber"
+    "s3_bucket": "code-grabber.texastribune.org",
+    "slug": ""
   },
   "devDependencies": {
     "archieml": "^0.3.1",

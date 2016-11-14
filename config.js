@@ -4,7 +4,7 @@
 var config = {};
 
 config.deploy = {
-  bucket: 'moose.texastribune.org',
+  bucket: 'code-grabber.texastribune.org',
   key: 'antlers',
   profile: 'newsapps'
 };
