@@ -140,7 +140,7 @@ $('#pulltextcode_form').submit(function(e) {
   } else if (positionVal === 'left') {
     positionFloat = ' float_left" style="';
   } else {
-    positionFloat = '" style="width: 100%;';
+    positionFloat = '" style="width: 100%;margin-bottom:1.1rem;';
   }
 
   var codeBlock = pullquote(type, text, speaker, color, positionFloat);
