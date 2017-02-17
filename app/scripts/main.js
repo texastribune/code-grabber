@@ -140,7 +140,7 @@ $('#pulltextcode_form').submit(function(e) {
   } else if (positionVal === 'left') {
     positionFloat = ' float_left" style="';
   } else {
-    positionFloat = '" style="width: 100%;margin-bottom:1.1rem;';
+    positionFloat = '" style="width: 100%;';
   }
 
   var codeBlock = pullquote(type, text, speaker, color, positionFloat);
@@ -152,7 +152,7 @@ $('#pulltextcode_form').submit(function(e) {
 
 
 function photoEmbed(url, credit, caption, positionFloat) {
-  var codeBlock = '<figure class="story_image--inline media article_detail unprose' +positionFloat + ' data-feedback="fb:likes,fb:comments"><img src="' + url + '" style="width: 100%;" /><figcaption style="color: #4a4a4a; font-family: Helvetica, Arial, sans-serif; font-size: 0.8em; line-height: 1.3;">' + caption + '<cite style="color: #222222; font-family: Helvetica, Arial, sans-serif; font-size: 0.7em; letter-spacing: 0.03em; line-height: 1.3; padding-left: 1em; text-transform: uppercase;">' + credit + '</cite>'+ '</figcaption></figure>';
+  var codeBlock = '<div class="' + positionFloat + '"><figure class="image_default"><img alt="' + caption + '"src="' + url + '"><figcaption class="image_default--caption"><p>' + caption + '&nbsp;<i class="fa fa-camera"></i>&nbsp;' + credit + '</p></figcaption></figure></div>';
 
   return codeBlock;
 }
@@ -165,7 +165,7 @@ $('#photoembedcode_form').submit(function(e) {
   } else if (positionVal === 'left') {
     positionFloat = ' float_left"';
   } else {
-    positionFloat = '" style="width: 100%;"';
+    positionFloat = '';
   }
 
   var url = $('#photoEmbed_URL').val(),
