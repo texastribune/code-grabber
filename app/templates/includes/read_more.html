@@ -13,34 +13,4 @@
         </ul>
       </div>
 
-      <!-- Add Form if form options are provided -->
-      <div id="readmorebottom_copy" class="copy--wrapper">
-        <form id="readmorebottom_form" class="copy--form">
-          <input type="submit" class="copy--button" value="Copy Code">
-          <span class="copy--tooltip">Copied &#10003;</span>
-        </form>
-        <button id="readmorebottom_clipboard" class="copy hidden" data-clipboard-target="#readmorebottom"></button>
-      </div>
-
-      <!-- Add escaped version of generated code block to preview
-      and grab when you hit copy -->
-      <pre style="display:block;">
-        <code class="language-markup" id="readmorebottom" >
-        </code>
-      </pre>
-
-      <header>
-        <h2>Read More — Inline</h2>
-      </header>
-
-      <!-- formOptions  -->
-      {% set readmoreform %}
-        <label>Headline</label>
-        <input type="text" id="readmore_headline" value="" required>
-        <label>Link to the story</label>
-        <input type="text" id="readmore_link" value="" required>
-      {% endset %}
-
-      <!-- id, formOptions, code -->
-      {{ macro.copyBlock('readmorecode', readmoreform, preview='load')}}
     </section>
