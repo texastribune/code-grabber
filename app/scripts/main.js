@@ -7,31 +7,6 @@ import {copied, slugify, positionCheck, returnCode} from './includes/utils.js';
 import Clipboard from 'clipboard';
 new Clipboard('.copy');
 
-function readmore(headlineSlug, link, headline) {
-  var codeBlock = '<ul class="op-related-articles" title="Read More" style="font-style: italic; margin-bottom: 1em; padding-top: .5em; padding-bottom: .5em; padding-left: 0; vertically-align: middle;"><li style="list-style-type: none;"><span style="color: #111111; display: inline; font-family: Helvetica,Arial,sans-serif; font-size: .9em; font-style: italic; font-weight: 800; margin: 0 1em 1em 0; text-decoration: none; text-transform: uppercase;">Read More </span><a onclick="ga(\'send\', \'event\', \'codegrabber\', \'click\', \'readmore\', \'' + headlineSlug + '\', {\'nonInteraction\': 1})" class="readmore_link" href="'+ link + '">'+ headline +'</a></li></ul>';
-
-  return codeBlock;
-}
-
-$('#readmorebottom_form').submit(function(e) {
-  var codeBlock = '<p><strong>Read more about ... here:</strong></p><ul><li>Story one</li><li>Story two</li></ul>';
-
-  returnCode(codeBlock, 'readmorebottom');
-  copied(this.id);
-  e.preventDefault();
-});
-
-$('#readmorecode_form').submit(function(e) {
-  var headline = $('#readmore_headline').val(),
-      link = $('#readmore_link').val(),
-      headlineSlug = slugify(headline),
-      codeBlock = readmore(headlineSlug, link, headline);
-
-  returnCode(codeBlock, 'readmorecode');
-  copied(this.id);
-  e.preventDefault();
-});
-
 function festival(speaker, positionFloat, lastName) {
   var codeBlock = '<blockquote class="story_quote--pull media article_detail unprose' + positionFloat + 'border-bottom: 2px; border-left: 0; border-right: 0; border-top: 2px; border-color: #ffc200; border-style: solid; color: #444; font-family: Georgia,Times,serif; font-size: 1em; font-style: italic; font-weight: 400; line-height: 1.3; padding-top: 1em; padding-bottom: 1em;"><span style="color: #111111; display: inline; font-family: Helvetica,Arial,sans-serif; font-size: .9em; font-style: italic; font-weight: 800; margin: 0 1em 1em 0; text-decoration: none; text-transform: uppercase;">Promotion: </span>' + speaker + ' is speaking at the 2016 Texas Tribune Festival. Find out more at <a onclick="ga(\'send\', \'event\', \'codegrabber\', \'click\', \'festival\', \'' + lastName + '\', {\'nonInteraction\': 1})" href="https://www.texastribune.org/festival/">texastribune.org/festival</a></blockquote>';
 
@@ -93,14 +68,23 @@ $('#twitterinlinecode_form').submit(function(e) {
   e.preventDefault();
 });
 
-function pullquote(type, text, speaker, color, positionFloat) {
+function pullquote(type, text, speaker, positionFloat) {
   var codeBlock;
 
-  if (type === 'quote') {
-    codeBlock = '<aside class="story_quote--pull media article_detail unprose' + positionFloat + 'border-bottom: 2px; border-left: 0; border-right: 0; border-top: 2px; border-color: ' + color + '; border-style: solid; color: #444; font-family: Georgia,Times,serif; font-size: 1.2em; font-style: italic; font-weight: 600; line-height: 1.3; padding-top: 1em; padding-bottom: 1em;"><span>&ldquo;</span>' + text + '<span>&rdquo;</span><cite><span style="display: block; font-family: Helvetica, Arial, sans-serif; font-size: .85em; font-style: normal; font-weight: 400; margin: .5em 0 0;">&mdash; ' + speaker + '</span></cite></aside>';
+  if (positionFloat !== null) {
+    if (type === 'quote') {
+      codeBlock = '<div class="' + positionFloat + '"><blockquote><p>&ldquo;' + text + '&rdquo;</p><cite class="story_quote--cite">&mdash; ' + speaker + '</cite></blockquote></div>';
+    } else {
+      codeBlock = '<div class="' + positionFloat + '"><blockquote><p>' + text + '</p></blockquote></div>';
+    }
   } else {
-    codeBlock = '<blockquote class="story_quote--pull media article_detail unprose' + positionFloat + 'border-bottom: 2px; border-left: 0; border-right: 0; border-top: 2px; border-color: ' + color + '; border-style: solid; color: #444; font-family: Georgia,Times,serif; font-size: 1.2em; font-style: italic; font-weight: 600; line-height: 1.3; padding-top: 1em; padding-bottom: 1em;">' + text + '</blockquote>';
+    if (type === 'quote') {
+      codeBlock = '<blockquote><p>&ldquo;' + text + '&rdquo;</p><cite class="story_quote--cite">&mdash; ' + speaker + '</cite></blockquote>';
+    } else {
+      codeBlock = '<blockquote><p>' + text + '</p></blockquote>';
+    }
   }
+
 
   return codeBlock;
 }
@@ -122,28 +106,20 @@ $('#pulltextcode_form').change(function(e) {
 
 $('#pulltextcode_form').submit(function(e) {
   var type = $('input[name=type]:checked').val(),
-      colorVal = $('input[name=color]:checked').val(),
-      color,
       positionVal = $('input[name=position]:checked').val(),
       text = $('#pullquote_quote').val(),
       speaker = $('#pullquote_speaker').val(),
       positionFloat;
 
-  if (colorVal === 'bsp') {
-    color = '#925352';
-  } else {
-    color = 'rgb(255, 194, 0)';
-  }
-
   if (positionVal === 'right') {
-    positionFloat = ' float_right" style="';
+    positionFloat = 'float_right';
   } else if (positionVal === 'left') {
-    positionFloat = ' float_left" style="';
+    positionFloat = 'float_left';
   } else {
-    positionFloat = '" style="width: 100%;';
+    positionFloat = null;
   }
 
-  var codeBlock = pullquote(type, text, speaker, color, positionFloat);
+  var codeBlock = pullquote(type, text, speaker, positionFloat);
   returnCode (codeBlock, 'pulltextcode');
   copied(this.id);
 
@@ -199,20 +175,6 @@ $('#videoembedcode_form').submit(function(e) {
   e.preventDefault();
 });
 
-function seriesHeader(series) {
-  var codeBlock;
-
-  if (series === 'bsp') {
-    codeBlock = '<figure class="story_series--header" style="border-top: 0; border-right: 0; border-left: 0; border-bottom: 2px; border-style: solid; border-color: #925352; padding-bottom: 1em; margin: 0 0 1em 0;"><a href="https://apps.texastribune.org/bordering-on-insecurity/" onclick="ga(\'send\', \'event\', \'codegrabber\', \'click\', \'border-series-header-logo\', {\'nonInteraction\': 1})"><img style="display: block; margin: 0 auto .75em; width: 210px;" src="https://static.texastribune.org/media/images/2016/01/29/TT-BSP_LogoA-sml.jpg" alt="Bordering on Insecurity Logo" /></a><figcaption style="line-height: 1.1; font-size: .9em; font-style: italic;">The Texas Tribune is taking a yearlong look at the issues of border security and immigration. In this part of the project we look at how our insatiable demand for illegal drugs and cheap labor make the border less secure. <a href="https://apps.texastribune.org/bordering-on-insecurity/" target="_blank" onclick="ga(\'send\', \'event\', \'codegrabber\', \'click\', \'border-series-header-link\', {\'nonInteraction\': 1})">Sign up to get</a> story alerts.</figcaption></figure>';
-  } else if (series === 'rough-patch') {
-    codeBlock = '<figure class="story_series--header" style="border-top: 0; border-right: 0; border-left: 0; border-bottom: 2px; border-style: solid; border-color: #ffc200; padding-bottom: 1em; margin: 0 0 1em 0;"><a href="https://www.texastribune.org/projects/rough-patch/" onclick="ga(\'send\', \'event\', \'codegrabber\', \'click\', \'rough-patch-header-logo\', {\'nonInteraction\': 1})"><img style="display: block; margin: 0 auto .75em; width: 210px;" src="https://static.texastribune.org/media/images/2016/04/06/roughpatch-logo_sm.png" alt="Rough Patch Logo" /></a><figcaption style="line-height: 1.1; font-size: .9em; font-style: italic;">How plunging oil prices are reversing fortunes across Texas. Read <a href="https://www.texastribune.org/projects/rough-patch/" onclick="ga(\'send\', \'event\', \'codegrabber\', \'click\', \'rough-patch-header-link\', {\'nonInteraction\': 1})">all the stories</a> in this series.</figcaption></figure>';
-  } else if (series === 'mental-health-matters') {
-    codeBlock = '<figure class="story_series--header" style="border-top: 0; border-right: 0; border-left: 0; border-bottom: 2px; border-style: solid; border-color: #ffc200; padding-bottom: 1em; margin: 0 0 1em 0;"><a href="https://www.texastribune.org/projects/mental-health-matters/" onclick="ga(\'send\', \'event\', \'codegrabber\', \'click\', \'mental-health-header-logo\', {\'nonInteraction\': 1})"><img style="display: block; margin: 0 auto .75em; width: 210px;" src="https://s3.amazonaws.com/static.texastribune.org/media/logos/TTE-MHM_logo-sm.png" alt="Mental Health Matters Logo" /></a><figcaption style="line-height: 1.1; font-size: .9em; font-style: italic;">Throughout Mental Health Month in May, The Texas Tribune is partnering with Mental Health Channel and KLRU to focus on some of Texas’ biggest challenges in providing mental health care. See <a href="https://www.texastribune.org/projects/mental-health-matters" onclick="ga(\'send\', \'event\', \'codegrabber\', \'click\', \'mental-health-header-link\', {\'nonInteraction\': 1})">all the stories</a> in this series.</figcaption></figure>';
-  }
-
-  return codeBlock;
-}
-
 function initializePreviews() {
   var readmorecode = readmore('test', 'https://', 'This is a test headline'),
       twitterinlinecode = twitterinline('This is preview sentence', '', ''),
@@ -222,17 +184,5 @@ function initializePreviews() {
   $('#twitterinlinecode_preview').html(twitterinlinecode);
   $('#festivalcode_preview').html(festivalcode);
 }
-
-
-$('#seriesheadercode_form').submit(function(e) {
-  var series = $('input[name=series]:checked').val();
-
-  var codeBlock = seriesHeader(series);
-  returnCode (codeBlock, 'seriesheadercode');
-
-  copied(this.id);
-
-  e.preventDefault();
-});
 
 initializePreviews();

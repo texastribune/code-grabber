@@ -2,7 +2,7 @@
 
 {% block styles %}
 {{ super() }}
-<link href='https://fonts.googleapis.com/css?family=Cabin:400,700' rel='stylesheet' type='text/css'>
+<link href='https://fonts.googleapis.com/css?family=Cabin|Open+Sans:400,400i,700,700i' rel='stylesheet' type='text/css'>
 <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.6.1/css/font-awesome.min.css">
 {% endblock %}
 
@@ -56,21 +56,14 @@
       <h2>Choose a component</h2>
     </header>
     <ul class="section--list">
-      <li><a href="#read_more">Read More</a></li>
       <li><a href="#pull_text">Pull Quote or Block Text</a></li>
-      <li><a href="#twitterinline">Twitter - Share Sentence</a></li>
-      <li><a href="#series_headers">Series Headers</a></li>
       <li><a href="#photo_embed">Photo Embed</a></li>
       <li><a href="#video_embed">Video Embed</a></li>
       <li><a href="#festival">Festival Talent Promotion</a></li>
     </ul>
   </section>
 
-
-  {% include 'includes/read_more.html' %}
   {% include 'includes/pull_text.html' %}
-  {% include 'includes/twitter_inline.html' %}
-  {% include 'includes/series_headers.html' %}
   {% include 'includes/photo_embed.html' %}
   {% include 'includes/video_embed.html' %}
   {% include 'includes/festival_promotion.html' %}
