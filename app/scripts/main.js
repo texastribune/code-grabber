@@ -33,41 +33,6 @@ $('#festivalcode_form').submit(function(e) {
   e.preventDefault();
 });
 
-function twitterinline(sentence, sentenceEncode, hashtag) {
-  var codeBlock;
-
-  if(hashtag) {
-    codeBlock = '<a href=\"https://twitter.com/share?text=' + sentenceEncode + '&hashtags=' + hashtag + '\" onclick=\"ga(\'send\', \'event\', \'codegrabber\', \'click\', \'twitter-inline\', {\'nonInteraction\': 1})\">' + sentence + '<i style="margin-left: .5em;" class="fa fa-twitter"></i></a>';
-  } else {
-    codeBlock = '<a href=\"https://twitter.com/share?text=' + sentenceEncode + '\" onclick=\"ga(\'send\', \'event\', \'codegrabber\', \'click\', \'twitter-inline\', {\'nonInteraction\': 1})\">' + sentence + '<i style="margin-left: .5em;" class="fa fa-twitter"></i></a>';
-  }
-
-  return codeBlock;
-}
-
-$('#twitterinlinecode_form').submit(function(e) {
-  var shareSentence = $('#twitterinline_sentence').val(),
-      shareSentenceEncoded = encodeURIComponent(shareSentence),
-      shareHashtag = $('#twitterinline_hashtag').val().replace(/\s+/g, ''),
-      codeBlock = twitterinline(shareSentence, shareSentenceEncoded, shareHashtag),
-      shareSentenceLength = shareSentence.length,
-      shareHashtagLength = shareHashtag.length,
-      shareLength = shareSentenceLength + shareHashtagLength,
-      shareSentenceLengthHTML = $('#twitterinline_sentence_length');
-
-  if(shareLength >= 110) {
-    $('#twitterinline_warning').removeClass('hidden');
-    shareSentenceLengthHTML.html(shareLength);
-  } else {
-    $('#twitterinline_warning').addClass('hidden');
-    shareSentenceLengthHTML.html(shareLength);
-  }
-
-  returnCode(codeBlock, 'twitterinlinecode');
-  copied(this.id);
-  e.preventDefault();
-});
-
 function pullquote(type, text, speaker, positionFloat) {
   var codeBlock;
 
@@ -84,7 +49,6 @@ function pullquote(type, text, speaker, positionFloat) {
       codeBlock = '<blockquote><p>' + text + '</p></blockquote>';
     }
   }
-
 
   return codeBlock;
 }
@@ -128,7 +92,7 @@ $('#pulltextcode_form').submit(function(e) {
 
 
 function photoEmbed(url, credit, caption, positionFloat) {
-  var codeBlock = '<div class="' + positionFloat + '"><figure class="image_default"><img alt="' + caption + '"src="' + url + '"><figcaption class="image_default--caption"><p>' + caption + '&nbsp;<i class="fa fa-camera"></i>&nbsp;' + credit + '</p></figcaption></figure></div>';
+  var codeBlock = '<div class="' + positionFloat + '"><figure class="image_default"><img alt="' + caption + '"src="' + url + '"><figcaption class="image_default--caption">' + caption + '&nbsp;<i class="fa fa-camera"></i>&nbsp;' + credit + '</figcaption></figure></div>';
 
   return codeBlock;
 }
@@ -180,7 +144,6 @@ function initializePreviews() {
       twitterinlinecode = twitterinline('This is preview sentence', '', ''),
       festivalcode = festival('Austin Mayor Steve Adler', '" style="width: 100%;', 'preview');
 
-  $('#readmorecode_preview').html(readmorecode);
   $('#twitterinlinecode_preview').html(twitterinlinecode);
   $('#festivalcode_preview').html(festivalcode);
 }
