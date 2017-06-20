@@ -120,7 +120,7 @@ $('#photoembedcode_form').submit(function(e) {
 
 
 function videoEmbed(videoID, videoWidth, videoHeight) {
-  var codeBlock = '<figure class="op-social story_relatedvideo" itemprop="associatedMedia" style="margin: 0 0 1em 0;"><div class="video"><div class="youtube"><iframe width="' + videoWidth + '" height="' + videoHeight + '" src="https://www.youtube.com/embed/' + videoID + '" frameborder="0" allowfullscreen></iframe></div></div></figure>';
+  var codeBlock = '<figure class="op-social story_relatedvideo" itemprop="associatedMedia" style="margin: 0 0 1em 0;"><div class="video"><div class="video--youtube"><iframe width="' + videoWidth + '" height="' + videoHeight + '" src="https://www.youtube.com/embed/' + videoID + '" frameborder="0" allowfullscreen></iframe></div></div></figure>';
 
   return codeBlock;
 }
