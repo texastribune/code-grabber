@@ -44,7 +44,6 @@
     "yargs": "^3.32.0"
   },
   "dependencies": {
-    "gulp-cli": "^2.0.1",
     "jquery": "^3.3.1",
     "newsapps-styles": "^1.1.0",
     "susy": "^2.2.5"
